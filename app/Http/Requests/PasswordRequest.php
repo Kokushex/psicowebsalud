@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Models\Models\Http\Requests;
 
-use App\Rules\CurrentPasswordCheckRule;
+use App\Models\Models\Rules\CurrentPasswordCheckRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PasswordRequest extends FormRequest
