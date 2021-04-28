@@ -34,7 +34,7 @@
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon" href="{{ route('register') }}">
                         <i class="ni ni-circle-08"></i>
-                        <span class="nav-link-inner--text">{{ __('Register') }}</span>
+                        <span class="nav-link-inner--text">{{ __('Registro') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -46,7 +46,7 @@
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon" href="{{ route('profile.edit') }}">
                         <i class="ni ni-single-02"></i>
-                        <span class="nav-link-inner--text">{{ __('Profile') }}</span>
+                        <span class="nav-link-inner--text">{{ __('Perfil') }}</span>
                     </a>
                 </li>
             </ul>

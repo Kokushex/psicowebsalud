@@ -14,7 +14,7 @@
                 <a href="https://www.updivision.com" class="nav-link" target="_blank">Updivision</a>
             </li>
             <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">Sobre nosotros</a>
             </li>
             <li class="nav-item">
                 <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
