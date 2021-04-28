@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Models\Http\Requests;
+namespace App\Http\Requests;
 
-use App\Models\Models\Models\User;
+use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
