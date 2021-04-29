@@ -28,7 +28,7 @@
                         <form role="form" method="POST" action="{{ route('register') }}">
                             @csrf
 
-                            <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                           <!-- <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                 <div class="input-group input-group-alternative mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
@@ -40,7 +40,7 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            </div>-->
                             <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                 <div class="input-group input-group-alternative mb-3">
                                     <div class="input-group-prepend">
@@ -72,7 +72,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="Confirmar contraseña" required>
+                                    <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="password_confirmation" required>
                                 </div>
                             </div>
                             <div class="text-muted font-italic">
