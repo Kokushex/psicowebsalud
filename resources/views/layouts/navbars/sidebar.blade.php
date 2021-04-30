@@ -82,7 +82,7 @@
                 <!--Titulo de sidebar-->
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Inicio') }}
                     </a>
                 </li>
 
@@ -138,13 +138,19 @@
 
                  <li class="nav-item">
                         <a class="nav-link" href="{{ route('horario') }}">
-                            <i class="ni ni-circle-08 text-pink"></i> {{ __('Horario') }}
+                            <i class="ni ni-watch-time text-blue"></i> {{ __('Horario') }}
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('servicio') }}">
-                            <i class="ni ni-circle-08 text-pink"></i> {{ __('Servicios') }}
+                            <i class="ni ni-bullet-list-67 text-blue"></i> {{ __('Servicios') }}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('roles') }}">
+                            <i class="ni ni-key-25 text-blue"></i> {{ __('Roles') }}
                         </a>
                     </li>
 

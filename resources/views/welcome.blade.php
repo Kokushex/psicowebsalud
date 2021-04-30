@@ -19,4 +19,39 @@
     </div>
 
     <div class="container mt--10 pb-5"></div>
+
+    <div>
+            <div class="row mx-3">
+                <div class="col-sm-6">
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h5 class="card-title">Misión</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in rutrum erat. 
+                                Cras vel sollicitudin magna, nec ullamcorper dui. Nullam consequat tempor enim id commodo. Vestibulum
+                                ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer in efficitur lectus. 
+                                Vivamus massa ex, aliquam vel laoreet vitae, feugiat id quam. Duis congue vehicula libero eget convallis.
+                             </p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 ">
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h5 class="card-title">Visión</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in rutrum erat. 
+                                    Cras vel sollicitudin magna, nec ullamcorper dui. Nullam consequat tempor enim id commodo. Vestibulum
+                                    ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer in efficitur lectus. 
+                                    Vivamus massa ex, aliquam vel laoreet vitae, feugiat id quam. Duis congue vehicula libero eget convallis.
+                                </p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
 @endsection
