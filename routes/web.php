@@ -46,4 +46,6 @@ Route::get('/horario', [App\Http\Controllers\HorarioController::class, 'indexHor
 
 Route::get('/servicio', [App\Http\Controllers\ServicioController::class, 'indexServicio'])->name('servicio');
 
+Route::get('/agenda', [App\Http\Controllers\AgendaController::class, 'indexAgenda'])->name('agenda');
 
+Route::get('/reserva', [App\Http\Controllers\ReservaController::class, 'indexReserva'])->name('reserva');

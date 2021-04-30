@@ -148,6 +148,18 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('agenda') }}">
+                            <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Agenda') }}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('reserva') }}">
+                            <i class="ni ni-book-bookmark text-blue"></i> {{ __('Reserva') }}
+                        </a>
+                    </li>
+
                 <li class="nav-item mb-5 mr-4 ml-4 pl-1 bg-danger" style="position: absolute; bottom: 0;">
                     <a class="nav-link text-white" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">
                         <i class="ni ni-cloud-download-95"></i> Upgrade to PRO
