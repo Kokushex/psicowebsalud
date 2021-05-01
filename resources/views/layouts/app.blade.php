@@ -8,6 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Argon Dashboard') }}</title>
+        <link href="{{ asset('argon') }}/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Favicon -->
         <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png">
         <!-- Fonts -->
@@ -30,7 +31,9 @@
         
         <div class="main-content">
             @include('layouts.navbars.navbar')
+            <!--Definiendo content para usarlo como section en las demas vistas-->
             @yield('content')
+            
         </div>
 
         @guest()

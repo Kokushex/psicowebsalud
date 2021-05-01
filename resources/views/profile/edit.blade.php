@@ -9,7 +9,7 @@
 
     <div class="container-fluid mt--7">
         <div class="row">
-            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <!--<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
                 <div class="card card-profile shadow">
                     <div class="row justify-content-center">
                         <div class="col-lg-3 order-lg-2">
@@ -34,10 +34,10 @@
                                         <span class="heading">22</span>
                                         <span class="description">{{ __('Amigos') }}</span>
                                     </div>
-                                   <!-- <div>
+                                    <div>
                                         <span class="heading">10</span>
                                         <span class="description">{{ __('Photos') }}</span>
-                                    </div> -->
+                                    </div> 
                                     <div>
                                         <span class="heading">89</span>
                                         <span class="description">{{ __('Comentarios') }}</span>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="col-xl-8 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
@@ -90,6 +90,7 @@
 
 
                             <div class="pl-lg-4">
+                                <!--Nombre-->
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Nombre') }}</label>
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" value="{{ old('name', auth()->user()->name) }}" required autofocus>
@@ -100,6 +101,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <!--Email-->
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">{{ __('Correo') }}</label>
                                     <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
@@ -107,6 +109,17 @@
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <!--Apellido Paterno-->
+                                <div class="form-group{{ $errors->has('ape_paterno') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-ape_paterno">{{ __('Apellido Paterno') }}</label>
+                                    <input type="text" name="ape_paterno" id="input-ape_paterno" class="form-control form-control-alternative{{ $errors->has('ape_paterno') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellido Paterno') }}" value="{{ old('email', auth()->user()->apellido_paterno) }}" required>
+
+                                    @if ($errors->has('ape_paterno'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('ape_paterno') }}</strong>
                                         </span>
                                     @endif
                                 </div>

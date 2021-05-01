@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+
+<link href="{{asset('assets/fullcalendar/main.css')}}" rel='stylesheet' />
+
 <div class="header bg-gradient-primary py-7 py-lg-6">
         <div class="container">
             <div class="header-body text-center mt-1 mb-1">
@@ -17,6 +20,25 @@
         </div>
     </div>
 
+    <script src="{{asset('assets/fullcalendar/main.js')}}"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendario');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+        });
+        calendar.render();
+        });
+
+    </script>
+    
+    
+    <div id='calendario'></div>
+    
     <div class="container mt--10 pb-5"></div>
+
+   
+
     @include('layouts.footers.auth')
 @endsection

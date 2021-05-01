@@ -173,18 +173,18 @@
                     </a>
                 </li>
 
-
+<!--
                 <li class="nav-item mb-5 mr-4 ml-4 pl-1 bg-danger" style="position: absolute; bottom: 0;">
                     <a class="nav-link text-white" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">
                         <i class="ni ni-cloud-download-95"></i> Upgrade to PRO
                     </a>
                 </li>
             </ul>
-            <!-- Divider -->
+             --Divider-- 
             <hr class="my-3">
-            <!-- Heading -->
+            -- Heading --
             <h6 class="navbar-heading text-muted">Documentation</h6>
-            <!-- Navigation -->
+            -- Navigation --
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
                     <a class="nav-link" href="https://argon-dashboard-laravel.creative-tim.com/docs/getting-started/overview.html">
@@ -204,4 +204,5 @@
             </ul>
         </div>
     </div>
+    -->
 </nav>

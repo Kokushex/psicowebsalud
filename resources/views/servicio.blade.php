@@ -1,11 +1,13 @@
 @extends('layouts.app')
 @section('content')
+
+<!-- JavaScript Bundle with Popper -->
 <div class="header bg-gradient-primary py-7 py-lg-6">
         <div class="container">
             <div class="header-body text-center mt-1 mb-1">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Servicio.') }}</h1>
+                        <h1 class="text-white">{{ __('Servicios.') }}</h1>
                     </div>
                 </div>
             </div>
@@ -18,6 +20,32 @@
     </div>
 
     
+    <!-- Boton modal -->
+    <a class="btn btn-success my-2 mx-4" href="#" role="button" data-toggle="modal" data-target="#exampleModal">
+        <i class="ni ni-fat-add"></i>
+          Agregar
+    </a>
+
+    <!-- Modal Servicio-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Servicio</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Cuerpo del modal
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!--tabla ejemplo-->
     <div class="table-responsive">
