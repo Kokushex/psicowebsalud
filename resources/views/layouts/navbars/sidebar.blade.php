@@ -85,14 +85,14 @@
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Inicio') }}
                     </a>
                 </li>
-
+                <!--Administracion usuario-->
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                    <a class="nav-link active" href="#navbar-adm_usuario" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-adm_usuario">
                         <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Area de trabajo') }}</span>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Administracion usuario') }}</span>
                     </a>
 
-                    <div class="collapse show" id="navbar-examples">
+                    <div class="collapse show" id="navbar-adm_usuario">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('profile.edit') }}">
@@ -104,6 +104,51 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.index') }}">
                                     {{ __('User Management') }}
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+               
+                    <!--Area de trabajo-->
+                 <li class="nav-item">
+                    <a class="nav-link active" href="#navbar-area_trabajo" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-area_trabajo">
+                        <i class="fab fa-laravel" style="color: #f4645f;"></i>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Area de trabajo') }}</span>
+                    </a>
+
+                    <div class="collapse show" id="navbar-area_trabajo">
+                        <ul class="nav nav-sm flex-column">
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('horario') }}">
+                                    <i class="ni ni-watch-time text-blue"></i> {{ __('Horario') }}
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('servicio') }}">
+                                     <i class="ni ni-bullet-list-67 text-blue"></i> {{ __('Servicios') }}
+                                </a>
+                             </li>
+
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('roles') }}">
+                                    <i class="ni ni-key-25 text-blue"></i> {{ __('Roles') }}
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('agenda') }}">
+                                    <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Agenda') }}
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('reserva') }}">
+                                    <i class="ni ni-book-bookmark text-blue"></i> {{ __('Reserva') }}
                                 </a>
                             </li>
 
@@ -128,43 +173,6 @@
                     </a>
                 </li>
 
-                <!--Ejemplo de enlace
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
-                        </a>
-                    </li>
-                 -->
-
-                 <li class="nav-item">
-                        <a class="nav-link" href="{{ route('horario') }}">
-                            <i class="ni ni-watch-time text-blue"></i> {{ __('Horario') }}
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('servicio') }}">
-                            <i class="ni ni-bullet-list-67 text-blue"></i> {{ __('Servicios') }}
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('roles') }}">
-                            <i class="ni ni-key-25 text-blue"></i> {{ __('Roles') }}
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('agenda') }}">
-                            <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Agenda') }}
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('reserva') }}">
-                            <i class="ni ni-book-bookmark text-blue"></i> {{ __('Reserva') }}
-                        </a>
-                    </li>
 
                 <li class="nav-item mb-5 mr-4 ml-4 pl-1 bg-danger" style="position: absolute; bottom: 0;">
                     <a class="nav-link text-white" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">
