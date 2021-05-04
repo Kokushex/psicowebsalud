@@ -62,12 +62,60 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+
+    //podria necesitar el actuar de registerValidaciones para poder controlar las excepciones que se puedan generar
     protected function create(array $data)
     {
-        return User::create([
-            //'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+       // return User::create([
+            
+            $tipo=$this->obtenerTipoSegunRuta();
+            $user = new User();
+            $user=$user->verificarUsuario('email',$data['email']);
+
+           /* 'email' => $data['email'],
+            'password' => Hash::make($data['password']),*/
+            $user=User::latest()->first();
+            $usuarioRol=new UserHasRoles();
+
+            if($tipo==1){
+                //Tipo 1 = paciente
+                $usuarioRol->asignarUsuarioRol($user->id,1);
+                auth()->login($user);
+                $user->getProfile($tipo);
+                return redirect()->to('/email/verify');
+            }else{
+                //tipo 2 = psicologo
+                $usuarioRol->asignarUsuarioRol($user->id,2);
+                auth()->login($user);
+                $user->getProfile($tipo);
+                return redirect()->to('/email/verify');
+            }
+
+
+
+            
+
+       // ])
+        ;
+    }
+
+/*metodo para seleccionar el tipo de registro deseado (Paciente o psicologo),
+esto ayuda posteriormente para otorgar un rol al usuario
+*/
+
+    private function obtenerTipoSegunRuta(){
+        $tipo=0;
+        switch(Route::currentRouteName()){
+            case "createPaciente":
+                $tipo=1;
+                break;
+            case "createPsicologo":
+                $tipo=2;
+                break;
+            default:
+                $tipo=0;
+        }
+        return $tipo;
     }
 }
+

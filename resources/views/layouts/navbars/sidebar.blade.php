@@ -123,7 +123,7 @@
                         <ul class="nav nav-sm flex-column">
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('horario') }}">
+                                <a class="nav-link" href="{{ route('indexHorario') }}">
                                     <i class="ni ni-watch-time text-blue"></i> {{ __('Horario') }}
                                 </a>
                             </li>

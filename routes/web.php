@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\HorarioController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +22,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
+/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(); */
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+//Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -38,16 +42,34 @@ Route::group(['middleware' => 'auth'], function () {
 	 Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-		
+	
 });
 
-//Route::get('/horario', 'App\Http\Controllers\HorarioController@indexHorario')->name('horario');
-Route::get('/horario', [App\Http\Controllers\HorarioController::class, 'indexHorario'])->name('horario');
 
-Route::get('/servicio', [App\Http\Controllers\ServicioController::class, 'indexServicio'])->name('servicio');
+Route::group(['prefix' => 'hr', 'middleware' => 'auth'], function () {
 
-Route::get('/roles', [App\Http\Controllers\RolesController::class, 'indexRoles'])->name('roles');
+	Route::resource('horario', HorarioController::class)->names([
+		'index' => 'indexHorario',
+		'create' => 'createHorario',
+		'store' => 'storeHorario',
+		'edit' => 'editHorario',
+		'update' => 'updateHorario',
+		'destroy' => 'destroyHorario'
 
-Route::get('/agenda', [App\Http\Controllers\AgendaController::class, 'indexAgenda'])->name('agenda');
+		]);
+	//Route::get('horario/', [HorarioController::class, 'indexHorario'])->name('horario.index');
 
-Route::get('/reserva', [App\Http\Controllers\ReservaController::class, 'indexReserva'])->name('reserva');
+});
+
+
+Route::get('/servicio', [ServicioController::class, 'indexServicio'])->name('servicio');
+
+Route::get('/roles', [RolesController::class, 'indexRoles'])->name('roles');
+
+Route::get('/agenda', [AgendaController::class, 'indexAgenda'])->name('agenda');
+
+Route::get('/reserva', [ReservaController::class, 'indexReserva'])->name('reserva');
+
+Route::get('/auth/rol_register', function () {
+    return view('auth.rol_register');
+});

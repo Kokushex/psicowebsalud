@@ -84,4 +84,19 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\UserHasRole', 'id_user', 'id_user');
     }
+//Metodo para verificar un atributo de usuario
+    public function verificarUsuario($campo,$dato){
+
+        return  User::where($campo,$dato)->get();
+    }
+
+    /*Metodo para crear usuario 
+    public function createUser($data){
+        $user = new User();
+        $user->email=$data['email'];
+        $user->password=Hash::make($data['contraseña']);
+        $user->save();
+        return $user;
+    }
+    */
 }

@@ -66,4 +66,24 @@ class Paciente extends Model
     {
         return $this->hasMany('App\Models\Testimonio', 'id_paciente', 'id_paciente');
     }
+
+    public static function createPaciente($id_user,$id_persona){//------------basicamente agregarle el return
+        $paciente = new Paciente();
+        $paciente->id_user= $id_user;
+        $paciente->id_persona=$id_persona;
+        //Estos datos son recopilados para el trabajo del psicologo
+        $paciente->escolaridad='';
+        $paciente->ocupacion='';
+        $paciente->estado_civil='';
+        $paciente->grupo_familiar='';
+        //
+        $paciente->estado_clinico='';
+        $paciente->informacion='';
+        $paciente->observacion_alta='';
+        $paciente->tipo_alta='';
+        $paciente->tipo_paciente='Titular';
+        
+        $paciente->save();
+        return $paciente;
+    }
 }

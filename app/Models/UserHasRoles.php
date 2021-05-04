@@ -42,4 +42,12 @@ class UserHasRoles extends Model
     {
         return $this->belongsTo('App\Models\User', 'id_user', 'id_user');
     }
+
+    public function asignarUsuarioRol($id_user,$tipo){
+        UserHasRoles::create([
+            'id_user' => $id_user,
+            'id_rol' =>$tipo
+        ]);
+    }
 }
+

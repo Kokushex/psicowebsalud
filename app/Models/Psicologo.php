@@ -93,4 +93,22 @@ class Psicologo extends Model
     {
         return $this->hasMany('App\Models\Testimonio', 'id_psicologo', 'id_psicologo');
     }
+
+    /* Metodo para crear un psicologo */
+    public function createPsicologo($id_user, $id_persona)
+    {
+        $psicologo = new Psicologo();
+        $psicologo->id_user = $id_user;
+        $psicologo->id_persona = $id_persona;
+        $psicologo->titulo = '';
+        $psicologo->especialidad = '';
+        $psicologo->descripcion = '';
+        $psicologo->verificado = 'EN ESPERA';
+        $psicologo->casa_academica = '';
+        $psicologo->grado_academico = '';
+        $psicologo->fecha_egreso = '2021-01-19 18:58:25';
+        $psicologo->experiencia = 0;
+        $psicologo->imagen_titulo = '';
+        $psicologo->save();
+    }
 }
