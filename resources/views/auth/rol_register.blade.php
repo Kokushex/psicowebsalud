@@ -14,7 +14,7 @@
                 <div class="col-md-8 align-self-center">
                     <div class="text-center" style=" color: #fff;">
                         <h1 class="title-2 mb-4" style ="color: #fff">Registrate</h1>
-                        <p class="text-2 text-regular">    Bienvenido a la seccion de registro, selecciona el tipo de usuario para continuar
+                        <p class="text-2 text-regular"><b>Bienvenido a la seccion de registro, selecciona el tipo de usuario para continuar</b>
 </p>
                     </div>
                 </div>
@@ -41,10 +41,10 @@
                 <!-- CARD -->
                 <div class="card bg-secondary shadow border-0 ">
                     <div class="card-header bg-transparent pb-5">
-                        <h3 style="text-align: center;">¿title?</h3>
+                        <h3 style="text-align: center;">Selecciona el tipo de usuario que eres para registrarte:</h3>
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
-                            <h3 style="text-align: center; color: #8373e6;" >¿Que tipo de usuario eres?</h3>
+                            <!--<h3 style="text-align: center; color: #8373e6;" >¿Que tipo de usuario eres?</h3>-->
                         
                         <div class="radio-buttons mb-5 ">
                             <label class="custom-radio">

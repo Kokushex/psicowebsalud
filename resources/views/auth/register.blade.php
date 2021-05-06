@@ -2,20 +2,22 @@
 
 @section('content')
     @include('layouts.headers.guest')
-
-                    @if (Route::currentRouteName() == 'register_paciente')
-                        <h3 class="box-title mt-5 mb-0">Registro Paciente</h3>
-                    @else
-                        <h3 class="box-title  mt-5 mb-0">Registro Psicólogo</h3>
-                        @include('auth.register_confirmacion')
-                    @endif
+    <link href="{{asset('assets/toastr/build/toastr.css')}}" rel="stylesheet">
+    <script src="{{asset('assets/toastr/build/toastr.min.js')}}"></script>
+                  
 
     <div class="container mt--8 pb-5">
         <!-- Table -->
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary shadow border-0">
-                    <div class="card-header bg-transparent pb-5">
+                    <div class="card-header bg-transparent pb-5 text-center">
+                        @if (Route::currentRouteName() == 'register_paciente')
+                            <h3 class="box-title mt-5 mb-0">Registro Paciente</h3>
+                        @else
+                            <h3 class="box-title  mt-5 mb-0 text-center">Registro Psicólogo</h3>
+                            @include('auth.register_confirmacion')
+                        @endif
                         <div class="text-muted text-center mt-2 mb-4"><small>{{ __('Registrate con tus redes sociales:') }}</small></div>
                         <div class="text-center">
                             <a href="#" class="btn btn-neutral btn-icon mr-4">
@@ -32,6 +34,30 @@
                         <div class="text-center text-muted mb-4">
                             <small>{{ __('O registrate con tus credenciales') }}</small>
                         </div>
+                        @if (session('status'))
+                                <div class="alert alert-danger" role="alert">
+                                    <script>
+                                        toastr.options = {
+                                            "closeButton": true,
+                                            "debug": false,
+                                            "newestOnTop": true,
+                                            "progressBar": true,
+                                            "positionClass": "toast-top-right",
+                                            "preventDuplicates": false,
+                                            "showDuration": "300",
+                                            "hideDuration": "1000",
+                                            "timeOut": "5000",
+                                            "extendedTimeOut": "1000",
+                                            "showEasing": "swing",
+                                            "hideEasing": "linear",
+                                            "showMethod": "fadeIn",
+                                            "hideMethod": "fadeOut"
+                                        }
+                                        toastr["error"]('{{ session('status') }}', "Advertencia")
+                                    </script>
+
+                                </div>
+                            @endif
                         @if (Route::currentRouteName() == 'register_paciente')
                                 <form class="form-horizontal mt-3 form-material needs-validation" method="post"
                                     action="{{ route('createPaciente') }}" id="formulario">

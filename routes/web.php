@@ -80,6 +80,8 @@ Route::get('/register', [RegisterController::class, 'viewRegistroPaciente'])->na
 
 Route::get('/register_psicologo', [RegisterController::class, 'viewRegistroPsicologo'])->name('register_psicologo');
 
-Route::get('/auth/register', [RegisterController::class, 'createUser'])->name('createPaciente');
+Route::post('/auth/register', [RegisterController::class, 'createUser'])->name('createPaciente');
 
-Route::get('/auth/register_psicologo', [RegisterController::class, 'createUser'])->name('createPsicologo');
+Route::post('/auth/register_psicologo', [RegisterController::class, 'createUser'])->name('createPsicologo');
+
+

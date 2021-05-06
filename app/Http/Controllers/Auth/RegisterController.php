@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\RegisterValidaciones;
 
 class RegisterController extends Controller
 {
@@ -47,7 +48,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+   /* protected function validator(array $data)
     {
         return Validator::make($data, [
             //'name' => ['required', 'string', 'max:255'],
@@ -55,7 +56,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-
+*/
     /**
      * Create a new user instance after a valid registration.
      *
@@ -80,36 +81,66 @@ class RegisterController extends Controller
             return view('auth.register_confirmacion');
         }
 
-
+        function debug_to_console($data) {
+            $output = $data;
+            if (is_array($output))
+                $output = implode(',', $output);
+        
+            echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+        }
 
 
 
     //podria necesitar el actuar de registerValidaciones para poder controlar las excepciones que se puedan generar
-    protected function create(array $data)
+    protected function createUser(RegisterValidaciones $data)
     {
        // return User::create([
-            
+        debug_to_console("test");
             $tipo=$this->obtenerTipoSegunRuta();
+            
             $user = new User();
             $user=$user->verificarUsuario('email',$data['email']);
+            $user->createUser($data);
+            
+            
+        
+            if(count($user)==0){
+                /* 'email' => $data['email'],
+                'password' => Hash::make($data['password']),*/
+                if($data['password']==$data['password_confirmation']){
+                    $user = new User();
+                    $user->createUser($data);
+                    $user=User::latest()->first();
+                    $usuarioRol=new UserHasRoles();
 
-           /* 'email' => $data['email'],
-            'password' => Hash::make($data['password']),*/
-            $user=User::latest()->first();
-            $usuarioRol=new UserHasRoles();
-
-            if($tipo==1){
-                //Tipo 1 = paciente
-                $usuarioRol->asignarUsuarioRol($user->id,1);
-                auth()->login($user);
-                $user->getProfile($tipo);
-                return redirect()->to('/email/verify');
+                    if($tipo==1){
+                        //Tipo 1 = paciente
+                        $usuarioRol->asignarUsuarioRol($user->id,1);
+                        auth()->login($user);
+                        $user->getProfile($tipo);
+                        return redirect()->to('/email/verify');
+                    }else{
+                        //tipo 2 = psicologo
+                        $usuarioRol->asignarUsuarioRol($user->id,2);
+                        auth()->login($user);
+                        $user->getProfile($tipo);
+                        return redirect()->to('/email/verify');
+                    }
+                }else{
+                    $status = 'Las contraseñas no coinciden.';
+                    return back()->with(compact('status'));
+                }
             }else{
-                //tipo 2 = psicologo
-                $usuarioRol->asignarUsuarioRol($user->id,2);
-                auth()->login($user);
-                $user->getProfile($tipo);
-                return redirect()->to('/email/verify');
+                //Aca si ya se encuentra registrado, enviar al login correspondiente
+                $email = $data['email'];
+                switch($tipo){
+                    case 1:
+                        return redirect('/login_paciente')->with('email',$email);
+                        break;
+                    case 2:
+                        return redirect('/login_psicologo')->with('email',$email);
+                        break;
+                }
             }
 
 

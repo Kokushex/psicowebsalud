@@ -90,13 +90,35 @@ class User extends Authenticatable
         return  User::where($campo,$dato)->get();
     }
 
-    /*Metodo para crear usuario 
+    //Metodo para crear usuario 
     public function createUser($data){
         $user = new User();
         $user->email=$data['email'];
-        $user->password=Hash::make($data['contraseña']);
+        $user->password=Hash::make($data['password']);//contraseña
         $user->save();
         return $user;
     }
-    */
+    
 }
+
+  /**
+     * Metodo para obtener todos los datos del usuario logeado,
+     * se crean las variables de session para utilizar en diferentes vistas.
+     */
+    public function getProfile($rol){
+        switch ($rol) {
+            case 1:
+                $paciente = new Paciente();
+                $user = $paciente->datosPacienteLogeado();
+                session()->put(['user' => $user, 'rol' => $rol]);
+                break;
+            case 2:
+                $psicologo= new Psicologo();
+                $user = $psicologo->datosPsicologoLogeado();
+                session()->put(['user' => $user, 'rol' => $rol]);
+                break;
+            case 3:
+                session()->put(['rol' => $rol]);
+                break;
+        }
+    }
