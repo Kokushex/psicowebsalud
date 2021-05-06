@@ -49,7 +49,7 @@
                         <div class="radio-buttons mb-5 ">
                             <label class="custom-radio">
                                 <span class="radio-btn"><i class="las la-check"></i>
-                                    <a href="#">
+                                <a href="{{ route('register_paciente') }}">
                                         <div class="hobbies-icon">
                                             <i class="fas fa-user text-blue"></i>
                                             <h3 class="titulo_us" style ="color: #8373e6;" >Paciente</h3>
@@ -59,7 +59,7 @@
                             </label>
                             <label class="custom-radio">
                                 <span class="radio-btn"><i class="las la-check "></i>
-                                    <a href="#">
+                                <a href="{{ route('register_psicologo') }}">
                                         <div class="hobbies-icon">
                                             <i class="far fa-id-badge text-blue"></i>
                                             <h3 class="titulo_us"  style ="color: #8373e6;">Psicólogo</h3>

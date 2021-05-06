@@ -78,7 +78,7 @@
                         @endif
                     </div>
                     <div class="col-6 text-right">
-                        <a href="{{ route('register') }}" class="text-light">
+                        <a href="{{ route('rol_register') }}" class="text-light">
                             <small>{{ __('Crear una cuenta nueva') }}</small>
                         </a>
                     </div>

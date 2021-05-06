@@ -3,6 +3,13 @@
 @section('content')
     @include('layouts.headers.guest')
 
+                    @if (Route::currentRouteName() == 'register_paciente')
+                        <h3 class="box-title mt-5 mb-0">Registro Paciente</h3>
+                    @else
+                        <h3 class="box-title  mt-5 mb-0">Registro Psicólogo</h3>
+                        @include('auth.register_confirmacion')
+                    @endif
+
     <div class="container mt--8 pb-5">
         <!-- Table -->
         <div class="row justify-content-center">
@@ -25,7 +32,14 @@
                         <div class="text-center text-muted mb-4">
                             <small>{{ __('O registrate con tus credenciales') }}</small>
                         </div>
-                        <form role="form" method="POST" action="{{ route('register') }}">
+                        @if (Route::currentRouteName() == 'register_paciente')
+                                <form class="form-horizontal mt-3 form-material needs-validation" method="post"
+                                    action="{{ route('createPaciente') }}" id="formulario">
+                            @else
+                            <form class="form-horizontal mt-3 form-material needs-validation" method="post"
+                                    action="{{ route('createPsicologo') }}" id="formulario">
+                            @endif
+                        
                             @csrf
 
                            <!-- <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">

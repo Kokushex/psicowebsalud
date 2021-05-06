@@ -7,6 +7,8 @@ use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\RegisterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +72,14 @@ Route::get('/agenda', [AgendaController::class, 'indexAgenda'])->name('agenda');
 
 Route::get('/reserva', [ReservaController::class, 'indexReserva'])->name('reserva');
 
-Route::get('/auth/rol_register', function () {
-    return view('auth.rol_register');
-});
+//////////////Registro
+
+Route::get('/auth/rol_register', [RegisterController::class, 'viewRegistroRol'])->name('rol_register');
+
+Route::get('/register', [RegisterController::class, 'viewRegistroPaciente'])->name('register_paciente');
+
+Route::get('/register_psicologo', [RegisterController::class, 'viewRegistroPsicologo'])->name('register_psicologo');
+
+Route::get('/auth/register', [RegisterController::class, 'createUser'])->name('createPaciente');
+
+Route::get('/auth/register_psicologo', [RegisterController::class, 'createUser'])->name('createPsicologo');

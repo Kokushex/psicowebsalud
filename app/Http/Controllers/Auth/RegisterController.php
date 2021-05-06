@@ -63,6 +63,27 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
 
+        //Metodo para la vista de seleccion de registro
+        protected function viewRegistroRol(){
+            return view('auth.rol_register');
+        }
+        //Metodo para la que la vista cargada sea con los apartados para paciente
+        protected function viewRegistroPaciente(){
+            return view('auth.register');
+        }
+        //Metodo para la que la vista cargada sea con los apartados para psicologo
+        protected function viewRegistroPsicologo(){
+            return view('auth.register');
+        }
+        //Metodo para la confirmacion que se genera a las cuentas de psicologo
+        protected function viewRegistroConfirmacion(){
+            return view('auth.register_confirmacion');
+        }
+
+
+
+
+
     //podria necesitar el actuar de registerValidaciones para poder controlar las excepciones que se puedan generar
     protected function create(array $data)
     {

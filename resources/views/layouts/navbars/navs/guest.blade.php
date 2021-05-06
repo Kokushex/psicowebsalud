@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('register') }}">
+                    <a class="nav-link nav-link-icon" href="{{ route('rol_register') }}"> <!--register-->
                         <i class="ni ni-circle-08"></i>
                         <span class="nav-link-inner--text">{{ __('Registro') }}</span>
                     </a>
