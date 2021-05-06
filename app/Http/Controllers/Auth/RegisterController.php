@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterValidaciones;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\UserHasRoles;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\RegisterValidaciones;
+use Illuminate\Support\Facades\Route;
+
 
 class RegisterController extends Controller
 {
@@ -81,35 +84,27 @@ class RegisterController extends Controller
             return view('auth.register_confirmacion');
         }
 
-        function debug_to_console($data) {
-            $output = $data;
-            if (is_array($output))
-                $output = implode(',', $output);
-        
-            echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-        }
-
 
 
     //podria necesitar el actuar de registerValidaciones para poder controlar las excepciones que se puedan generar
+    
+    
     protected function createUser(RegisterValidaciones $data)
     {
        // return User::create([
-        debug_to_console("test");
+        
             $tipo=$this->obtenerTipoSegunRuta();
             
             $user = new User();
             $user=$user->verificarUsuario('email',$data['email']);
-            $user->createUser($data);
-            
-            
-        
+                             
             if(count($user)==0){
                 /* 'email' => $data['email'],
-                'password' => Hash::make($data['password']),*/
+                'password' => Hash::make($data['password']), */
                 if($data['password']==$data['password_confirmation']){
                     $user = new User();
-                    $user->createUser($data);
+                    $user->createUsuario($data);
+                   
                     $user=User::latest()->first();
                     $usuarioRol=new UserHasRoles();
 
@@ -118,7 +113,7 @@ class RegisterController extends Controller
                         $usuarioRol->asignarUsuarioRol($user->id,1);
                         auth()->login($user);
                         $user->getProfile($tipo);
-                        return redirect()->to('/email/verify');
+                        return redirect()->to('/home'); //('/email/verify')
                     }else{
                         //tipo 2 = psicologo
                         $usuarioRol->asignarUsuarioRol($user->id,2);
@@ -127,7 +122,7 @@ class RegisterController extends Controller
                         return redirect()->to('/email/verify');
                     }
                 }else{
-                    $status = 'Las contraseñas no coinciden.';
+                    $status = 'Las contraseñas no coinciden este es.';
                     return back()->with(compact('status'));
                 }
             }else{

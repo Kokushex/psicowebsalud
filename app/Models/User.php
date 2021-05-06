@@ -4,8 +4,11 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+
 
 /**
  * @property int $id_user
@@ -84,6 +87,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\UserHasRole', 'id_user', 'id_user');
     }
+
+
 //Metodo para verificar un atributo de usuario
     public function verificarUsuario($campo,$dato){
 
@@ -91,7 +96,7 @@ class User extends Authenticatable
     }
 
     //Metodo para crear usuario 
-    public function createUser($data){
+    public function createUsuario($data){
         $user = new User();
         $user->email=$data['email'];
         $user->password=Hash::make($data['password']);//contraseña
@@ -99,7 +104,7 @@ class User extends Authenticatable
         return $user;
     }
     
-}
+
 
   /**
      * Metodo para obtener todos los datos del usuario logeado,
@@ -122,3 +127,4 @@ class User extends Authenticatable
                 break;
         }
     }
+}

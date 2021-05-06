@@ -25,15 +25,15 @@ class RegisterValidaciones extends FormRequest
     {
         return [
             'email' => 'required|string|email|max:191',
-            'contraseña' => 'required|string|max:191|min:8',
-            'contraseña_conf' => 'required|string|max:191|min:8|same:contraseña',
+            'password' => 'required|string|max:191|min:8',
+            'password_confirmation' => 'required|string|max:191|min:8|same:password',
         ];
     }
     public function messages()
     {
         return[ 'unique' => 'El :attribute ya se encuentra registrado',
         'required' => 'El campo :attribute es obligatorio.',
-        'same' => 'Las contraseñas no coinciden',
+        'same' => 'Las contraseñas no coinciden (RegisterValidaciones)',
         'max' => 'Demasiados caracteres',
         'min' => 'La contraseña debe contener minimo 8 caracteres'];
 
@@ -43,9 +43,9 @@ class RegisterValidaciones extends FormRequest
     public function attributes()
     {
         return[
-            'contraseña_conf' => 'Confirmar Contraseña',
+            'password_confirmation' => 'Confirmar Contraseña',
             'email' => 'Email',
-            'contraseña' => 'Contraseña',
+            'password' => 'Contraseña',
 
 
 

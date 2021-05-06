@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use \stdClass;
 
 /**
  * @property int $id_paciente
@@ -84,6 +85,74 @@ class Paciente extends Model
         $paciente->tipo_paciente='Titular';
         
         $paciente->save();
+        return $paciente;
+    }
+
+    public function datosPacienteLogeado(){
+        $user_id=auth()->user()->id;
+        $paciente= Paciente::select(
+            'persona.run',
+            'persona.nombre',
+            'persona.apellido_paterno',
+            'persona.apellido_materno',
+            'persona.fecha_nacimiento',
+            'persona.genero',
+            'persona.direccion',
+            'persona.comuna',
+            'persona.region',
+            'persona.telefono',
+
+            'paciente.id_paciente',
+            'paciente.escolaridad',
+            'paciente.ocupacion',
+            'paciente.estado_civil',
+            'paciente.grupo_familiar',
+            'paciente.estado_clinico',
+            'paciente.informacion',
+            'paciente.observacion_alta',
+            'paciente.tipo_alta',
+            'paciente.tipo_paciente'
+        )
+            /*->join('users', function ($join) {
+                $join->on('users.id', '=', 'persona.id_user');
+            })
+            ->join('persona', function ($join) {
+                $join->on('paciente.id_persona', '=', 'persona.id_persona');
+            })
+*/
+            ->join('users', function ($join) {
+                $join->on('users.id_user', '=', 'persona.id_user');
+            })
+            ->join('persona', function ($join) {
+                $join->on('paciente.id_persona', '=', 'persona.id_persona');
+            })
+
+            ->where('users.id_user', '=', $user_id)
+            ->first();
+            if(empty($paciente)){
+                $paciente = new stdClass();
+                $paciente->run= '';
+                $paciente->nombre= '';
+                $paciente->apellido_paterno= '';
+                $paciente->apellido_materno= '';
+                $paciente->fecha_nacimiento= '';
+                $paciente->genero= '';
+                $paciente->direccion= '';
+                $paciente->comuna= '';
+                $paciente->region= '';
+                $paciente->telefono= '';
+                $paciente->id_paciente= '';
+                $paciente->escolaridad= '';
+                $paciente->ocupacion= '';
+                $paciente->estado_civil= '';
+                $paciente->grupo_familiar= '';
+                $paciente->estado_clinico='';
+                $paciente->informacion='';
+                $paciente->observacion_alta='';
+                $paciente->tipo_alta='';
+                $paciente->tipo_paciente='';
+            
+            }
         return $paciente;
     }
 }
