@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property int $id_persona
@@ -52,12 +53,28 @@ class Persona extends Model
         return $this->belongsTo('App\Models\User', 'id_user', 'id_user');
     }
 
-    /**
+        /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function pacientes()
     {
         return $this->hasMany('App\Models\Paciente', 'id_persona', 'id_persona');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function paciente()
+    {
+        return $this->belongsTo('App\Models\Paciente', 'id_persona', 'id_persona');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function psicologo()
+    {
+        return $this->belongsTo('App\Models\Psicologo', 'id_persona', 'id_persona');
     }
 
     /**
@@ -67,4 +84,29 @@ class Persona extends Model
     {
         return $this->hasMany('App\Models\Psicologo', 'id_persona', 'id_persona');
     }
+//Cambiar por update persona
+   /* public static function createPersona($data){
+        $persona = new Persona();
+        $persona->run=$data['run'];
+        $persona->nombre=$data['nombre'];
+        $persona->apellido_paterno=$data['apellido_paterno'];
+        $persona->apellido_materno=$data['apellido_materno'];
+        $persona->fecha_nacimiento=$data['fecha_nacimiento'];
+        $persona->genero=$data['genero'];
+        $persona->telefono=$data['telefono'];
+        $persona->direccion=$data['direccion'];
+        $persona->comuna=$data['comuna'];
+        $persona->region=$data['region'];
+        $persona->save();
+        return $persona;
+    }
+    */
+
+        public static function generarPersona(){
+        $persona = new Persona();
+        $persona->id_user = Auth::id();
+        $persona->save();
+        return $persona;
+    }
+
 }

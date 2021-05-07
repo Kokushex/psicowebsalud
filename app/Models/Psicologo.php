@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use \stdClass;
 
 /**
  * @property int $id_psicologo
@@ -98,7 +99,6 @@ class Psicologo extends Model
     public function createPsicologo($id_user, $id_persona)
     {
         $psicologo = new Psicologo();
-        $psicologo->id_user = $id_user;
         $psicologo->id_persona = $id_persona;
         $psicologo->titulo = '';
         $psicologo->especialidad = '';
@@ -106,9 +106,46 @@ class Psicologo extends Model
         $psicologo->verificado = 'EN ESPERA';
         $psicologo->casa_academica = '';
         $psicologo->grado_academico = '';
-        $psicologo->fecha_egreso = '2021-01-19 18:58:25';
+        // $psicologo->fecha_egreso = '';
         $psicologo->experiencia = 0;
         $psicologo->imagen_titulo = '';
         $psicologo->save();
+
+        return $psicologo;
+    }
+
+        public function datosPsicologoLogeado(){
+        $user_id = auth()->user()->id;
+        $paciente = Persona::
+        select('id_persona')
+        ->with('psicologo')
+        ->where('persona.id_user', $user_id)
+        ->first();
+
+        if(empty($psicologo)){
+            $psicologo = new stdClass();
+            $psicologo->run= '';
+            $psicologo->nombre= '';
+            $psicologo->apellido_paterno= '';
+            $psicologo->apellido_materno= '';
+            $psicologo->fecha_nacimiento= '';
+            $psicologo->genero= '';
+            $psicologo->direccion= '';
+            $psicologo->comuna= '';
+            $psicologo->region= '';
+            $psicologo->telefono= '';
+            $psicologo->id_psicologo= '';
+            $psicologo->titulo= '';
+            $psicologo->especialidad= '';
+            $psicologo->descripcion= '';
+            $psicologo->verificado= '';
+            $psicologo->casa_academica='';
+            $psicologo->grado_academico='';
+            $psicologo->fecha_egreso='';
+            $psicologo->experiencia='';
+            $psicologo->imagen_titulo='';
+        
+        }
+    return $psicologo;
     }
 }

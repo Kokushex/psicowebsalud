@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 /**
@@ -113,13 +114,19 @@ class User extends Authenticatable
     public function getProfile($rol){
         switch ($rol) {
             case 1:
+                $persona = new Persona();
+                $persona = $persona->generarPersona();
                 $paciente = new Paciente();
+                $paciente = $paciente->createPaciente(Auth::id(), $persona->id_persona);
                 $user = $paciente->datosPacienteLogeado();
                 session()->put(['user' => $user, 'rol' => $rol]);
                 break;
             case 2:
-                $psicologo= new Psicologo();
-                $user = $psicologo->datosPsicologoLogeado();
+                $persona    = new Persona();
+                $persona    = $persona->generarPersona();
+                $psicologo  = new Psicologo();
+                $psicologo  = $psicologo->createPsicologo(Auth::id(), $persona->id_persona);
+                $user       = $psicologo->datosPsicologoLogeado();
                 session()->put(['user' => $user, 'rol' => $rol]);
                 break;
             case 3:

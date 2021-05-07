@@ -68,9 +68,9 @@ class Paciente extends Model
         return $this->hasMany('App\Models\Testimonio', 'id_paciente', 'id_paciente');
     }
 
-    public static function createPaciente($id_user,$id_persona){//------------basicamente agregarle el return
+    public static function createPaciente($id_user, $id_persona){//------------basicamente agregarle el return
         $paciente = new Paciente();
-        $paciente->id_user= $id_user;
+ 
         $paciente->id_persona=$id_persona;
         //Estos datos son recopilados para el trabajo del psicologo
         $paciente->escolaridad='';
@@ -89,46 +89,52 @@ class Paciente extends Model
     }
 
     public function datosPacienteLogeado(){
-        $user_id=auth()->user()->id;
-        $paciente= Paciente::select(
-            'persona.run',
-            'persona.nombre',
-            'persona.apellido_paterno',
-            'persona.apellido_materno',
-            'persona.fecha_nacimiento',
-            'persona.genero',
-            'persona.direccion',
-            'persona.comuna',
-            'persona.region',
-            'persona.telefono',
+        $user_id = auth()->user()->id;
+        $paciente = Persona::
+        select('id_persona')
+        ->with('paciente')
+        ->where('persona.id_user', $user_id)
+        ->first();
 
-            'paciente.id_paciente',
-            'paciente.escolaridad',
-            'paciente.ocupacion',
-            'paciente.estado_civil',
-            'paciente.grupo_familiar',
-            'paciente.estado_clinico',
-            'paciente.informacion',
-            'paciente.observacion_alta',
-            'paciente.tipo_alta',
-            'paciente.tipo_paciente'
-        )
-            /*->join('users', function ($join) {
-                $join->on('users.id', '=', 'persona.id_user');
-            })
-            ->join('persona', function ($join) {
-                $join->on('paciente.id_persona', '=', 'persona.id_persona');
-            })
-*/
-            ->join('users', function ($join) {
-                $join->on('users.id_user', '=', 'persona.id_user');
-            })
-            ->join('persona', function ($join) {
-                $join->on('paciente.id_persona', '=', 'persona.id_persona');
-            })
+//         $paciente = Paciente::select(
+//             'persona.run',
+//             'persona.nombre',
+//             'persona.apellido_paterno',
+//             'persona.apellido_materno',
+//             'persona.fecha_nacimiento',
+//             'persona.genero',
+//             'persona.direccion',
+//             'persona.comuna',
+//             'persona.region',
+//             'persona.telefono',
 
-            ->where('users.id_user', '=', $user_id)
-            ->first();
+//             'paciente.id_paciente',
+//             'paciente.escolaridad',
+//             'paciente.ocupacion',
+//             'paciente.estado_civil',
+//             'paciente.grupo_familiar',
+//             'paciente.estado_clinico',
+//             'paciente.informacion',
+//             'paciente.observacion_alta',
+//             'paciente.tipo_alta',
+//             'paciente.tipo_paciente'
+//         )
+//             /*->join('users', function ($join) {
+//                 $join->on('users.id', '=', 'persona.id_user');
+//             })
+//             ->join('persona', function ($join) {
+//                 $join->on('paciente.id_persona', '=', 'persona.id_persona');
+//             })
+// */
+//             ->join('users', function ($join) {
+//                 $join->on('users.id_user', '=', 'persona.id_user');
+//             })
+//             ->join('persona', function ($join) {
+//                 $join->on('paciente.id_persona', '=', 'persona.id_persona');
+//             })
+
+//             ->where('users.id_user', '=', $user_id)
+//             ->first();
             if(empty($paciente)){
                 $paciente = new stdClass();
                 $paciente->run= '';

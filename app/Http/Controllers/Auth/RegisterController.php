@@ -113,13 +113,13 @@ class RegisterController extends Controller
                         $usuarioRol->asignarUsuarioRol($user->id,1);
                         auth()->login($user);
                         $user->getProfile($tipo);
-                        return redirect()->to('/home'); //('/email/verify')
+                        return redirect()->to('/profile'); //('/email/verify')
                     }else{
                         //tipo 2 = psicologo
                         $usuarioRol->asignarUsuarioRol($user->id,2);
                         auth()->login($user);
                         $user->getProfile($tipo);
-                        return redirect()->to('/email/verify');
+                        return redirect()->to('/profile'); //('/email/verify
                     }
                 }else{
                     $status = 'Las contraseñas no coinciden este es.';
