@@ -134,4 +134,21 @@ class User extends Authenticatable
                 break;
         }
     }
+
+    /**
+     * Metodo para buscar al usuario por email y rol
+     * @return User
+     */
+    public function encontrarUserConRol($email,$rol){
+        return User::select(
+            'users.id'
+        )
+            ->join('usuario_rol', function ($join) {
+                $join->on('users.id', '=', 'usuario_rol.id_user');
+            })
+            ->where('users.email',$email)
+            ->where('usuario_rol.id_roles',$rol)
+            ->first();
+    }
+
 }

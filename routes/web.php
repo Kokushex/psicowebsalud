@@ -8,6 +8,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 /*
@@ -84,4 +85,9 @@ Route::post('/auth/register', [RegisterController::class, 'createUser'])->name('
 
 Route::post('/auth/register_psicologo', [RegisterController::class, 'createUser'])->name('createPsicologo');
 
+//////////////Login
+
+Route::get('/login_paciente', [LoginController::class, 'viewLoginPaciente'])->name('login_paciente');
+
+Route::get('/login_psicologo', [LoginController::class, 'viewLoginPsicologo'])->name('login_psicologo');
 

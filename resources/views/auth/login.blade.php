@@ -8,17 +8,23 @@
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-header bg-transparent pb-5">
-                        <div class="text-muted text-center mt-2 mb-3"><small>{{ __('Iniciar sesión con') }}</small></div>
-                        <div class="btn-wrapper text-center">
-                            <a href="#" class="btn btn-neutral btn-icon">
-                                <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/facebook.svg"></span>
-                                <span class="btn-inner--text">{{ __('Facebook') }}</span>
-                            </a>
-                            <a href="#" class="btn btn-neutral btn-icon">
-                                <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
-                                <span class="btn-inner--text">{{ __('Google') }}</span>
-                            </a>
-                        </div>
+                        @if (Route::currentRouteName() == 'login_paciente')
+                            <h3 class="box-title mt-5 mb-0 text-center">Iniciar sesión Paciente</h3>
+                            <div class="text-muted text-center mt-2 mb-3"><small>{{ __('Iniciar sesión con') }}</small></div>
+                            <div class="btn-wrapper text-center">
+                                <a href="#" class="btn btn-neutral btn-icon">
+                                    <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/facebook.svg"></span>
+                                    <span class="btn-inner--text">{{ __('Facebook') }}</span>
+                                </a>
+                                <a href="#" class="btn btn-neutral btn-icon">
+                                    <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
+                                    <span class="btn-inner--text">{{ __('Google') }}</span>
+                                </a>
+                            </div>
+                        @else
+                            <h3 class="box-title  mt-5 mb-0 text-center">Iniciar sesión Psicólogo</h3>
+                            <!-- @include('auth.register_confirmacion') -->
+                        @endif
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
