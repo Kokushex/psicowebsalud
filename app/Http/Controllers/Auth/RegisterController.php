@@ -110,13 +110,13 @@ class RegisterController extends Controller
 
                     if($tipo==1){
                         //Tipo 1 = paciente
-                        $usuarioRol->asignarUsuarioRol($user->id,1);
+                        $usuarioRol->asignarUsuarioRol($user->id_user,1);
                         auth()->login($user);
                         $user->getProfile($tipo);
                         return redirect()->to('/profile'); //('/email/verify')
                     }else{
                         //tipo 2 = psicologo
-                        $usuarioRol->asignarUsuarioRol($user->id,2);
+                        $usuarioRol->asignarUsuarioRol($user->id_user,2);
                         auth()->login($user);
                         $user->getProfile($tipo);
                         return redirect()->to('/profile'); //('/email/verify

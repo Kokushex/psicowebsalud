@@ -72,7 +72,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Correo') }}" type="email" name="email" id="email" value="{{ old('email') }}" value="admin@argon.com" required autofocus>
+                                    <input class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Correo') }}" type="email" name="email" value="{{ old('email') }}" value="admin@argon.com" required autofocus>
                                 </div>
                                 @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -84,7 +84,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="{{ __('Password') }}" type="password" value="secret" required>
+                                    <input class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{ __('Password') }}" type="password" value="secret" required>
                                 </div>
                                 @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -106,8 +106,8 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-6">
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-light">
+                        @if (Route::has('password.update'))
+                            <a href="{{ route('password.update') }}" class="text-light">
                                 <small>{{ __('¿Olvido su contraseña?') }}</small>
                             </a>
                         @endif

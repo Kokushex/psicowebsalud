@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\ResetPasswordNotification;
 
 
 /**
@@ -104,8 +105,7 @@ class User extends Authenticatable
         $user->save();
         return $user;
     }
-    
-
+ 
 
   /**
      * Metodo para obtener todos los datos del usuario logeado,
@@ -137,7 +137,7 @@ class User extends Authenticatable
 
     /**
      * Metodo para buscar al usuario por email y rol
-     * @return User
+     * 
      */
     public function encontrarUserConRol($email,$rol){
         return User::select(
@@ -150,5 +150,16 @@ class User extends Authenticatable
             ->where('user_has_roles.id_rol',$rol)
             ->first();
     }
+
+    /**
+     * Metodo para enlazar hacia la notificacion generada en notifications junto al token
+     *
+     */
+
+     public function sendPasswordResetNotification($token){
+
+        $this->notify(new ResetPasswordNotification($token));
+
+     }
 
 }

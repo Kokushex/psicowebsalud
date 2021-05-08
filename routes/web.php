@@ -9,6 +9,9 @@ use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -92,3 +95,13 @@ Route::get('/login_paciente', [LoginController::class, 'index_login'])->name('lo
 Route::get('/login_psicologo', [LoginController::class, 'index_login'])->name('login_psicologo');
 
 Route::post('/login/{tipo}', [LoginController::class, 'logear'])->name('logear');
+
+//Restablecer Contraseña
+
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.update'); //request
+
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+Route::get('auth/passwords/reset/{token}/{email}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+
+Route::post('password/reset', [ResetPasswordController::class, 'reset']);

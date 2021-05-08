@@ -45,8 +45,8 @@
                     </a>
                 </li> -->
                 <li class="nav-item dropdown" >
-                        <a class="nav-link dropdown-toggle nav-link-icon btn btn-light " href="#" data-toggle="dropdown"
-                            style="border-radius: 100px; border: 1px solid rgb(226, 224, 224)">
+                        <a class="nav-link dropdown-toggle nav-link-icon btn btn-light" href="#" data-toggle="dropdown"
+                            style="border-radius: 100px; border: 1px solid rgb(226, 224, 224); background-color:#825ee4">
                             <i class="ni ni-key-25"></i>
                             <span class="nav-link-inner--text" >{{ __('Iniciar Sesión') }}</span>
                         </a>
