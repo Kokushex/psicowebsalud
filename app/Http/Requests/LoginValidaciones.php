@@ -30,7 +30,7 @@ class LoginValidaciones extends FormRequest
             return [
                 'email' => 'required|email:rfc',
                 'password' => 'required',
-                'captcha' => 'required|captcha',
+                //'captcha' => 'required|captcha',
             ];
         } else {
             return [

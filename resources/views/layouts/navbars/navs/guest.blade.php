@@ -44,11 +44,11 @@
                         <span class="nav-link-inner--text">{{ __('Iniciar Sesión') }}</span>
                     </a>
                 </li> -->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle nav-link-icon btn btn-light " href="#" data-toggle="dropdown"
                             style="border-radius: 100px; border: 1px solid rgb(226, 224, 224)">
                             <i class="ni ni-key-25"></i>
-                            <span class="nav-link-inner--text">{{ __('Iniciar Sesión') }}</span>
+                            <span class="nav-link-inner--text" >{{ __('Iniciar Sesión') }}</span>
                         </a>
                         <ul aria-labelledby="dropdownMenu1" class="dropdown-menu border-0 shadow">
                             <!-- opciones dropdown-->

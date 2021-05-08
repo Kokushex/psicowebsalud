@@ -141,13 +141,13 @@ class User extends Authenticatable
      */
     public function encontrarUserConRol($email,$rol){
         return User::select(
-            'users.id'
+            'users.id_user'
         )
-            ->join('usuario_rol', function ($join) {
-                $join->on('users.id', '=', 'usuario_rol.id_user');
+            ->join('user_has_roles', function ($join) {
+                $join->on('users.id_user', '=', 'user_has_roles.id_user');
             })
             ->where('users.email',$email)
-            ->where('usuario_rol.id_roles',$rol)
+            ->where('user_has_roles.id_rol',$rol)
             ->first();
     }
 

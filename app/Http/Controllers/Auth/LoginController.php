@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginValidaciones; //agregada
-use App\Model\User; //agregada
+use App\Models\User; //agregada
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request; //agregada
 use Cookie; //agregada
+use Auth; /*agregado*/
+
+
 
 class LoginController extends Controller
 {
@@ -82,11 +86,11 @@ class LoginController extends Controller
         switch($ruta_nombre){
             case "login_paciente":
                 $tipo=1;
-                return view ('Auth/login')->with('tipo',$tipo);
+                return view ('auth/login')->with('tipo',$tipo);
                 break;
             case "login_psicologo":
                 $tipo=2;
-                return view ('Auth/login')->with('tipo',$tipo);
+                return view ('auth/login')->with('tipo',$tipo);
                 break;
             default:
                 return view ('/');

@@ -87,7 +87,8 @@ Route::post('/auth/register_psicologo', [RegisterController::class, 'createUser'
 
 //////////////Login
 
-Route::get('/login_paciente', [LoginController::class, 'viewLoginPaciente'])->name('login_paciente');
+Route::get('/login_paciente', [LoginController::class, 'index_login'])->name('login_paciente');
 
-Route::get('/login_psicologo', [LoginController::class, 'viewLoginPsicologo'])->name('login_psicologo');
+Route::get('/login_psicologo', [LoginController::class, 'index_login'])->name('login_psicologo');
 
+Route::post('/login/{tipo}', [LoginController::class, 'logear'])->name('logear');
