@@ -85,22 +85,22 @@ class Persona extends Model
         return $this->hasMany('App\Models\Psicologo', 'id_persona', 'id_persona');
     }
 //Cambiar por update persona
-   /* public static function createPersona($data){
-        $persona = new Persona();
-        $persona->run=$data['run'];
-        $persona->nombre=$data['nombre'];
-        $persona->apellido_paterno=$data['apellido_paterno'];
-        $persona->apellido_materno=$data['apellido_materno'];
-        $persona->fecha_nacimiento=$data['fecha_nacimiento'];
-        $persona->genero=$data['genero'];
-        $persona->telefono=$data['telefono'];
-        $persona->direccion=$data['direccion'];
-        $persona->comuna=$data['comuna'];
-        $persona->region=$data['region'];
-        $persona->save();
-        return $persona;
-    }
-    */
+    public function updatePersona($request){
+    return Persona::where('id_persona', $request->id_persona)
+    ->update([
+        'run' => $request->run,
+        'nombre' => $request->nombre,
+        'apellido_paterno' => $request->apellido_paterno,
+        'apellido_materno' => $request->apellido_materno,
+        'fecha_nacimiento' => $request->fecha_nacimiento,
+        'genero' => $request->genero,
+        'telefono' => $request->telefono,
+        'region' => $request->region,
+        'comuna' => $request->comuna,
+        'direccion' => $request->direccion,
+    ]);
+}
+    
 
         public static function generarPersona(){
         $persona = new Persona();

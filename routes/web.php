@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -105,3 +106,9 @@ Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEm
 Route::get('auth/passwords/reset/{token}/{email}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
 Route::post('password/reset', [ResetPasswordController::class, 'reset']);
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Route::post('/profile', [ProfileController::class, 'update'])->name('perfilUpdate');
+//Route::post('/perfil/update', 'ProfileController@update')->name('perfilUpdate');

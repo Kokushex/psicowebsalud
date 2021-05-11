@@ -116,10 +116,10 @@ class LoginController extends Controller
                         Auth::login($user);
                         //Logeo para el administrador
                         // if($tipo== 3){
-                        //     $user->getProfile($tipo);
+                             $user->getProfile($tipo);
                         //     return redirect()->to('/dashboard');
                         // }else{
-                            $user->getProfile($tipo);
+                            
                             return redirect()->to('/home');
                         //}
                     }else{

@@ -2,14 +2,49 @@
 
 @section('content')
     @include('users.partials.header', [
-        'title' => __('Hola') . ' '. auth()->user()->name,
+        'title' => __('Hola') . ' '. auth()->user()->nombre,
         'description' => __('Este es tu perfil. Aqui puede editar tu información personal'),
         'class' => 'col-lg-7'
-    ])   
+    ])  
+    
+    @php
+    $user=session()->get('user');
+    $rol=session()->get('rol');
+    @endphp 
+    
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/css/inputmask.min.css" rel="stylesheet" />
+            
+            @if($rol == 2)
+                    <!--Comprobacion de verificacion de psicologo-->
+                    @if($user->verificado=='EN ESPERA')
+                        <div class="alert alert-warning text-center" id="mensajeInformativo">
+                        <b id="msgPsicologo">Solicitud en espera de revisión.</b>
+                        </div>
+                        <div class="alert alert-warning" id="mensajeInformativo">
+                            {{ __('Debe completar sus datos para poder acceder a todas las funcionalidades que ofrecemos,') }}
+                                <b id="msgPsicologo">{{__('previo a espera de la confirmación por nuestra parte de sus datos profesionales.')}}
+                                </b>   
+                        </div>
+                    @endif
+
+            @else
+                <!-- Se usa isset para verificar campo vacio-->
+                @if(isset($user->run))
+                    <div class="alert alert-warning" id="mensajeInformativo">
+                        {{ __('Al completar sus datos podrá acceder a todas las funcionalidades que ofrecemos,') }}
+                        @if($rol == 1)
+                            <b id="msgPsicologo">{{__('previo a espera de la confirmación de sus datos personales.')}}</b>
+                        @endif
+                    </div>
+                @endif
+            @endif
+            
 
     <div class="container-fluid mt--7">
         <div class="row">
-            <!--<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
                 <div class="card card-profile shadow">
                     <div class="row justify-content-center">
                         <div class="col-lg-3 order-lg-2">
@@ -31,40 +66,17 @@
                             <div class="col">
                                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                     <div>
-                                        <span class="heading">22</span>
-                                        <span class="description">{{ __('Amigos') }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="heading">10</span>
-                                        <span class="description">{{ __('Photos') }}</span>
-                                    </div> 
-                                    <div>
-                                        <span class="heading">89</span>
-                                        <span class="description">{{ __('Comentarios') }}</span>
+                                        <span class="heading">Nombre + apellido</span>
+                                        <span class="description">{{ __('Correo') }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
-                            <h3>
-                                {{ auth()->user()->name }}<span class="font-weight-light">, 27</span>
-                            </h3>
-                            <div class="h5 font-weight-300">
-                                <i class="ni location_pin mr-2"></i>{{ __('Bucharest, Romania') }}
-                            </div>
-                            <div class="h5 mt-4">
-                                <i class="ni business_briefcase-24 mr-2"></i>{{ __('Solution Manager - Creative Tim Officer') }}
-                            </div>
-                            <div>
-                                <i class="ni education_hat mr-2"></i>{{ __('University of Computer Science') }}
-                            </div>
-                            <hr class="my-4" />
-                            <p>{{ __('Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.') }}</p>
-                            <a href="#">{{ __('Mostrar mas') }}</a>
-                        </div>
+                       
                     </div>
                 </div>
-            </div>-->
+            </div>
+            <!--PERFIL-->
             <div class="col-xl-8 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
@@ -73,27 +85,31 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
+                        <!--FORMULARIO DATOS-->
+                        <form method="post" action="{{ route('perfilUpdate')  }}" id="form_datos_profesionales"> 
+                            <!--@method('put')-->
                             @csrf
-                            @method('put')
+                            
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Información de usuario') }}</h6>
                             
-                            @if (session('status'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('status') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
+    
 
 
                             <div class="pl-lg-4">
+                            <!--RUN-->
+                            <div class="form-group">
+                                            <label for="run" class="col-sm-3 col-form-label">Run</label>
+                                                <input type="text" class="form-control" id="rut" name="run"
+                                                    placeholder=" Ingrese Run" value="{{$user->run}}"
+                                                    onKeyPress=" return soloNumerosRut(event)" onBlur="onRutBlur(this)"
+                                                    {{($user->run !='' and $user->verificacion !='EN ESPERA') ? 'disabled' : ''}}>
+                                                <div id="alertErrorRun">
+                                        </div>
                                 <!--Nombre-->
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Nombre') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" value="{{ old('name', auth()->user()->name) }}" required autofocus>
+                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" value="{{ auth()->user()->name }}" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -104,7 +120,7 @@
                                 <!--Email-->
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">{{ __('Correo') }}</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
+                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required readonly>
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -115,7 +131,7 @@
                                 <!--Apellido Paterno-->
                                 <div class="form-group{{ $errors->has('ape_paterno') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-ape_paterno">{{ __('Apellido Paterno') }}</label>
-                                    <input type="text" name="ape_paterno" id="input-ape_paterno" class="form-control form-control-alternative{{ $errors->has('ape_paterno') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellido Paterno') }}" value="{{ old('email', auth()->user()->apellido_paterno) }}" required>
+                                    <input type="text" name="ape_paterno" id="input-ape_paterno" class="form-control form-control-alternative{{ $errors->has('ape_paterno') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellido Paterno') }}" value="{{$user->apellido_paterno }}" required>
 
                                     @if ($errors->has('ape_paterno'))
                                         <span class="invalid-feedback" role="alert">
@@ -123,12 +139,95 @@
                                         </span>
                                     @endif
                                 </div>
+                                <!--Apellido Materno-->
+                                <div class="form-group{{ $errors->has('ape_materno') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-ape_materno">{{ __('Apellido Materno') }}</label>
+                                    <input type="text" name="ape_materno" id="input-ape_materno" class="form-control form-control-alternative{{ $errors->has('ape_materno') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellido Materno') }}" value="{{ $user->apellido_materno }}" required>
 
+                                    @if ($errors->has('ape_paterno'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('ape_paterno') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <!--Fecha Nacimiento-->    
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-fecha_nacimiento">{{ __('Fecha Nacimiento') }}</label>
+                                    <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"
+                                                    min="1930-04-01" max="2017-01-01"
+                                                    
+                                                    value="{{$user->fecha_nacimiento ? date('Y-m-d', strtotime($user->fecha_nacimiento)) : ''}}"
+                                                    placeholder="Fecha de nacimiento" required>
+                                </div>
+
+                                <div class="form-group">
+                                <label class="form-control-label" for="input-genero">{{ __('Genero') }}</label>
+                                                <select class="form-control select2 select2-hidden-accessible"
+                                                    name="genero" id="genero">
+                                                    <option value="">Seleccionar genero</option>
+                                                    <option value="M" {{($user->genero=="M") ? 'selected' : ''}}>
+                                                        Masculino</option>
+                                                    <option value="F" {{($user->genero=="F") ? 'selected' : ''}}>
+                                                        Femenino</option>
+                                                    <option value="O" {{($user->genero=="O") ? 'selected' : ''}}>Otro
+                                                    </option>
+                                                </select>
+                                            
+                                        </div>
+                            
+                                <!--Telefono-->    
+                                <div class="form-group{{ $errors->has('telefono') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-telefono">{{ __('Telefono') }}</label>
+                                    <input type="text" name="telefono" id="input-telefono" 
+                                    class="form-control form-control-alternative{{ $errors->has('telefono') ? ' is-invalid' : '' }}" placeholder="{{ __('telefono') }}" value="{{ $user->telefono }}" required>
+
+                                    @if ($errors->has('telefono'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('telefono') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <!--Direccion-->    
+                                <div class="form-group{{ $errors->has('direccion') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-direccion">{{ __('Direccion') }}</label>
+                                    <input type="text" name="direccion" id="input-direccion" 
+                                    class="form-control form-control-alternative{{ $errors->has('direccion') ? ' is-invalid' : '' }}" placeholder="{{ __('Direccion') }}" value="{{ $user->direccion }}" required>
+
+                                    @if ($errors->has('direccion'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('direccion') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                
+                                <!--Region-->
+                                                                       
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-region">{{ __('Region') }}</label>
+                                                    <select class="form-control select2 select2-hidden-accessible"
+                                                        name="region" id="regiones" >
+                                                        <option value="{{$user->region}}" selected>{{$user->region}}
+                                                        </option>
+                                                    </select>
+                                </div>
+                                <!--Comuna-->
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-comuna">{{ __('Comuna') }}</label>
+                                                    <select class="form-control select2 select2-hidden-accessible"
+                                                        name="comuna" id="comunas">
+                                                        <option value="{{$user->comuna}}" selected>{{$user->comuna}}
+                                                        </option>
+                                                    </select>
+                                </div>
+                               <!--BOTON GUARDAR DATOS-->
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Guardar') }}</button>
                                 </div>
                             </div>
                         </form>
+
+                        <!--Formulario Contraseña-->
+
                         <hr class="my-4" />
                         <form method="post" action="{{ route('profile.password') }}" autocomplete="off">
                             @csrf
@@ -180,7 +279,13 @@
                 </div>
             </div>
         </div>
+        <!--Scripts: NOTA EL ORDEN LES AFECTA, si jquery esta abajo del script a funcionar los otros no funcionaran-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js "></script>
+        <script src="{{asset('assets/js/perfil/validaciones.js')}}"></script>
+        <script src="{{asset('assets/js/perfil/RegionesYcomunas.js')}}"></script>
         
-        @include('layouts.footers.auth')
+        
+        
     </div>
+    @include('layouts.footers.auth')
 @endsection

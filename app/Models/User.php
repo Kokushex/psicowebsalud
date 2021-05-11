@@ -108,10 +108,8 @@ class User extends Authenticatable
  
 
   /**
-     * Metodo para obtener todos los datos del usuario logeado,
-     * se crean las variables de session para utilizar en diferentes vistas.
      */
-    public function getProfile($rol){
+    public function generarProfile($rol){
         switch ($rol) {
             case 1:
                 $persona = new Persona();
@@ -135,9 +133,26 @@ class User extends Authenticatable
         }
     }
 
+    public function getProfile($rol){
+        switch ($rol) {
+            case 1:
+                $paciente = new Paciente();
+                $user = $paciente->datosPacienteLogeado();
+                session()->put(['user' => $user, 'rol' => $rol]);
+                break;
+            case 2:
+                $psicologo= new Psicologo();
+                $user = $psicologo->datosPsicologoLogeado();
+                session()->put(['user' => $user, 'rol' => $rol]);
+                break;
+           /* case 3:
+                session()->put(['rol' => $rol]);
+                break; */
+        }
+    }
+
     /**
      * Metodo para buscar al usuario por email y rol
-     * 
      */
     public function encontrarUserConRol($email,$rol){
         return User::select(
