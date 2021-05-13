@@ -82,6 +82,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Persona', 'id_user', 'id_user');
     }
 
+    public function persona()
+    {
+        return $this->belongsTo('App\Models\Persona', 'id_user', 'id_user');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -97,7 +102,7 @@ class User extends Authenticatable
         return  User::where($campo,$dato)->get();
     }
 
-    //Metodo para crear usuario 
+    //Metodo para crear usuario
     public function createUsuario($data){
         $user = new User();
         $user->email=$data['email'];
@@ -105,7 +110,7 @@ class User extends Authenticatable
         $user->save();
         return $user;
     }
- 
+
 
   /**
      */

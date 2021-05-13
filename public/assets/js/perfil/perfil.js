@@ -4,8 +4,8 @@
 var contra_act = $('#contraseña_act');
 var divPasswordConfir = $('#divPasswordConfir');
 var divPasswordConfir2 = $('#divPasswordConfir2');
-var contra_nueva = $('#contraseña_nueva');
-var contra_conf = $('#contraseña_confir');
+var contra_nueva = $('#password');
+var contra_conf = $('#password_confirmation');
 var nombre = $("#nombre");
 var apellido_pa = $("#apellido_paterno");
 var apellido_ma = $("#apellido_materno");
@@ -25,7 +25,7 @@ $(document).ready(function() {
 
     colocarMaximoFecha();
     // Enmascarar el input Rut en formato deseado
-    $("#rut").inputmask({
+    $("#run").inputmask({
         mask:"9[9999999]-[9|K|k]",
     });
 
@@ -100,7 +100,7 @@ $(document).ready(function() {
             if (form_correcto) {
                 if (contra_conf.val() == contra_nueva.val()) {
                     actualizarPassword();
-                    
+
                 } else {
                     divPasswordConfir.show();
                     divPasswordConfir2.show();
@@ -123,9 +123,9 @@ $(document).ready(function() {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-            
+
                 toastr["error"]('Complete todos los campos.', "Error al cambiar contraseña");
-               
+
             }
         },
         false
@@ -136,13 +136,13 @@ $(document).ready(function() {
 $(document).ready(function() {
     //Verificacion que se completen datos esenciales de la persona
     $("#form_datos_personales").bind("submit", function() {
-        
+
             if ($('#registrarDatos').length) {
                 registraDatosAjax();
             } else {
                 updateAjax(1, $("#form_datos_personales"));
             }
-       
+
         return false;
     });
 
@@ -465,7 +465,7 @@ function updatePassword() {
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
-        
+
             toastr["error"]('La contraseña debe ser de minimo 8 caracteres.', "Contraseña nueva");
         }
     });
@@ -520,9 +520,9 @@ $(function() {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-            
+
                 toastr["error"]('La imagen subida no tiene formato correcto.', "Archivo no compatible");
-               
+
 
             });
     });
