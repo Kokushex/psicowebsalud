@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\PerfilValidaciones;
-use App\Http\Requests\P;
+use App\Models\Persona;
+use App\Models\UserHasRoles;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -79,6 +80,40 @@ class ProfileController extends Controller
             return json_encode($user);
         }else{
             return 'No se encuentran datos';
+
+        }
+    }
+
+    public function registrarDatosPersonales(PerfilValidaciones $request){
+        //nueva persona
+        $persona = new Persona();
+        //guardare ne rol, el usuariorol  donde id user, sea el auth de user-> el primero
+        $rol = UserHasRoles::select('id_rol')->where('id_user', auth()->user()->id_user)->first(); //id
+        //rol igual a id_roles que lo rescata de rol
+        $rol = $rol->id_rol;
+
+        $persona = $persona->updatePersona($request);
+
+        $user = session()->get('user');
+   
+        //guardar datos del request en cada campo que corresponda
+
+        //request 
+        if(!empty($persona)){
+            $user->run = $request->run;
+            $user->nombre = $request->nombre;
+            $user->apellido_paterno = $request->apellido_paterno;
+            $user->apellido_materno = $request->apellido_materno;
+            $user->fecha_nacimiento = $request->fecha_nacimiento;
+            $user->genero = $request->genero;
+            $user->telefono = $request->telefono;
+            $user->region = $request->region;
+            $user->comuna = $request->comuna;
+            $user->direccion = $request->direccion;
+            session()->put(['user' => $user]);
+            return json_encode($user);
+        }else{
+            return 'No se ha encontrado ningun dato del perfil';
 
         }
     }

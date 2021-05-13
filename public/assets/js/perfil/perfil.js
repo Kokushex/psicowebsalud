@@ -1,4 +1,4 @@
-//const { forEach } = require("lodash");
+
 
 //Declaracion de variables
 var contra_act = $('#contraseña_act');
@@ -7,8 +7,8 @@ var divPasswordConfir2 = $('#divPasswordConfir2');
 var contra_nueva = $('#contraseña_nueva');
 var contra_conf = $('#contraseña_confir');
 var nombre = $("#nombre");
-var apellido_pa = $("#apellido_pa");
-var apellido_ma = $("#apellido_ma");
+var apellido_pa = $("#apellido_paterno");
+var apellido_ma = $("#apellido_materno");
 var registroPsicologo = false;
 
 
@@ -37,14 +37,14 @@ $(document).ready(function() {
     */
 
     //Si el mensaje de verificación ya existe, se deshabilitan los inputs
-    if ($('#esperandoVerificacion').length) {
+    /*if ($('#esperandoVerificacion').length) {
         $('#form_datos_personales input, #form_datos_personales select').each(
             function(index) {
                 var input = $(this);
                 input.attr('disabled', '');
             }
         );
-    }
+    }*/
 
     //Comparacion de contraseñas que se muestra si no coinciden
     contra_conf.blur(function() {
@@ -96,10 +96,10 @@ $(document).ready(function() {
                     }
                 }
             }
-            // si el formulario es correcto y completado ejecuta la funcion UpdatePassword la que se encarga de actualizar la clave, si no mostrar mensaje de claves no coinciden
+            // si el formulario es correcto y completado ejecuta la funcion actualizarPassword la que se encarga de actualizar la clave, si no mostrar mensaje de claves no coinciden
             if (form_correcto) {
                 if (contra_conf.val() == contra_nueva.val()) {
-                    updatePassword();
+                    actualizarPassword();
                     
                 } else {
                     divPasswordConfir.show();
@@ -125,15 +125,7 @@ $(document).ready(function() {
                 }
             
                 toastr["error"]('Complete todos los campos.', "Error al cambiar contraseña");
-                // //Si los campos estan vacios, mostrar mensaje para completar campos
-                // $('#showErrores').append($('<div class="col-md-12 alert alert-secondary alert-danger" id="alert" role="alert">Complete Todos los Campos</div>'));
-                // setTimeout(function() {
-                //     $("#alert").fadeIn();
-                //     $("#alert").fadeOut(1500);
-                // }, 1500);
-                // setTimeout(function() {
-                //     $("#alert").remove();
-                // }, 4000);
+               
             }
         },
         false
@@ -144,23 +136,13 @@ $(document).ready(function() {
 $(document).ready(function() {
     //Verificacion que se completen datos esenciales de la persona
     $("#form_datos_personales").bind("submit", function() {
-        // if ($("#nombre").val() != "" && $("#apellido_pa").val() != "" && $("#apellido_ma").val() != "") {
+        
             if ($('#registrarDatos').length) {
                 registraDatosAjax();
             } else {
                 updateAjax(1, $("#form_datos_personales"));
             }
-        // } else {
-        //     if ($("#nombre").val() == "") {
-        //         $("#nombre").addClass("is-invalid");
-        //     }
-        //     if ($("#apellido_pa").val() == "") {
-        //         $("#apellido_pa").addClass("is-invalid");
-        //     }
-        //     if ($("#apellido_ma").val() == "") {
-        //         $("#apellido_ma").addClass("is-invalid");
-        //     }
-        // }
+       
         return false;
     });
 
@@ -200,9 +182,7 @@ $(document).ready(function() {
 });
 
 /*
-*Metodo para liminar la fecha, que no deje seleccionar más del año actual.
-*@author: Pablo ahumada
-*@Version: 1.0
+*Metodo para eliminar la fecha, que no deje seleccionar más del año actual.
 */
 function colocarMaximoFecha() {
     var today = new Date();
@@ -217,13 +197,11 @@ function colocarMaximoFecha() {
     }
 
     today = yyyy + '-' + mm + '-' + dd;
-    $("#fecha_nac").attr("max", today);
+    $("#fecha_nacimiento").attr("max", today);
 }
 
 /**
 *Metodo para Registrar los Datos de un paciente o psicologo en estado de en Espera, cuando aun no es validado por el admin
-*@author: Pablo Ahumada - Lukas Manosalva
-*@version: 1.0
 */
 function registraDatosAjax() {
     btnEnviar = $("#registrarDatos");
@@ -231,7 +209,7 @@ function registraDatosAjax() {
     form = $("#form_datos_personales");
     $.ajax({
         type: form.attr("method"),
-        url: '/perfil/registrarDatosPersonales',
+        url: '/profile/registrarDatosPersonales',
         data: form.serialize(),
         dataType: 'json',
         beforeSend: function() {
@@ -242,7 +220,8 @@ function registraDatosAjax() {
             btnEnviar.html('Guardar cambios');
             btnEnviar.removeAttr("disabled");
         },
-        success: function(data) {
+        success: function (data) {
+            console.log(data);
             updateDatosPerf(data);
             div.append($('<div class="col-md-12 alert alert-secondary alert-success" id="alert" role="alert">Se registraron sus datos</div>'));
             setTimeout(function() {
@@ -251,9 +230,9 @@ function registraDatosAjax() {
             setTimeout(function() {
                 $("#alert").remove();
             }, 4000);
-            $("#registrarDatos").attr('id', 'update_datosP');
+            $("#registrarDatos").attr('id_user', 'update_datosP');
             $('#mensajeInformativo').remove();
-            $("#rut").attr('readonly', 'true');
+            $("#run").attr('readonly', 'true');
             if (registroPsicologo) {
                 //Recorrer todos los inputs y desabilitarlos
                 $('#form_datos_personales input, #form_datos_personales select').each(
@@ -271,14 +250,14 @@ function registraDatosAjax() {
         },
         error: function(error) {
             //Validar que llege el error
-            
+            console.log(error);
             if (error.responseJSON.hasOwnProperty('errors')){
                 //Validar Rut incompleto, mal escrito o ya se encuentra ingresado
                 Object.keys(error.responseJSON.errors).forEach(function(jB){
                     var arr = error.responseJSON.errors[jB];
                     console.log(arr); //will print the array belongs to each property.
                     arr.forEach(element =>{
-                        verAlertas(element);
+                        console.log(element); //verAlertas
                     })
                   });
             }
@@ -291,14 +270,12 @@ function registraDatosAjax() {
 
 /**
  * Metodo para actualizacion de datos personales y complementarios
- * @author Pablo Ahumada - Enzo Ahumada
- * @version 2.0
  * @param {formulario a utilizar} formulario
  * @param {formulario con datos} form
  */
-function updateAjax(formulario, form) {
-    $('#rut').prop("disabled",false);
-    $('#rut').attr("readonly","readonly");
+function updateAjax(formulario, form) { //Formulario?
+    $('#run').prop("disabled",false);
+    $('#run').attr("readonly","readonly");
     var btnEnviar, div;
     switch (formulario) {
         case 1:
@@ -324,9 +301,9 @@ function updateAjax(formulario, form) {
             btnEnviar.removeAttr("disabled");
         },
         success: function(data) {
-            // si es correcto, remueve el readonly y deja el disabled activado en el rut
-            $('#rut').removeAttr('readonly');
-            $('#rut').prop("disabled",true);
+            // si es correcto, remueve el readonly y deja el disabled activado en el run
+            $('#run').removeAttr('readonly');
+            $('#run').prop("disabled",true);
             //Metodo en esta vista
             updateDatosPerf(data);
             //Entregar mensaje de actualización de datos
@@ -346,8 +323,8 @@ function updateAjax(formulario, form) {
         },
         error: function(error) {
             // si existe error, remueve el readonly y deja el disabled activado en el rut
-            $('#rut').removeAttr('readonly');
-            $('#rut').prop("disabled",true);
+            $('#run').removeAttr('readonly');
+            $('#run').prop("disabled",true);
             //valido que llegue error
             if (error.responseJSON.hasOwnProperty('errors')) {
                 Object.keys(error.responseJSON.errors).forEach(function(jB){
@@ -364,9 +341,8 @@ function updateAjax(formulario, form) {
 }
 
 /*Funcion para mostrar mensajes de Errores en el perfil, se debe de llamar en el ajax en la parte de error.
- * Es metodo pasa por parametro el id del div a utilizar y el mensaje del json, para luego mostrar el mensaje
+ * Este metodo pasa por parametro el id del div a utilizar y el mensaje del json, para luego mostrar el mensaje
  * correspondiente de error.
- * @author: Lukas Manosalva - Pablo Ahumada
  * @param {id del div, el mensaje} El id del div en la vista, el mensaje de error de JSON
  */
 function verAlertas(mensaje) {
@@ -393,11 +369,16 @@ function verAlertas(mensaje) {
 /*Metodo para setear datos en "Sobre mi" en Psicologo y paciente
  *Esta funcion lo que realiza es setear en la parte de sobre mi, los datos mas relavantes que el usuario actualice
  *en sus datos personales y academicos.
- * @author: Lukas Manosalva
  * @param {data} la data del ajax
  */
+
+
+///////////////////////////////////////////////SOBRE MI ///////////////////////////////////////////////////////////////////
+
+
 function updateDatosPerf(data) {
-    $('#userNombreApelli').text(data.nombre);
+    $('#run').text(data.run);
+    $('#nombre').text(data.nombre);
     $('#userNombreApelli').append(" ", data.apellido_paterno);
     $('#userNombreApelli').append(" ", data.apellido_materno);
     $('#userTitulo').text(data.titulo);
@@ -414,8 +395,6 @@ function updateDatosPerf(data) {
 
 /**
  * Metodo para actualizar la contraseña del usuario con ajax asincronica.
- * @author Pablo Ahumada - Enzo Ahumada - Lukas Manosalva
- * @version 2.0
  */
 function updatePassword() {
     var btnEnviar = $('#update_password');
@@ -494,8 +473,6 @@ function updatePassword() {
 
 /**
  * Metodo para actualizar la imagen de perfil del usuario
- * @author Pablo Ahumada - Enzo Ahumada
- * @version 2.0
  */
 $(function() {
     $avatarInput = $('#file-input');
