@@ -180,11 +180,11 @@
                                                             <select class="form-control select2 select2-hidden-accessible"
                                                                     name="genero" id="genero">
                                                                 <option value="">Seleccionar genero</option>
-                                                                <option value="M" {{($user->genero=="M") ? 'selected' : ''}}>
+                                                                <option value="M" {{(Auth::User()->persona->genero == "M") ? 'selected' : ''}}>
                                                                     Masculino</option>
-                                                                <option value="F" {{($user->genero=="F") ? 'selected' : ''}}>
+                                                                <option value="F" {{(Auth::User()->persona->genero =="F") ? 'selected' : ''}}>
                                                                     Femenino</option>
-                                                                <option value="O" {{($user->genero=="O") ? 'selected' : ''}}>
+                                                                <option value="O" {{(Auth::User()->persona->genero =="O") ? 'selected' : ''}}>
                                                                     Otro</option>
                                                             </select>
 
@@ -192,9 +192,7 @@
                                                         <!--Fecha Nacimiento-->
                                                         <div class="form-group col-6">
                                                             <label class="form-control-label" for="fecha_nacimiento">{{ __('Fecha Nacimiento') }}</label>
-                                                            <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"
-                                                                            min="1930-04-01" max="2017-01-01"
-
+                                                            <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"  min="1930-04-01" max="2017-01-01"
                                                                             value="{{auth()->user()->persona->fecha_nacimiento ? date('Y-m-d', strtotime(auth()->user()->persona->fecha_nacimiento)) : ''}}"
                                                                             placeholder="Fecha de nacimiento" required>
                                                         </div>
@@ -225,28 +223,27 @@
                                                             @endif
                                                         </div>
                                                     </div>
+
                                                     <div class="row">
                                                         <!--Region-->
                                                         <div class="form-group col-6">
                                                             <label class="form-control-label" for="regiones">{{ __('Region') }}</label>
-                                                                            <select class="form-control select2 select2-hidden-accessible"
-                                                                                name="region" id="regiones" >
-                                                                                <option value="{{$user->region}}" selected>{{$user->region}}
-                                                                                </option>
-                                                                            </select>
+                                                            <select class="form-control select2 select2-hidden-accessible" name="region" id="regiones" >
+
+                                                            </select>
                                                         </div>
                                                         <!--Comuna-->
                                                         <div class="form-group col-6">
                                                             <label class="form-control-label" for="comunas">{{ __('Comuna') }}</label>
                                                                             <select class="form-control select2 select2-hidden-accessible"
                                                                                 name="comuna" id="comunas">
-                                                                                <option value="{{$user->comuna}}" selected>{{$user->comuna}}
-                                                                                </option>
+
                                                                             </select>
                                                         </div>
                                                     </div>
+
                                                     <!-- LOGICA PARA MOSTRAR LOS BOTONES O MENSAJE DE ESTADO -->
-                                                    @if(auth()->user()->persona->run!='')
+                                                    @if(auth()->user()->persona->run != '')
                                                             @if(isset(auth()->user()->persona->psicologo->verificado))
                                                                 @if(auth()->user()->persona->psicologo->verificado =='EN ESPERA')
                                                                      <div class="col-md-12 alert alert-secondary alert-warning"
@@ -442,6 +439,12 @@
 
     <script src="{{asset('assets/js/perfil/RegionesYcomunas.js')}}"></script>
     <script src="{{asset('assets/js/perfil/perfil.js')}}"></script>
+    <script type="text/javascript">
+        window.onload = ( () => {
+            $('#regiones').val('{{Auth::User()->persona->region}}').change();
+            $('#comunas').val('{{Auth::User()->persona->comuna}}').change();
+        });
+    </script>
 
 @endsection
 
