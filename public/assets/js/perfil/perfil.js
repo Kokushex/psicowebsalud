@@ -1,9 +1,8 @@
-
-
 //Declaracion de variables
-var contra_act = $('#contraseña_act');
+
 var divPasswordConfir = $('#divPasswordConfir');
 var divPasswordConfir2 = $('#divPasswordConfir2');
+var contra_act = $('#contraseña_act');
 var contra_nueva = $('#password');
 var contra_conf = $('#password_confirmation');
 var nombre = $("#nombre");
@@ -47,7 +46,9 @@ $(document).ready(function() {
     }*/
 
     //Comparacion de contraseñas que se muestra si no coinciden
-    contra_conf.blur(function() {
+    contra_conf.onkeydown(function() {
+
+        console.log('Hola');
         if (contra_nueva.val() != contra_conf.val() && contra_nueva.val() != "") {
             divPasswordConfir.show();
             divPasswordConfir2.show();
@@ -58,7 +59,8 @@ $(document).ready(function() {
     });
 
     //Comparacion de contraseñas que se muestra si no coinciden
-    contra_nueva.blur(function() {
+    contra_nueva.onblur(function() {
+        console.log(contra_nueva);
         if (contra_nueva.val() != contra_conf.val() && contra_conf.val() != "") {
             divPasswordConfir.show();
             divPasswordConfir2.show();
@@ -67,6 +69,7 @@ $(document).ready(function() {
             divPasswordConfir2.show();
         }
     });
+
     //Verificacion de formulario de Actualizar Password completado o no
     var form = document.getElementById("form");
     form.addEventListener(
@@ -96,10 +99,11 @@ $(document).ready(function() {
                     }
                 }
             }
-            // si el formulario es correcto y completado ejecuta la funcion actualizarPassword la que se encarga de actualizar la clave, si no mostrar mensaje de claves no coinciden
+            // si el formulario es correcto y completado ejecuta la funcion actualizarPassword la que se encarga de actualizar la clave,
+            // si no mostrar mensaje de claves no coinciden
             if (form_correcto) {
                 if (contra_conf.val() == contra_nueva.val()) {
-                    actualizarPassword();
+                    updatePassword();
 
                 } else {
                     divPasswordConfir.show();
@@ -123,7 +127,6 @@ $(document).ready(function() {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-
                 toastr["error"]('Complete todos los campos.', "Error al cambiar contraseña");
 
             }
@@ -398,7 +401,7 @@ function updateDatosPerf(data) {
  */
 function updatePassword() {
     var btnEnviar = $('#update_password');
-    var div = $('#div_passwordd');
+
     $.ajax({
         type: $('#form').attr("method"),
         url: $('#form').attr("action"),
@@ -431,11 +434,12 @@ function updatePassword() {
                 }, 4000);
               //Si es true, muestra el mensaje devuelve contraseña actualizada correctamente
             } else if (data['success'] == true) {
-                swal({
-                    title: "Exito",
-                    text: "Contraseña actualizada",
-                    icon: "success",
-                });
+                console.log(data);
+                // swal({
+                //     title: "Exito",
+                //     text: "Contraseña actualizada",
+                //     icon: "success",
+                // });
                 // div.append($('<div class="col-md-12 alert alert-secondary alert-success" id="alert" role="alert">Contraseña actualizada</div>'));
                 // setTimeout(function() {
                 //     $("#alert").fadeIn();
@@ -449,24 +453,25 @@ function updatePassword() {
         },
         //Validar fuera de ajax
         error: function(data) {
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": true,
-                "positionClass": "toast-top-center",
-                "preventDuplicates": false,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
-
-            toastr["error"]('La contraseña debe ser de minimo 8 caracteres.', "Contraseña nueva");
+            console.log(data);
+            // toastr.options = {
+            //     "closeButton": true,
+            //     "debug": false,
+            //     "newestOnTop": true,
+            //     "progressBar": true,
+            //     "positionClass": "toast-top-center",
+            //     "preventDuplicates": false,
+            //     "showDuration": "300",
+            //     "hideDuration": "1000",
+            //     "timeOut": "5000",
+            //     "extendedTimeOut": "1000",
+            //     "showEasing": "swing",
+            //     "hideEasing": "linear",
+            //     "showMethod": "fadeIn",
+            //     "hideMethod": "fadeOut"
+            // }
+            //
+            // toastr["error"]('La contraseña debe ser de minimo 8 caracteres.', "Contraseña nueva");
         }
     });
 }

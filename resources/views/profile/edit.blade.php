@@ -331,7 +331,8 @@
                                                     </form>
                                         </div>
                                         <!--FIN FORMULARIO CONTRASEÑA-->
-
+                                    @switch($rol)
+                                        @case(2)
                                         <!--FORMULARIO Psicologo -->
                                         <div class=" tab-pane" id="d_otros_psicologo">
                                             <hr class="my-4" />
@@ -387,6 +388,8 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        @break
+                                        @case(1)
                                         <!--FORMULARIO Paciente -->
                                         <div class=" tab-pane" id="d_otros_paciente">
                                             <hr class="my-4" />
@@ -424,6 +427,8 @@
                                             </form>
 
                                         </div>
+                                        @break
+                                        @endswitch
                                     </div>
                                 </div>
                             </div>

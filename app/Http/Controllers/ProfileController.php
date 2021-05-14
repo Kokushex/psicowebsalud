@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\PerfilValidaciones;
 use App\Models\Persona;
+use App\Models\User;
 use App\Models\UserHasRoles;
 use Illuminate\Support\Facades\Hash;
 
@@ -95,10 +96,10 @@ class ProfileController extends Controller
         $persona = $persona->updatePersona($request);
 
         $user = session()->get('user');
-   
+
         //guardar datos del request en cada campo que corresponda
 
-        //request 
+        //request
         if(!empty($persona)){
             $user->run = $request->run;
             $user->nombre = $request->nombre;
@@ -114,7 +115,29 @@ class ProfileController extends Controller
             return json_encode($user);
         }else{
             return 'No se ha encontrado ningun dato del perfil';
-
         }
+    }
+
+    //metodo para cambiar la contraseña
+    public function updatePassword(PasswordRequest $request)
+    {
+        //guardar en var user el id, desde auth buscar el id
+        $user = User::findOrFail(auth()->user()->id_user);
+        //Guardar en var $clave, la contraseña actual desde el request
+        $clave = $request->contraseña_act;
+        //si check metodo para trabajar contraseñas, comprueba clave y la password actual en la bd, la data succes es  true
+        if (Hash::check($clave, $user->password)) {
+            $data['success'] = true;
+            //Buscar el user donde id sea el id del usuario auth, pasar a actualizar la password, con metodo make de hash con la clave nueva
+            User::where('id_user', auth()->user()->id_user)
+                ->update([
+                    'password' => Hash::make($request->password),
+                ]);
+        } else {
+            //Si no pasa la clave guardar en succes false
+            $data['success'] = false;
+        }
+        //retornar data del request
+        return view('profile.edit');
     }
 }

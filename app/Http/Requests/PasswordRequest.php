@@ -22,12 +22,34 @@ class PasswordRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    /*public function rules()
     {
         return [
             'old_password' => ['required', 'min:6', new CurrentPasswordCheckRule],
             'password' => ['required', 'min:6', 'confirmed', 'different:old_password'],
             'password_confirmation' => ['required', 'min:6'],
+
+        ];
+    }*/
+    public function rules()
+    {
+        return [
+            'contraseña_act' => 'required',
+            'password' => 'required|min:8',
+            'password_confirmation' => 'required|min:8|same:password',
+        ];
+    }
+
+    public function messages()
+    {
+        return[
+            //'correo.required' => 'El :attribute es obligatorio',
+            //'correo.unique' => 'El :attribute no se puede cambiar',
+            'contraseña_act.required' => 'Completar la :attribute',
+            'password.required' => 'Completar el  campo :attribute',
+            'password.min:8' => 'Minino de 8 caracteres la :attribute',
+            'password_confirmation.confirmed' => 'Las contraseñas no coinciden',
+
         ];
     }
 
@@ -38,8 +60,19 @@ class PasswordRequest extends FormRequest
      */
     public function attributes()
     {
+        return[
+            'contraseña_act' => 'Contraseña Actual',
+            'password' => 'Nueva Contraseña',
+            'password_confirmation' => 'Confirmar Contraseña',
+
+        ];
+    }
+    /*
+    public function attributes()
+    {
         return [
             'old_password' => __('current password'),
         ];
     }
+    */
 }

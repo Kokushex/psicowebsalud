@@ -47,12 +47,12 @@ Route::group(['middleware' => 'auth'], function () {
 	//Este actualiza
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 
-	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 
+	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade');
 	 Route::get('map', function () {return view('pages.maps');})->name('map');
-	 Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
+	 Route::get('icons', function () {return view('pages.icons');})->name('icons');
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-	
+
 });
 
 
@@ -115,3 +115,4 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 
 Route::post('/profile', [ProfileController::class, 'update'])->name('perfilUpdate');
 Route::post('/profile/registrarDatosPersonales', [ProfileController::class, 'registrarDatosPersonales'])->name('registrarDP');
+Route::put('/profile', [ProfileController::class, 'updatePassword'])->name('perfilActualizarPass');
