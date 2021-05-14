@@ -67,9 +67,9 @@
 
                                         <li class="nav-item mt-2"><a class="nav-link" href="#c_contraseña" data-toggle="tab">Cambiar contraseña</a></li>
                                         @if($rol==2)
-                                            <li class="nav-item mt-2"><a class="nav-link" href="#d_otros" data-toggle="tab">Datos profesionales</a></li>
+                                            <li class="nav-item mt-2"><a class="nav-link" href="#d_otros_psicologo" data-toggle="tab">Datos profesionales</a></li>
                                         @elseif($rol==1)
-                                            <li class="nav-item mt-2"><a class="nav-link" href="#d_otros" data-toggle="tab">Datos Adicionales</a></li>
+                                            <li class="nav-item mt-2"><a class="nav-link" href="#d_otros_paciente" data-toggle="tab">Datos Adicionales</a></li>
                                         @endif
                                     </ul>
                                 </div>
@@ -195,7 +195,7 @@
                                                             <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"
                                                                             min="1930-04-01" max="2017-01-01"
 
-                                                                            value="{{$user->fecha_nacimiento ? date('Y-m-d', strtotime(auth()->user()->persona->fecha_nacimiento)) : ''}}"
+                                                                            value="{{auth()->user()->persona->fecha_nacimiento ? date('Y-m-d', strtotime(auth()->user()->persona->fecha_nacimiento)) : ''}}"
                                                                             placeholder="Fecha de nacimiento" required>
                                                         </div>
                                                      </div>
@@ -335,8 +335,63 @@
                                         </div>
                                         <!--FIN FORMULARIO CONTRASEÑA-->
 
+                                        <!--FORMULARIO Psicologo -->
+                                        <div class=" tab-pane" id="d_otros_psicologo">
+                                            <hr class="my-4" />
+                                            <form method="post" action="#" id="form_datos_complementarios">
+                                                @csrf
+                                                <h6 class="heading-small text-muted mb-4">{{ __('Información Adicional') }}</h6>
+                                                <div class="pl-lg-4">
+                                                    <!--Titulo-->
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="titulo">{{ __('Titulo') }}</label>
+                                                        <input type="text" name="titulo" id="titulo" class="form-control " placeholder="{{ __('Titulo') }}" value="{{auth()->user()->persona->titulo }}" required>
+                                                    </div>
+                                                    <!--Especialidad-->
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="especialidad">{{ __('Especialidad') }}</label>
+                                                        <input type="text" name="especialidad" id="especialidad" class="form-control " placeholder="{{ __('Especialidad') }}" value="{{auth()->user()->persona->especialidad }}" required>
+                                                    </div>
+
+                                                    <!--Casa Academica-->
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="casa_academica">{{ __('Casa Academica') }}</label>
+                                                        <input type="text" name="casa_academica" id="casa_academica" class="form-control " placeholder="{{ __('Casa Academica') }}" value="{{auth()->user()->persona->casa_academica }}" required>
+                                                    </div>
+                                                    <!--Grado Academico-->
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="grado_academico">{{ __('Grado Academico') }}</label>
+                                                        <input type="text" name="grado_academico" id="grado_academico" class="form-control " placeholder="{{ __('Grado Academico') }}" value="{{auth()->user()->persona->grado_academico }}" required>
+                                                    </div>
+                                                    <!--Fecha Egreso-->
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="fecha_egreso">{{ __('Fecha Egreso') }}</label>
+                                                        <input class="form-control" type="date" name="fecha_egreso" id="fecha_egreso"
+                                                               min="1930-04-01" max="2021-04-30"
+
+                                                               value="{{auth()->user()->persona->fecha_egreso ? date('Y-m-d', strtotime(auth()->user()->persona->fecha_egreso)) : ''}}"
+                                                               placeholder="Fecha Egreso" required>
+                                                    </div>
+                                                    <!--Experiencia-->
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="experiencia">{{ __('Experiencia') }}</label>
+                                                        <input type="text" name="experiencia" id="experiencia" class="form-control " placeholder="{{ __('Experiencia') }}" value="{{auth()->user()->persona->experiencia }}" required>
+                                                    </div>
+                                                    <!--Descripcion-->
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="descripcion">{{ __('Descripcion') }}</label>
+                                                        <textarea type="text" name="descripcion" id="descripcion" class="form-control " placeholder="{{ __('Descripcion') }}" value="{{auth()->user()->persona->descripcion }}" required></textarea>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div class="offset-sm-3 col-sm-8" id="div_confirmacion2">
+                                                            <button type="submit" class="btn btn-success mt-4" id="update_datos_comple">{{ __('Guardar Cambios') }}</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                         <!--FORMULARIO Paciente -->
-                                        <div class=" tab-pane" id="d_otros">
+                                        <div class=" tab-pane" id="d_otros_paciente">
                                             <hr class="my-4" />
                                             <form method="post" action="#" id="form_datos_complementarios">
                                                 @csrf
@@ -345,7 +400,7 @@
                                                     <!--Escolaridad-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="escolaridad">{{ __('Escolaridad') }}</label>
-                                                        <input type="text" name="escolaridad" id="escolaridad" class="form-control " placeholder="{{ __('escolaridad') }}" value="{{auth()->user()->persona->escolaridad }}" required>
+                                                        <input type="text" name="escolaridad" id="escolaridad" class="form-control " placeholder="{{ __('Escolaridad') }}" value="{{auth()->user()->persona->escolaridad }}" required>
                                                     </div>
                                                     <!--Ocupacion-->
                                                     <div class="form-group">
