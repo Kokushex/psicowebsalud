@@ -64,13 +64,12 @@
                                 <div class="card-header p-2">
                                     <ul class="nav nav-pills">
                                         <li class="nav-item mt-2"><a class="nav-link active" href="#d_personal" data-toggle="tab">Datos personales</a></li>
-
-                                        <li class="nav-item mt-2"><a class="nav-link" href="#c_contraseña" data-toggle="tab">Cambiar contraseña</a></li>
                                         @if($rol==2)
                                             <li class="nav-item mt-2"><a class="nav-link" href="#d_otros_psicologo" data-toggle="tab">Datos profesionales</a></li>
                                         @elseif($rol==1)
                                             <li class="nav-item mt-2"><a class="nav-link" href="#d_otros_paciente" data-toggle="tab">Datos Adicionales</a></li>
                                         @endif
+                                        <li class="nav-item mt-2"><a class="nav-link" href="#c_contraseña" data-toggle="tab">Cambiar contraseña</a></li>
                                     </ul>
                                 </div>
                                 <div>
@@ -121,7 +120,7 @@
                                                         <input type="text" class="form-control" id="run" name="run"
                                                               placeholder="Ingrese RUN" value="{{auth()->user()->persona->run}}"
                                                                onKeyPress=" return soloNumerosRut(event)" onBlur="onRutBlur(this)"
-                                                            {{($user->run !='' and $user->verificado !='EN ESPERA') ? 'disabled' : ''}}>
+                                                            {{(auth()->user()->persona->run !='') ? 'disabled' : ''}}>
 
                                                         <div id="alertErrorRun"></div>
                                                     </div>
@@ -244,21 +243,26 @@
 
                                                     <!-- LOGICA PARA MOSTRAR LOS BOTONES O MENSAJE DE ESTADO -->
                                                     @if(auth()->user()->persona->run != '')
+                                                        @if($rol == 2)
                                                             @if(isset(auth()->user()->persona->psicologo->verificado))
                                                                 @if(auth()->user()->persona->psicologo->verificado =='EN ESPERA')
                                                                      <div class="col-md-12 alert alert-secondary alert-warning"
                                                                         id="esperandoVerificacion" role="alert"><b>Solicitud en espera de revisión.</b>
                                                                      </div>
                                                                 @else
-                                                                    <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Registrar Datos') }}</button>
+                                                                    <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Registrar Datos 1') }}</button>
                                                                 @endif
 
                                                             @else
-                                                                <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios') }}</button>
+                                                                <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios 2') }}</button>
                                                             @endif
+                                                        @else
+                                                                <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios 3') }}</button>
+
+                                                        @endif
                                                     @else
 
-                                                        <button type="submit" class="btn btn-success mt-4" id="registrarDatos"> {{ __('Guardar Cambios') }}</button>
+                                                        <button type="submit" class="btn btn-success mt-4" id="registrarDatos"> {{ __('Registrar Datos 4') }}</button>
 
                                                     @endif
                                                 </div>

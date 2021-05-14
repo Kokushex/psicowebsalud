@@ -135,7 +135,7 @@ $(document).ready(function() {
     );
 
 });
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
     //Verificacion que se completen datos esenciales de la persona
     $("#form_datos_personales").bind("submit", function() {
@@ -273,10 +273,10 @@ function registraDatosAjax() {
 
 /**
  * Metodo para actualizacion de datos personales y complementarios
- * @param {formulario a utilizar} formulario
+ * @param {formulario a utilizar} form_datos_personales
  * @param {formulario con datos} form
  */
-function updateAjax(formulario, form) { //Formulario?
+function updateAjax(formulario, form) {
     $('#run').prop("disabled",false);
     $('#run').attr("readonly","readonly");
     var btnEnviar, div;
@@ -308,9 +308,9 @@ function updateAjax(formulario, form) { //Formulario?
             $('#run').removeAttr('readonly');
             $('#run').prop("disabled",true);
             //Metodo en esta vista
-            updateDatosPerf(data);
+            //updateDatosPerf(data);
             //Entregar mensaje de actualización de datos
-            swal({
+            /*swal({
                 title: "Exito",
                 text: "Se actualizaron sus datos",
                 icon: "success",
@@ -321,7 +321,7 @@ function updateAjax(formulario, form) { //Formulario?
             }, 1500);
             setTimeout(function() {
                 $("#alert").remove();
-            }, 4000);
+            }, 4000); */
 
         },
         error: function(error) {
@@ -369,16 +369,16 @@ function verAlertas(mensaje) {
     toastr["error"](mensaje, "Error de envio.");
 }
 
+
+
+
+///////////////////////////////////////////////SOBRE MI ///////////////////////////////////////////////////////////////////
 /*Metodo para setear datos en "Sobre mi" en Psicologo y paciente
  *Esta funcion lo que realiza es setear en la parte de sobre mi, los datos mas relavantes que el usuario actualice
  *en sus datos personales y academicos.
  * @param {data} la data del ajax
  */
-
-
-///////////////////////////////////////////////SOBRE MI ///////////////////////////////////////////////////////////////////
-
-
+/*
 function updateDatosPerf(data) {
     $('#run').text(data.run);
     $('#nombre').text(data.nombre);
@@ -393,7 +393,7 @@ function updateDatosPerf(data) {
     $('#educaPerf').text(data.escolaridad);
     $('#userProfesion').text(data.ocupacion);
 }
-
+*/
 
 
 /**

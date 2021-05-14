@@ -120,7 +120,7 @@ form.addEventListener(
             //         .setAttribute("style", "border: 1px solid #ff0000");
             //     alert('El email no es valido');
             // } else {
-                
+
             // }
 
         } else {
