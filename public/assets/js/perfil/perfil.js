@@ -224,7 +224,7 @@ function registraDatosAjax() {
             btnEnviar.removeAttr("disabled");
         },
         success: function (data) {
-            console.log(data);
+            /* console.log(data);
             updateDatosPerf(data);
             div.append($('<div class="col-md-12 alert alert-secondary alert-success" id="alert" role="alert">Se registraron sus datos</div>'));
             setTimeout(function() {
@@ -232,7 +232,7 @@ function registraDatosAjax() {
             }, 1500);
             setTimeout(function() {
                 $("#alert").remove();
-            }, 4000);
+            }, 4000); */
             $("#registrarDatos").attr('id_user', 'update_datosP');
             $('#mensajeInformativo').remove();
             $("#run").attr('readonly', 'true');
@@ -245,9 +245,11 @@ function registraDatosAjax() {
                     }
                 );
                 btnEnviar.remove();
-                $('#mensajeInformativo').append($('<div class="alert alert-warning text-center" id="mensajeInformativo"><b id="msgPsicologo">Su solicitud esta en espera de Revisión.</b></div>'));
+                /*$('#mensajeInformativo').append($('<div class="alert alert-warning text-center" id="mensajeInformativo"><b id="msgPsicologo">Su solicitud esta en espera de Revisión.</b></div>'));
                 div.append($('<div class="col-md-12 alert alert-secondary alert-warning" id="alert" role="alert"><b>Solicitud en Revisión</b></div>'));
+                */
                 location.reload();
+
             }
 
         },
