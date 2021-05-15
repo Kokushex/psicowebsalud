@@ -27,14 +27,14 @@ class Paciente extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'paciente';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'id_paciente';
@@ -70,7 +70,7 @@ class Paciente extends Model
 
     public static function createPaciente($id_user, $id_persona){//------------basicamente agregarle el return
         $paciente = new Paciente();
- 
+
         $paciente->id_persona=$id_persona;
         //Estos datos son recopilados para el trabajo del psicologo
         $paciente->escolaridad='';
@@ -83,7 +83,7 @@ class Paciente extends Model
         $paciente->observacion_alta='';
         $paciente->tipo_alta='';
         $paciente->tipo_paciente='Titular';
-        
+
         $paciente->save();
         return $paciente;
     }
@@ -118,8 +118,18 @@ class Paciente extends Model
                 $paciente->observacion_alta='';
                 $paciente->tipo_alta='';
                 $paciente->tipo_paciente='';
-            
+
             }
         return $paciente;
+    }
+
+    public function updatePaciente($request){
+        return Paciente::where('id_persona', auth()->user()->persona->id_persona)
+            ->update([
+                'escolaridad' => $request->escolaridad,
+                'ocupacion' => $request->ocupacion,
+                'estado_civil' => $request->estado_civil,
+                'grupo_familiar' => $request->grupo_familiar,
+            ]);
     }
 }

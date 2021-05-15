@@ -28,7 +28,7 @@ $(document).ready(function() {
         mask:"9[9999999]-[9|K|k]",
     });
 
-    /**
+    /*
     //Se deshabilita el rut si ya existe en el formulario
     if ($('#rut').val() != '') {
         $("#rut").attr('readonly', 'true');
@@ -46,9 +46,8 @@ $(document).ready(function() {
     }*/
 
     //Comparacion de contraseñas que se muestra si no coinciden
-    contra_conf.onkeydown(function() {
+    contra_conf.blur(function() {
 
-        console.log('Hola');
         if (contra_nueva.val() != contra_conf.val() && contra_nueva.val() != "") {
             divPasswordConfir.show();
             divPasswordConfir2.show();
@@ -59,8 +58,7 @@ $(document).ready(function() {
     });
 
     //Comparacion de contraseñas que se muestra si no coinciden
-    contra_nueva.onblur(function() {
-        console.log(contra_nueva);
+    contra_nueva.blur(function() {
         if (contra_nueva.val() != contra_conf.val() && contra_conf.val() != "") {
             divPasswordConfir.show();
             divPasswordConfir2.show();

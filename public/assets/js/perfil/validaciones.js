@@ -83,7 +83,6 @@ form.addEventListener(
             elementos = this.elements,
             total = elementos.length,
             email = document.getElementById('email').value;
-        console.log('safsa');
         /**
          * Ciclo que verifica cada elemento del formulario para validar si no esta vacio y si lo esta
          *coloca su borde de color rojo y cambia la variable form_correcto a false.
@@ -114,14 +113,6 @@ form.addEventListener(
             } else {
                 this.submit();
             }
-            // if (valCorreo(email) === false) {
-            //     document
-            //         .getElementById("email")
-            //         .setAttribute("style", "border: 1px solid #ff0000");
-            //     alert('El email no es valido');
-            // } else {
-
-            // }
 
         } else {
             alert("Complete todos los campos");

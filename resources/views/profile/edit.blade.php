@@ -15,7 +15,7 @@
 
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/css/inputmask.min.css" rel="stylesheet" />
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -67,7 +67,7 @@
                                         @if($rol==2)
                                             <li class="nav-item mt-2"><a class="nav-link" href="#d_otros_psicologo" data-toggle="tab">Datos profesionales</a></li>
                                         @elseif($rol==1)
-                                            <li class="nav-item mt-2"><a class="nav-link" href="#d_otros_paciente" data-toggle="tab">Datos Adicionales</a></li>
+                                            <li class="nav-item mt-2"><a class="nav-link" href="#d_otros" data-toggle="tab">Datos Adicionales</a></li>
                                         @endif
                                         <li class="nav-item mt-2"><a class="nav-link" href="#c_contraseña" data-toggle="tab">Cambiar contraseña</a></li>
                                     </ul>
@@ -119,7 +119,7 @@
                                                         <label for="run" class="col-sm-3 col-form-label">Run</label>
                                                         <input type="text" class="form-control" id="run" name="run"
                                                               placeholder="Ingrese RUN" value="{{auth()->user()->persona->run}}"
-                                                               onKeyPress=" return soloNumerosRut(event)" onBlur="onRutBlur(this)"
+                                                               onKeyPress=" return soloNumerosRut(event)" onBlur="onRunBlur(this)"
                                                             {{(auth()->user()->persona->run !='') ? 'disabled' : ''}}>
 
                                                         <div id="alertErrorRun"></div>
@@ -136,16 +136,11 @@
                                                         @endif
                                                     </div>
                                                     <!--Nombre-->
-                                                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                    <div class="form-group">
                                                         <label class="form-control-label" for="nombre">{{ __('Nombre') }}</label>
-                                                        <input type="text" name="nombre" id="nombre" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                        <input type="text" name="nombre" id="nombre" class="form-control "
                                                         placeholder="{{ __('Nombre') }}" value="{{auth()->user()->persona->nombre}}" required autofocus>
 
-                                                        @if ($errors->has('name'))
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $errors->first('name') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
 
                                                     <!--Apellido Paterno-->
@@ -276,9 +271,9 @@
                                             <!--Formulario Contraseña-->
 
                                                     <hr class="my-4" />
-                                                    <form method="post" id=form action="{{ route('profile.password') }}" autocomplete="off">
-                                                        @csrf
+                                                    <form method="post" id=form action="{{ route('perfilActualizarPass') }}" autocomplete="off" class="form-horizontal">
                                                         @method('put')
+                                                        @csrf
                                                         <h6 class="heading-small text-muted mb-4">{{ __('Contraseña') }}</h6>
 
                                                         @if (session('password_status'))
@@ -291,26 +286,27 @@
                                                         @endif
 
                                                         <div class="pl-lg-4">
-                                                            <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
+                                                            <div class="form-group">
                                                                 <label class="form-control-label" for="contraseña_act">{{ __('Contraseña Actual') }}</label>
-                                                                <input type="password" name="contraseña_act" id="contraseña_act" class="form-control form-control-alternative{{ $errors->has('old_password') ? ' is-invalid' : '' }}" placeholder="{{ __('Contraseña Actual') }}" value="" required>
-
-                                                                @if ($errors->has('old_password'))
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $errors->first('old_password') }}</strong>
-                                                                    </span>
-                                                                @endif
+                                                                <div class="input-group" id="show_hide_password">
+                                                                    <input type="password" name="contraseña_act" id="contraseña_act" class="form-control" placeholder="{{ __('Contraseña Actual') }}" value="" required>
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text"><a href="">
+                                                                                    <i class="fa fa-eye-slash"></i></a>
+                                                                            </span>
+                                                                        </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+                                                            <div class="form-group">
                                                                 <label class="form-control-label" for="password">{{ __('Nueva Contraseña') }}</label>
-                                                                <input type="password" name="password" id="password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Nueva Contraseña') }}" value="" required>
-
-
-                                                                @if ($errors->has('password'))
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $errors->first('password') }}</strong>
-                                                                    </span>
-                                                                @endif
+                                                                <div class="input-group" id="show_hide_password">
+                                                                    <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Nueva Contraseña') }}" value="" required>
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text"><a href="">
+                                                                                    <i class="fa fa-eye-slash"></i></a>
+                                                                            </span>
+                                                                        </div>
+                                                                </div>
                                                             </div>
                                                             <!--Alerta-->
                                                             <div class="invalid-feedback offset-sm-3 col-sm-8" role="alert"
@@ -319,7 +315,14 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-control-label" for="password_confirmation">{{ __('Confirmar nueva contraseña') }}</label>
-                                                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirmar Nueva Contraseña') }}" value="" required>
+                                                                <div class="input-group" id="show_hide_password">
+                                                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Confirmar Nueva Contraseña') }}" value="" required>
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text"><a href="">
+                                                                                    <i class="fa fa-eye-slash"></i></a>
+                                                                            </span>
+                                                                        </div>
+                                                                </div>
                                                             </div>
                                                             <!--Alerta-->
                                                             <div class="invalid-feedback offset-sm-3 col-sm-8" role="alert"
@@ -331,6 +334,7 @@
                                                             <div class="text-center">
                                                                 <button type="submit" class="btn btn-success mt-4">{{ __('Cambiar contraseña') }}</button>
                                                             </div>
+                                                            <div id="showErrores"></div>
                                                         </div>
                                                     </form>
                                         </div>
@@ -340,30 +344,30 @@
                                         <!--FORMULARIO Psicologo -->
                                         <div class=" tab-pane" id="d_otros_psicologo">
                                             <hr class="my-4" />
-                                            <form method="post" action="#" id="form_datos_complementarios">
+                                            <form method="post" action="{{route('perfilUpdatePsicologo')}}" id="form_datos_complementarios">
                                                 @csrf
                                                 <h6 class="heading-small text-muted mb-4">{{ __('Información Adicional') }}</h6>
                                                 <div class="pl-lg-4">
                                                     <!--Titulo-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="titulo">{{ __('Titulo') }}</label>
-                                                        <input type="text" name="titulo" id="titulo" class="form-control " placeholder="{{ __('Titulo') }}" value="{{auth()->user()->persona->titulo }}" required>
+                                                        <input type="text" name="titulo" id="titulo" class="form-control " placeholder="{{ __('Titulo') }}" value="{{auth()->user()->persona->psicologo->titulo }}" required>
                                                     </div>
                                                     <!--Especialidad-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="especialidad">{{ __('Especialidad') }}</label>
-                                                        <input type="text" name="especialidad" id="especialidad" class="form-control " placeholder="{{ __('Especialidad') }}" value="{{auth()->user()->persona->especialidad }}" required>
+                                                        <input type="text" name="especialidad" id="especialidad" class="form-control " placeholder="{{ __('Especialidad') }}" value="{{auth()->user()->persona->psicologo->especialidad }}" required>
                                                     </div>
 
                                                     <!--Casa Academica-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="casa_academica">{{ __('Casa Academica') }}</label>
-                                                        <input type="text" name="casa_academica" id="casa_academica" class="form-control " placeholder="{{ __('Casa Academica') }}" value="{{auth()->user()->persona->casa_academica }}" required>
+                                                        <input type="text" name="casa_academica" id="casa_academica" class="form-control " placeholder="{{ __('Casa Academica') }}" value="{{auth()->user()->persona->psicologo->casa_academica }}" required>
                                                     </div>
                                                     <!--Grado Academico-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="grado_academico">{{ __('Grado Academico') }}</label>
-                                                        <input type="text" name="grado_academico" id="grado_academico" class="form-control " placeholder="{{ __('Grado Academico') }}" value="{{auth()->user()->persona->grado_academico }}" required>
+                                                        <input type="text" name="grado_academico" id="grado_academico" class="form-control " placeholder="{{ __('Grado Academico') }}" value="{{auth()->user()->persona->psicologo->grado_academico }}" required>
                                                     </div>
                                                     <!--Fecha Egreso-->
                                                     <div class="form-group">
@@ -371,18 +375,18 @@
                                                         <input class="form-control" type="date" name="fecha_egreso" id="fecha_egreso"
                                                                min="1930-04-01" max="2021-04-30"
 
-                                                               value="{{auth()->user()->persona->fecha_egreso ? date('Y-m-d', strtotime(auth()->user()->persona->fecha_egreso)) : ''}}"
+                                                               value="{{auth()->user()->persona->psicologo->fecha_egreso ? date('Y-m-d', strtotime(auth()->user()->persona->psicologo->fecha_egreso)) : ''}}"
                                                                placeholder="Fecha Egreso" required>
                                                     </div>
                                                     <!--Experiencia-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="experiencia">{{ __('Experiencia') }}</label>
-                                                        <input type="text" name="experiencia" id="experiencia" class="form-control " placeholder="{{ __('Experiencia') }}" value="{{auth()->user()->persona->experiencia }}" required>
+                                                        <input type="text" name="experiencia" id="experiencia" class="form-control " placeholder="{{ __('Experiencia') }}" value="{{auth()->user()->persona->psicologo->experiencia}}" required>
                                                     </div>
                                                     <!--Descripcion-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="descripcion">{{ __('Descripcion') }}</label>
-                                                        <textarea type="text" name="descripcion" id="descripcion" class="form-control " placeholder="{{ __('Descripcion') }}" value="{{auth()->user()->persona->descripcion }}" required></textarea>
+                                                        <textarea type="text" name="descripcion" id="descripcion" class="form-control " placeholder="{{ __('Descripcion') }}" value="{{auth()->user()->persona->psicologo->descripcion}}" required></textarea>
                                                     </div>
                                                     <div class="text-center">
                                                         <div class="offset-sm-3 col-sm-8" id="div_confirmacion2">
@@ -395,32 +399,32 @@
                                         @break
                                         @case(1)
                                         <!--FORMULARIO Paciente -->
-                                        <div class=" tab-pane" id="d_otros_paciente">
+                                        <div class=" tab-pane" id="d_otros">
                                             <hr class="my-4" />
-                                            <form method="post" action="#" id="form_datos_complementarios">
+                                            <form method="post" action="{{route('perfilUpdatePaciente')}}" id="form_datos_complementarios">
                                                 @csrf
                                                 <h6 class="heading-small text-muted mb-4">{{ __('Información Adicional') }}</h6>
                                                 <div class="pl-lg-4">
                                                     <!--Escolaridad-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="escolaridad">{{ __('Escolaridad') }}</label>
-                                                        <input type="text" name="escolaridad" id="escolaridad" class="form-control " placeholder="{{ __('Escolaridad') }}" value="{{auth()->user()->persona->escolaridad }}" required>
+                                                        <input type="text" name="escolaridad" id="escolaridad" class="form-control " placeholder="{{ __('Escolaridad') }}" value="{{auth()->user()->persona->paciente->escolaridad}}" required>
                                                     </div>
                                                     <!--Ocupacion-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="ocupacion">{{ __('Ocupacion') }}</label>
-                                                        <input type="text" name="ocupacion" id="ocupacion" class="form-control " placeholder="{{ __('Ocupacion') }}" value="{{auth()->user()->persona->ocupacion }}" required>
+                                                        <input type="text" name="ocupacion" id="ocupacion" class="form-control " placeholder="{{ __('Ocupacion') }}" value="{{auth()->user()->persona->paciente->ocupacion}}" required>
                                                     </div>
 
                                                     <!--Estado Civil-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="estado_civil">{{ __('Estado Civil') }}</label>
-                                                        <input type="text" name="estado_civil" id="estado_civil" class="form-control " placeholder="{{ __('Estado Civil') }}" value="{{auth()->user()->persona->estado_civil }}" required>
+                                                        <input type="text" name="estado_civil" id="estado_civil" class="form-control " placeholder="{{ __('Estado Civil') }}" value="{{auth()->user()->persona->paciente->estado_civil}}" required>
                                                     </div>
                                                     <!--Grupo familiar-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="grupo_familiar">{{ __('Grupo familiar') }}</label>
-                                                        <input type="text" name="grupo_familiar" id="grupo_familiar" class="form-control " placeholder="{{ __('Grupo familiar') }}" value="{{auth()->user()->persona->grupo_familiar }}" required>
+                                                        <input type="text" name="grupo_familiar" id="grupo_familiar" class="form-control " placeholder="{{ __('Grupo familiar') }}" value="{{auth()->user()->persona->paciente->grupo_familiar}}" required>
                                                     </div>
                                                     <div class="text-center">
                                                         <div class="offset-sm-3 col-sm-8" id="div_confirmacion2">
@@ -445,15 +449,20 @@
 
     <!--Scripts: NOTA EL ORDEN LES AFECTA, si jquery esta abajo del script a funcionar los otros no funcionaran-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js "></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script src="{{asset('assets/js/perfil/RegionesYcomunas.js')}}"></script>
     <script src="{{asset('assets/js/perfil/perfil.js')}}"></script>
-    <script type="text/javascript">
+    <script src="{{asset('assets/js/perfil/RegionesYcomunas.js')}}"></script>
+    <script src="{{asset('assets/js/perfil/validaciones.js')}}"></script>
+
         window.onload = ( () => {
             $('#regiones').val('{{Auth::User()->persona->region}}').change();
             $('#comunas').val('{{Auth::User()->persona->comuna}}').change();
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.js"></script>
 
 @endsection
 

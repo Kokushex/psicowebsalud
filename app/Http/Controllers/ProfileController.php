@@ -6,9 +6,12 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\PerfilValidaciones;
 use App\Models\Persona;
+use App\Models\Paciente;
+use App\Models\Psicologo;
 use App\Models\User;
 use App\Models\UserHasRoles;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 
 class ProfileController extends Controller
@@ -139,5 +142,43 @@ class ProfileController extends Controller
         }
         //retornar data del request
         return view('profile.edit');
+    }
+
+    public function updatePaciente(Request $request)
+    {
+        $paciente = new Paciente();
+        $paciente = $paciente->updatePaciente($request);
+        if(!empty($paciente)){
+            $user=session()->get('user');
+            $user->escolaridad=$request->escolaridad;
+            $user->ocupacion=$request->ocupacion;
+            $user->estado_civil=$request->estado_civil;
+            $user->grupo_familiar=$request->grupo_familiar;
+            session()->put('user', $user);
+            return json_encode($user);
+        }else{
+            return 'No se encuentran datos';
+        }
+    }
+
+
+    public function updatePsicologo(Request $request)
+    {
+        $psicologo = new Psicologo();
+        $psicologo = $psicologo->updatePsicologo($request);
+        if(!empty($psicologo)){
+            $user=session()->get('user');
+            $user->titulo=$request->titulo;
+            $user->especialidad=$request->especialidad;
+            $user->casa_academica=$request->casa_academica;
+            $user->grado_academico=$request->grado_academico;
+            $user->fecha_egreso=$request->fecha_egreso;
+            $user->experiencia=$request->experiencia;
+            session()->put(['user' => $user]);
+            return json_encode($user);
+        }else{
+            return 'No se encuentran datos';
+        }
+
     }
 }

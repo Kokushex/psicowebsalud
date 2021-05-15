@@ -30,14 +30,14 @@ class Psicologo extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'psicologo';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'id_psicologo';
@@ -144,8 +144,21 @@ class Psicologo extends Model
             $psicologo->fecha_egreso='';
             $psicologo->experiencia='';
             $psicologo->imagen_titulo='';
-        
+
         }
     return $psicologo;
+    }
+
+    public function updatePsicologo($request){
+        return Psicologo::where('id_persona', auth()->user()->persona->id_persona)
+            ->update([
+                'titulo' => $request->titulo,
+                'especialidad' => $request->especialidad,
+                'descripcion' => $request->descripcion,
+                'casa_academica' => $request->casa_academica,
+                'grado_academico' => $request->grado_academico,
+                'fecha_egreso' => $request->fecha_egreso,
+                'experiencia' => $request->experiencia,
+            ]);
     }
 }

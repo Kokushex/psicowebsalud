@@ -116,3 +116,5 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 Route::post('/profile', [ProfileController::class, 'update'])->name('perfilUpdate');
 Route::post('/profile/registrarDatosPersonales', [ProfileController::class, 'registrarDatosPersonales'])->name('registrarDP');
 Route::put('/profile', [ProfileController::class, 'updatePassword'])->name('perfilActualizarPass');
+Route::post('/profile/updatePaciente', [ProfileController::class, 'updatePaciente'])->name('perfilUpdatePaciente');
+Route::post('/profile/updatePsicologo', [ProfileController::class, 'updatePsicologo'])->name('perfilUpdatePsicologo');
