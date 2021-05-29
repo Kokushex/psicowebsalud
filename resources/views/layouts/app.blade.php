@@ -28,23 +28,23 @@
             </form>
             @include('layouts.navbars.sidebar')
         @endauth
-        
+
         <div class="main-content">
             @include('layouts.navbars.navbar')
             <!--Definiendo content para usarlo como section en las demas vistas-->
             @yield('content')
-            
+
         </div>
 
         @guest()
             @include('layouts.footers.guest')
         @endguest
 
-        <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
+        <!--<script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>-->
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        
+
         @stack('js')
-        
+
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
     </body>

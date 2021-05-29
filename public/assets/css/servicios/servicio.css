@@ -1,0 +1,13 @@
+th.hide_me, td.hide_me {
+    display: none;
+}
+.btnEliminar{
+    width: 100px;
+}
+.salto-linea{
+    padding-bottom: 20px;
+}
+
+.hide-me{
+    display: none;
+}

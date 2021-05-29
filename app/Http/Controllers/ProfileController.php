@@ -49,7 +49,7 @@ class ProfileController extends Controller
      * @param  \App\Http\Requests\PasswordRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function password(PasswordRequest $request)
+    /*public function password(PasswordRequest $request)
     {
         if (auth()->user()->id == 1) {
             return back()->withErrors(['not_allow_password' => __('You are not allowed to change the password for a default user.')]);
@@ -58,7 +58,7 @@ class ProfileController extends Controller
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
         return back()->withPasswordStatus(__('Password successfully updated.'));
-    }
+    }*/
 
 
 
@@ -176,6 +176,7 @@ class ProfileController extends Controller
             $user->experiencia=$request->experiencia;
             session()->put(['user' => $user]);
             return json_encode($user);
+
         }else{
             return 'No se encuentran datos';
         }

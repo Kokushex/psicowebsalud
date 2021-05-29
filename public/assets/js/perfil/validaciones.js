@@ -74,7 +74,7 @@ $('#run').blur(function () {
  * un valor false. Luego se valida que el run y correo tengan la estructura correcta, de
  * lo contrario se devuelve un valor false.
  */
-var form = document.getElementById("formulario");
+var form = document.getElementById("form");
 form.addEventListener(
     "submit",
     function (event) {

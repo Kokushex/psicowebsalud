@@ -6,17 +6,20 @@
         'description' => __('Este es tu perfil. Aqui puede editar tu información personal'),
         'class' => 'col-lg-7'
     ])
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/css/inputmask.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
     @php
     $user=session()->get('user');
     $rol=session()->get('rol');
     @endphp
 
-
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/css/inputmask.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-
+    <style>
+        .toast {
+            opacity: 1 !important;
+            box-shadow: 0 0 12px #000 !important;
+        }
+    </style>
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
@@ -63,13 +66,13 @@
                             <div class="card-header bg-white border-0">
                                 <div class="card-header p-2">
                                     <ul class="nav nav-pills">
-                                        <li class="nav-item mt-2"><a class="nav-link active" href="#d_personal" data-toggle="tab">Datos personales</a></li>
+                                        <li class="nav-item mt-2"><a class="nav-link active" href="#c_contraseña" data-toggle="tab">Cambiar contraseña</a></li>
+                                        <li class="nav-item mt-2"><a class="nav-link" href="#d_personal" data-toggle="tab">Datos personales</a></li>
                                         @if($rol==2)
                                             <li class="nav-item mt-2"><a class="nav-link" href="#d_otros_psicologo" data-toggle="tab">Datos profesionales</a></li>
                                         @elseif($rol==1)
                                             <li class="nav-item mt-2"><a class="nav-link" href="#d_otros" data-toggle="tab">Datos Adicionales</a></li>
                                         @endif
-                                        <li class="nav-item mt-2"><a class="nav-link" href="#c_contraseña" data-toggle="tab">Cambiar contraseña</a></li>
                                     </ul>
                                 </div>
                                 <div>
@@ -104,7 +107,7 @@
                                         <h3 class="mb-0">{{ __('Editar Perfil') }}</h3>
                                     </div>
                                     <div class="tab-content">
-                                        <div class="active tab-pane" id="d_personal">
+                                        <div class="tab-pane" id="d_personal">
                                         <!--FORMULARIO DATOS-->
                                             <hr class="my-4" />
                                             <form method="post" action="{{ route('perfilUpdate')  }}" id="form_datos_personales">
@@ -124,17 +127,7 @@
 
                                                         <div id="alertErrorRun"></div>
                                                     </div>
-                                                    <!--Email-->
-                                                    <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                                        <label class="form-control-label" for="email">{{ __('Correo') }}</label>
-                                                        <input type="email" name="email" id="email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required readonly>
 
-                                                        @if ($errors->has('email'))
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $errors->first('email') }}</strong>
-                                                            </span>
-                                                        @endif
-                                                    </div>
                                                     <!--Nombre-->
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="nombre">{{ __('Nombre') }}</label>
@@ -237,41 +230,43 @@
                                                     </div>
 
                                                     <!-- LOGICA PARA MOSTRAR LOS BOTONES O MENSAJE DE ESTADO -->
-                                                    @if(auth()->user()->persona->run != '')
-                                                        @if($rol == 2)
-                                                            @if(isset(auth()->user()->persona->psicologo->verificado))
-                                                                @if(auth()->user()->persona->psicologo->verificado =='EN ESPERA')
-                                                                     <div class="col-md-12 alert alert-secondary alert-warning"
-                                                                        id="esperandoVerificacion" role="alert"><b>Solicitud en espera de revisión.</b>
-                                                                     </div>
-                                                                @else
-                                                                    <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Registrar Datos 1') }}</button>
-                                                                @endif
+                                                    <div id="div_confirmacion1">
+                                                        @if(auth()->user()->persona->run != '')
+                                                            @if($rol == 2)
+                                                                @if(isset(auth()->user()->persona->psicologo->verificado))
+                                                                    @if(auth()->user()->persona->psicologo->verificado =='EN ESPERA')
+                                                                         <div class="col-md-12 alert alert-secondary alert-warning"
+                                                                            id="esperandoVerificacion" role="alert"><b>Solicitud en espera de revisión.</b>
+                                                                         </div>
+                                                                    @else
+                                                                        <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Registrar Datos 1') }}</button>
+                                                                    @endif
 
+                                                                @else
+                                                                    <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios 2') }}</button>
+                                                                @endif
                                                             @else
-                                                                <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios 2') }}</button>
+                                                                    <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios 3') }}</button>
+
                                                             @endif
                                                         @else
-                                                                <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios 3') }}</button>
+
+                                                            <button type="submit" class="btn btn-success mt-4" id="registrarDatos"> {{ __('Registrar Datos 4') }}</button>
 
                                                         @endif
-                                                    @else
-
-                                                        <button type="submit" class="btn btn-success mt-4" id="registrarDatos"> {{ __('Registrar Datos 4') }}</button>
-
-                                                    @endif
+                                                    </div>
                                                 </div>
                                             </form>
 
                                         </div>
                                         <!--FIN FORMULARIO DATOS PERSONALES-->
 
-                                        <div class="tab-pane" id="c_contraseña">
+                                        <div class="active tab-pane" id="c_contraseña">
 
                                             <!--Formulario Contraseña-->
 
                                                     <hr class="my-4" />
-                                                    <form method="post" id=form action="{{ route('perfilActualizarPass') }}" autocomplete="off" class="form-horizontal">
+                                                    <form method="post" id="form" action="{{ route('perfilActualizarPass') }}" autocomplete="off" class="form-horizontal">
                                                         @method('put')
                                                         @csrf
                                                         <h6 class="heading-small text-muted mb-4">{{ __('Contraseña') }}</h6>
@@ -284,12 +279,19 @@
                                                                 </button>
                                                             </div>
                                                         @endif
-
                                                         <div class="pl-lg-4">
+                                                        <!--Email-->
+                                                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                                                <label class="form-control-label" for="email">{{ __('Correo') }}</label>
+                                                                <input type="email" name="email" id="email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required readonly>
+
+                                                            </div>
+
+
                                                             <div class="form-group">
-                                                                <label class="form-control-label" for="contraseña_act">{{ __('Contraseña Actual') }}</label>
+                                                                <label class="form-control-label" >{{ __('Contraseña Actual') }}</label>
                                                                 <div class="input-group" id="show_hide_password">
-                                                                    <input type="password" name="contraseña_act" id="contraseña_act" class="form-control" placeholder="{{ __('Contraseña Actual') }}" value="" required>
+                                                                    <input type="password" name="contraseña_act" id="contraseña_act" class="form-control" placeholder="{{ __('Contraseña Actual') }}" >
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text"><a href="">
                                                                                     <i class="fa fa-eye-slash"></i></a>
@@ -298,41 +300,41 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="form-control-label" for="password">{{ __('Nueva Contraseña') }}</label>
+                                                                <label class="form-control-label" for="password" >{{ __('Nueva Contraseña') }}</label>
                                                                 <div class="input-group" id="show_hide_password">
-                                                                    <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Nueva Contraseña') }}" value="" required>
+                                                                    <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Nueva Contraseña') }}">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text"><a href="">
                                                                                     <i class="fa fa-eye-slash"></i></a>
                                                                             </span>
                                                                         </div>
                                                                 </div>
+                                                                <!--Alerta-->
+                                                                <div class="invalid-feedback offset-sm-3 col-sm-8" role="alert" id="divPasswordConfir">
+                                                                    Las contraseñas no coinciden.
+                                                                </div>
                                                             </div>
-                                                            <!--Alerta-->
-                                                            <div class="invalid-feedback offset-sm-3 col-sm-8" role="alert"
-                                                                            id="divPasswordConfir">
-                                                                            Las contraseñas no coinciden
-                                                            </div>
+
                                                             <div class="form-group">
-                                                                <label class="form-control-label" for="password_confirmation">{{ __('Confirmar nueva contraseña') }}</label>
+                                                                <label class="form-control-label" for="password_confirmation" >{{ __('Confirmar nueva contraseña') }}</label>
                                                                 <div class="input-group" id="show_hide_password">
-                                                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Confirmar Nueva Contraseña') }}" value="" required>
+                                                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Confirmar Nueva Contraseña') }}" >
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text"><a href="">
                                                                                     <i class="fa fa-eye-slash"></i></a>
                                                                             </span>
                                                                         </div>
                                                                 </div>
+                                                                    <!--Alerta-->
+                                                                <div class="invalid-feedback offset-sm-3 col-sm-8" role="alert" id="divPasswordConfir2">
+                                                                                Las contraseñas no coinciden.
+                                                                </div>
                                                             </div>
-                                                            <!--Alerta-->
-                                                            <div class="invalid-feedback offset-sm-3 col-sm-8" role="alert"
-                                                                            id="divPasswordConfir2">
-                                                                            Las contraseñas no coinciden
-                                                            </div>
+
 
 
                                                             <div class="text-center">
-                                                                <button type="submit" class="btn btn-success mt-4">{{ __('Cambiar contraseña') }}</button>
+                                                                <button type="submit" id="update_password" class="btn btn-success mt-4">{{ __('Cambiar contraseña') }}</button>
                                                             </div>
                                                             <div id="showErrores"></div>
                                                         </div>
@@ -342,7 +344,7 @@
                                     @switch($rol)
                                         @case(2)
                                         <!--FORMULARIO Psicologo -->
-                                        <div class=" tab-pane" id="d_otros_psicologo">
+                                        <div class=" tab-pane" id="form_datos_complementarios">
                                             <hr class="my-4" />
                                             <form method="post" action="{{route('perfilUpdatePsicologo')}}" id="form_datos_complementarios">
                                                 @csrf
@@ -448,21 +450,26 @@
     </div>
 
     <!--Scripts: NOTA EL ORDEN LES AFECTA, si jquery esta abajo del script a funcionar los otros no funcionaran-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js "></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script src="{{asset('assets/js/perfil/perfil.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.js"></script>
+
+    <script src="{{asset('assets/js/perfil/perfil2.js')}}"></script>
     <script src="{{asset('assets/js/perfil/RegionesYcomunas.js')}}"></script>
     <script src="{{asset('assets/js/perfil/validaciones.js')}}"></script>
 
+    <script>
         window.onload = ( () => {
             $('#regiones').val('{{Auth::User()->persona->region}}').change();
             $('#comunas').val('{{Auth::User()->persona->comuna}}').change();
+            @if($rol == 2)
+                $('#descripcion').val('{{Auth::User()->persona->psicologo->descripcion}}').change();
+            @endif
         });
     </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.js"></script>
 
 @endsection
 

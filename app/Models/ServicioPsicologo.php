@@ -23,14 +23,14 @@ class ServicioPsicologo extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'servicio_psicologo';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'id_servicio_psicologo';
@@ -78,5 +78,29 @@ class ServicioPsicologo extends Model
     public function servicioPrevisions()
     {
         return $this->hasMany('App\Models\ServicioPrevision', 'id_servicio_psicologo', 'id_servicio_psicologo');
+    }
+    /**
+     * Metodo que permite mostrar los datos en la tabla de servicio
+     */
+
+    public static function mostrarDatosTabla($id_psicologo){
+        $serviciosPsicologo = ServicioPsicologo::select('id_servicio_psicologo','servicio.nombre','estado_servicio')
+            ->join('servicio','servicio.id_servicio','=','servicio_psicologo.id_servicio')
+            ->where('id_psicologo',$id_psicologo)
+            ->get();
+        return $serviciosPsicologo;
+    }
+    /**
+     * Metodo para obtener los datos especificos de un servicio
+     */
+    public static function datosDetalle($id_servicio_psicologo){
+        $serviciosPsicologo = ServicioPsicologo::select('modalidad_servicio.id_modalidad_servicio','precio_modalidad.id_precio_modalidad','servicio_psicologo.descripcion_particular','servicio.nombre','precio_modalidad.precio_presencial','precio_modalidad.precio_online',
+            'precio_modalidad.precio_visita',"modalidad_servicio.presencial","modalidad_servicio.online","modalidad_servicio.visita")
+            ->join('servicio','servicio.id_servicio','=','servicio_psicologo.id_servicio')
+            ->join('modalidad_servicio', 'modalidad_servicio.id_modalidad_servicio',  '=', 'servicio_psicologo.id_modalidad_servicio')
+            ->join('precio_modalidad', 'precio_modalidad.id_precio_modalidad',  '=', 'modalidad_servicio.id_precio_modalidad')
+            ->where('id_servicio_psicologo',$id_servicio_psicologo)
+            ->get();
+        return $serviciosPsicologo;
     }
 }

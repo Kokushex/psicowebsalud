@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-
+//////////////////////////////////////////////////////////////////HORARIO///////////////////////////////////////////////////////////////////////////////
 Route::group(['prefix' => 'hr', 'middleware' => 'auth'], function () {
 
 	Route::resource('horario', HorarioController::class)->names([
@@ -80,7 +80,7 @@ Route::get('/agenda', [AgendaController::class, 'indexAgenda'])->name('agenda');
 
 Route::get('/reserva', [ReservaController::class, 'indexReserva'])->name('reserva');
 
-//////////////Registro
+/////////////////////////////////////////////////////////REGISTRO/////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/auth/rol_register', [RegisterController::class, 'viewRegistroRol'])->name('rol_register');
 
@@ -92,7 +92,7 @@ Route::post('/auth/register', [RegisterController::class, 'createUser'])->name('
 
 Route::post('/auth/register_psicologo', [RegisterController::class, 'createUser'])->name('createPsicologo');
 
-//////////////Login
+///////////////////////////////////////////////////////////////////////////LOGIN//////////////////////////////////////////////////////////////////////
 
 Route::get('/login_paciente', [LoginController::class, 'index_login'])->name('login_paciente');
 
@@ -118,3 +118,15 @@ Route::post('/profile/registrarDatosPersonales', [ProfileController::class, 'reg
 Route::put('/profile', [ProfileController::class, 'updatePassword'])->name('perfilActualizarPass');
 Route::post('/profile/updatePaciente', [ProfileController::class, 'updatePaciente'])->name('perfilUpdatePaciente');
 Route::post('/profile/updatePsicologo', [ProfileController::class, 'updatePsicologo'])->name('perfilUpdatePsicologo');
+
+
+////////////////////////////////////////////////////////////////////SERVICIO//////////////////////////////////////////////////////////////////////////////////
+
+Route::get('datatable/servicio', [ServicioController::class, 'datos'])->name('servicios.datatable_servicios');
+Route::post('servicios/agregar', [ServicioController::class, 'guardarServicio'])->name('servicios.crear_servicio');
+Route::post('/servicios/servicioDuplicado', [ServicioController::class, 'buscarServicioDuplicado'])->name('servicios.buscar_servicio_duplicado');
+Route::put('/servicios/editar', [ServicioController::class, 'editarServicio'])->name('servicios.editar_servicio');
+Route::post('servicios/detallesServicios',[ServicioController::class, 'detalleServicio'])->name('servicios.detalle_servicio');
+Route::post('servicios/cambiarEstado', [ServicioController::class, 'cambiarEstadoServicio'])->name('servicios.cambiar_estado_servicio');
+Route::get('/servicios/cargarDatosSelect2', [ServicioController::class, 'cargarDatosSelect2'])->name('servicios.mostrar_informacion_servicio');
+Route::post('/servicios/rellenarModalAgregar', [ServicioController::class, 'rellenarModalAgregar'])->name('servicios.rellenar_modal_agregar');
