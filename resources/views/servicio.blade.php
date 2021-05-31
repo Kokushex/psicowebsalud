@@ -52,7 +52,23 @@
 
 
     @include('layouts.footers.auth')
+    @push('js')
+        <!--Librerias de Datatables-->
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+        <!--select2-->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+        <!--Servicio-->
+        <script src="{{ asset('assets/js/servicios/dashServicios.js') }}"></script>
+        <script src="{{asset('assets/js/servicios/steperServicio.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/servicios/servicio.css')}}">
+    @endpush
 
 
 @endsection

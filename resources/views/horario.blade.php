@@ -1,11 +1,13 @@
 @extends('layouts.app')
 @section('content')
-<div class="header bg-gradient-primary py-7 py-lg-6">
+
+    <div class="header bg-gradient-primary py-7 py-lg-6">
+
         <div class="container">
             <div class="header-body text-center mt-1 mb-1">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Horario.') }}</h1>
+                        <h1 class="text-white">{{ __('Vista de horario.blade') }}</h1>
                     </div>
                 </div>
             </div>
@@ -16,8 +18,62 @@
             </svg>
         </div>
     </div>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <div class="container" id="supContainer">
+        <!-- Boton modal -->
+        <div class="card tarjeta mt-5 ">
+            <a class="btn btn-success text-white my-2 mx-4" role="button" data-toggle="modal" data-target="#modalAgregarHorario">
+                <i class="ni ni-fat-add"></i>
+                Agregar Horario
+            </a>
+        </div>
+        <!-- Fin-->
 
-    <div class="container mt--10 pb-5"></div>
+       
+        <!--tabla de contenido  -->
+        <div class="table-responsive mt-3">
+            <table id="tablaHorario" class="table table-hover text-center table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th class="hide_me">#id_horario_dia</th>
+                        <th class="hide_me">#id_horario</th>
+                        <th class="hide_me">#id_dia</th>
+                        <th class="hide_me">#Lunes</th>
+                        <th class="hide_me">#Martes</th>
+                        <th class="hide_me">#Miercoles</th>
+                        <th class="hide_me">#Jueves</th>
+                        <th class="hide_me">#Viernes</th>
+                        <th class="hide_me">#Sabado</th>
+                        <th class="hide_me">#Domingo</th>
+                        <th>Dias de Trabajo</th>
+                        <th id="entradaAM">Hora Entrada AM</th>
+                        <th id="salidaAM">Hora Salida AM</th>
+                        <th id="entradaPM">Hora Entrada PM</th>
+                        <th id="salidaPM">Hora Salida PM</th>
+                        <th>Ver</th>
+                        <th>Modificar</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- Fin Tabla de Contenido -->
+        @include('horario.formulariosHorario')
+    </div>
 
     @include('layouts.footers.auth')
+    @push('js')
+        <!--Librerias de Datatables-->
+
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+        <script src="{{asset('assets/js/horario/dashboardHorario.js')}}"></script>
+
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/horario/horario.css')}}">
+    @endpush
+
 @endsection

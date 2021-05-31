@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property boolean $domingo
  * @property string $created_at
  * @property string $updated_at
- * @property HorarioDium[] $horarioDias
+ * @property HorarioDia[] $horarioDia
  */
 class Dia extends Model
 {
@@ -41,8 +41,22 @@ class Dia extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function horarioDias()
+    public function horarioDia()
     {
-        return $this->hasMany('App\Models\HorarioDium', 'id_dia', 'id_dia');
+        return $this->hasMany('App\Models\HorarioDia', 'id_dia', 'id_dia');
+    }
+
+    public static function recuperarSemanaLaboral($lunes,$martes,$miercoles,$jueves,$viernes,$sabado,$domingo){
+        //Se realiza una consulta comparando que dias va a trabajar para que retorne un id de una semana ya asignada(?) en la tabla dia
+        $idSemanaTrabajo = Dia::select('id_dia')
+                                ->where('lunes','=', $lunes)
+                                ->where('martes','=', $martes)
+                                ->where('miercoles','=', $miercoles)
+                                ->where('jueves','=', $jueves)
+                                ->where('viernes','=', $viernes)
+                                ->where('sabado','=', $sabado)
+                                ->where('domingo','=', $domingo)
+                                ->get();
+        return $idSemanaTrabajo;
     }
 }

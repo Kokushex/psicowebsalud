@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  * @property Psicologo $psicologo
- * @property HorarioDium[] $horarioDias
+ * @property HorarioDia[] $horarioDia
  */
 class Horario extends Model
 {
@@ -48,8 +48,8 @@ class Horario extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function horarioDias()
+    public function horarioDia()
     {
-        return $this->hasMany('App\Models\HorarioDium', 'id_horario', 'id_horario');
+        return $this->hasMany('App\Models\HorarioDia', 'id_horario', 'id_horario');
     }
 }

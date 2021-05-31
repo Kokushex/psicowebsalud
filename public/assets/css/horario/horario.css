@@ -1,0 +1,10 @@
+th.hide_me, td.hide_me {
+    display: none;
+}
+.btnEliminar{
+    width: 100px;
+}
+
+.hide-me{
+    display: none;
+}

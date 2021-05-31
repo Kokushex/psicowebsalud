@@ -55,8 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-//////////////////////////////////////////////////////////////////HORARIO///////////////////////////////////////////////////////////////////////////////
-Route::group(['prefix' => 'hr', 'middleware' => 'auth'], function () {
+
+/*Route::group(['prefix' => 'hr', 'middleware' => 'auth'], function () {
 
 	Route::resource('horario', HorarioController::class)->names([
 		'index' => 'indexHorario',
@@ -69,7 +69,7 @@ Route::group(['prefix' => 'hr', 'middleware' => 'auth'], function () {
 		]);
 	//Route::get('horario/', [HorarioController::class, 'indexHorario'])->name('horario.index');
 
-});
+}); */
 
 
 Route::get('/servicio', [ServicioController::class, 'indexServicio'])->name('servicio');
@@ -110,7 +110,6 @@ Route::get('auth/passwords/reset/{token}/{email}', [ResetPasswordController::cla
 
 Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 
-
 ////////////////////////////////////////////////////////////////////////PERFIL////////////////////////////////////////////////////////////////////////////////////////
 
 Route::post('/profile', [ProfileController::class, 'update'])->name('perfilUpdate');
@@ -130,3 +129,13 @@ Route::post('servicios/detallesServicios',[ServicioController::class, 'detalleSe
 Route::post('servicios/cambiarEstado', [ServicioController::class, 'cambiarEstadoServicio'])->name('servicios.cambiar_estado_servicio');
 Route::get('/servicios/cargarDatosSelect2', [ServicioController::class, 'cargarDatosSelect2'])->name('servicios.mostrar_informacion_servicio');
 Route::post('/servicios/rellenarModalAgregar', [ServicioController::class, 'rellenarModalAgregar'])->name('servicios.rellenar_modal_agregar');
+
+//////////////////////////////Horario
+
+Route::get('/horario', [HorarioController::class, 'indexHorario'])->name('horario');
+
+//Route::get('horario/dashboardHorario', [HorarioController::class, 'index'])->name('dashboardHorario');
+Route::get('datatable/horario', [HorarioController::class, 'datos'])->name('datatableHorario');
+Route::post('horario/dashboardHorario', [HorarioController::class, 'create'])->name('crearHorario');
+Route::post('horario/cambiarHorarioAjax', [HorarioController::class, 'cambiarEstadoHorario'])->name('cambiarEstadoHorario');
+Route::put('horario/dashboardHorario', [HorarioController::class, 'edit'])->name('editarHorario');
