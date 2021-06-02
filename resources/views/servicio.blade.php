@@ -20,8 +20,9 @@
     </div>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container" id="supContainer">
+        <div class="card mt-xl-5">
         <!-- Boton modal -->
-        <div class="card tarjeta mt-5 ">
+        <div class="card tarjeta mt-5">
             <a class="btn btn-success text-white my-2 mx-4" role="button" data-toggle="modal" data-target="#modalAgregarServicio">
                 <i class="ni ni-fat-add"></i>
                 Agregar Servicio
@@ -47,9 +48,10 @@
         @include('servicios.descripServicios')
 
         @include('servicios.editServicio')
-    </div>
-        @include('servicios.crearServicio')
 
+        @include('servicios.crearServicio')
+        </div>
+    </div>
 
     @include('layouts.footers.auth')
     @push('js')

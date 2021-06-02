@@ -23,6 +23,7 @@ var table = $('#tablaServicio').DataTable({
     "order": [
         [2, "desc"]
     ],
+
 });
 
 //funcion para agregar servicios

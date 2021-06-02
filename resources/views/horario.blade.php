@@ -29,7 +29,7 @@
         </div>
         <!-- Fin-->
 
-       
+
         <!--tabla de contenido  -->
         <div class="table-responsive mt-3">
             <table id="tablaHorario" class="table table-hover text-center table-striped table-sm">
@@ -57,8 +57,10 @@
                 </thead>
             </table>
         </div>
-        <!-- Fin Tabla de Contenido -->
-        @include('horario.formulariosHorario')
+
+            <!-- Fin Tabla de Contenido -->
+            @include('horario.formulariosHorario')
+
     </div>
 
     @include('layouts.footers.auth')
