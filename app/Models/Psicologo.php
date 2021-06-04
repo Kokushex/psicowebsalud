@@ -161,4 +161,74 @@ class Psicologo extends Model
                 'experiencia' => $request->experiencia,
             ]);
     }
+
+    //metodo que obtiene lista de psicologos
+    public static function getListaDePsicologos($filtro = null)
+    {
+        $psicologos = Psicologo::join('persona', 'persona.id_persona', '=', 'psicologo.id_persona')
+            ->join('users', 'user.id_user', '=', 'persona.id_user')
+            ->select(
+                "psicologo.id_psicologo",
+                "persona.fecha_nacimiento as modalidad",
+                "especialidad",
+                "nombre",
+                "apellido_paterno",
+                "direccion",
+                "avatar",
+                "provider as valoracion"
+            )->where('verificado','=','VERIFICADO');
+
+        if ($filtro == null) {
+
+            $psicologos = $psicologos->paginate(8);
+
+        } else {
+
+            $psicologos = $psicologos->where(function ($query) use ($filtro) {
+                $query->where('persona.nombre', 'LIKE', "%$filtro%")
+                    ->orWhere('persona.apellido_paterno', 'LIKE', "%$filtro%")
+                    ->orWhere(DB::RAW("CONCAT(persona.nombre, ' ', apellido_paterno, ' ', apellido_materno)"),'LIKE',"%$filtro%");
+            })->paginate(8);
+        }
+        // metodo para obtener la edad y la valoracion
+        Psicologo::getModalidades($psicologos);
+
+        return $psicologos;
+    }
+
+    //metodo obtención modalidades del psicologo
+    public static function getModalidades($psicologos){
+        foreach ($psicologos as $item) {
+            $presencial = false;
+            $online = false;
+
+            $obtenerModalidades = ModalidadServicio::getModalidadesServicio($item->id_psicologo);
+            foreach($obtenerModalidades as $item2){
+                if($item2->presencial=="1"){
+                    $presencial = true;
+                }
+                if($item2->online=="1"){
+                    $online = true;
+                }
+                if($presencial==true&&$online==true){
+                    break;
+                }
+            }
+            if($presencial==true){
+                $item->modalidades = "Presencial";
+            }
+            if($online==true){
+                $item->modalidades = $item->modalidades.','."Online";
+            }
+
+        }
+    }
+
+    //obtiene el perfil del psicologo
+    public static function getProfile($id){
+        //obtención de datos del psicólogo aplicando un join para intercalar datos de otra tabla asociada
+        $user = Psicologo::where('id_psicologo', '=', $id)->join('users', 'id_user', '=', 'psicologo.id_user')
+            ->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')->firstOrFail();
+        return $user;
+    }
 }

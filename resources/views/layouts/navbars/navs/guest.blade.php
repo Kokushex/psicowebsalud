@@ -26,9 +26,9 @@
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('home') }}">
+                    <a class="nav-link nav-link-icon" href="{{ route('reserva.list') }}">
                         <i class="ni ni-planet"></i>
-                        <span class="nav-link-inner--text">{{ __('Principal') }}</span>
+                        <span class="nav-link-inner--text">{{ __('Reserva') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">

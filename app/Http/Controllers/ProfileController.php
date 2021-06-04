@@ -10,6 +10,8 @@ use App\Models\Paciente;
 use App\Models\Psicologo;
 use App\Models\User;
 use App\Models\UserHasRoles;
+use App\Models\ModalidadServicio;
+use App\Models\ServicioPsicologo;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -181,5 +183,27 @@ class ProfileController extends Controller
             return 'No se encuentran datos';
         }
 
+    }
+
+    public function getProfile($id)
+    {
+
+        $user = Psicologo::getProfile($id);
+
+        // obtención de los servicios asociados a ese psicólogo
+        $servicios = ServicioPsicologo::getServiciosPsicologo($id);
+
+        //obtener modalidades del servicio según psicologo
+        ModalidadServicio::getModalidadesServicioEnPerfil($servicios);
+
+        //obtención datos usuario para llenado en modal_create_reserva
+        $usuarioLogeado="";
+        //$disponibilidad = Reserva::validarDisponibilidadPsicologo($user->id, $user->id_psicologo, null);
+            //verificar autenticación para tomar datos de usuario
+        if (auth()->user()) {
+            $usuarioLogeado = Paciente::getDatosLogeado();
+        }
+        //retorno a la vista
+        return view('perfil.profile', compact('user', 'servicios', 'usuarioLogeado', ));
     }
 }

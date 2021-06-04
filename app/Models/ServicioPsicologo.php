@@ -103,4 +103,11 @@ class ServicioPsicologo extends Model
             ->get();
         return $serviciosPsicologo;
     }
+
+    public static function getServiciosPsicologo($id){
+
+        return ServicioPsicologo::join('servicio', 'servicio.id_servicio', '=', 'servicio_psicologo.id_servicio')
+            ->where('servicio_psicologo.id_psicologo', '=', $id)->get();
+
+    }
 }

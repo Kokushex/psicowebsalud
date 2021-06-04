@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reserva;
+use App\Models\Psicologo;
 
 class ReservaController extends Controller
 {
@@ -11,4 +12,5 @@ class ReservaController extends Controller
     {
         return view('reserva');
     }
+
 }

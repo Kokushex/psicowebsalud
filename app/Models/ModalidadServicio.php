@@ -19,14 +19,14 @@ class ModalidadServicio extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'modalidad_servicio';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'id_modalidad_servicio';
@@ -51,4 +51,34 @@ class ModalidadServicio extends Model
     {
         return $this->hasMany('App\Models\ServicioPsicologo', 'id_modalidad_servicio', 'id_modalidad_servicio');
     }
+
+
+
+    //obtener las modalidades de los  servicios del psicologo
+
+    public static function getModalidadesServicioEnPerfil($servicios){
+
+        foreach ($servicios as $key) {
+
+            $modalidades = array();
+            $modalidad = ModalidadServicio::join('servicio_psicologo','modalidad_servicio.id_modalidad_servicio', '=' ,'servicio_psicologo.id_modalidad_servicio')->where('servicio_psicologo.id_servicio_psicologo','=',$key->id_servicio_psicologo)->get();
+
+            foreach ($modalidad as $key2) {
+
+                if($key2->presencial == "1"){
+                    array_push($modalidades,'Presencial');
+
+                }
+
+                if($key2->visita == "1"){
+                    array_push($modalidades,'Visita');
+
+                }
+
+                }
+
+                $key->id_servicio = implode(', ',$modalidades);
+            }
+
+        }
 }

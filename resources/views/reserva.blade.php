@@ -19,6 +19,39 @@
 
     <div class="container mt--10 pb-5"></div>
 
-    
+    @if (session('mensaje'))
+        <div class="alert alert-success text-center">
+            {{session('mensaje')}}
+        </div>
+    @endif
+
+    <div class="container">
+        <div class="card  bg-light mt-4">
+            <div class="card-body bg-light text-center">
+                <h1 >Lista de Reservas</h1>
+            </div>
+        </div>
+
+        <div class="card bg-light mt-4">
+            <div class="card-body bg-light">
+                <div class="form-inline float-right mb-3">
+                    <div class="input-group-prepend">
+                        <!-- <span class="input-group-text" style="background-color: #484AF0;">
+                            <<i class="fas fa-search" style="color:white"></i>
+                        </span> -->
+                        <input type="text" class="form-control" name="buscar" value="{{}}" id="filtro_texto"
+                               title="filtre por nombre, apellido o rut del paciente" placeholder="Ingrese nombre, apellido o rut">
+                    </div>
+                </div>
+                <!-- tabla -->
+                <div id="table_data">
+                    @include('reserva.gestionReserva.listadoReservaPsi')
+                </div>
+                <!-- TÉRMINO TABLA RESULTADOS -->
+            </div>
+        </div>
+    </div>
+
+
     @include('layouts.footers.auth')
 @endsection

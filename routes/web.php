@@ -6,6 +6,7 @@ use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\PsicologoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -54,22 +55,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
 });
-
-
-/*Route::group(['prefix' => 'hr', 'middleware' => 'auth'], function () {
-
-	Route::resource('horario', HorarioController::class)->names([
-		'index' => 'indexHorario',
-		'create' => 'createHorario',
-		'store' => 'storeHorario',
-		'edit' => 'editHorario',
-		'update' => 'updateHorario',
-		'destroy' => 'destroyHorario'
-
-		]);
-	//Route::get('horario/', [HorarioController::class, 'indexHorario'])->name('horario.index');
-
-}); */
 
 
 Route::get('/servicio', [ServicioController::class, 'indexServicio'])->name('servicio');
@@ -139,3 +124,11 @@ Route::get('datatable/horario', [HorarioController::class, 'datos'])->name('data
 Route::post('horario/dashboardHorario', [HorarioController::class, 'create'])->name('crearHorario');
 Route::post('horario/cambiarHorarioAjax', [HorarioController::class, 'cambiarEstadoHorario'])->name('cambiarEstadoHorario');
 Route::put('horario/dashboardHorario', [HorarioController::class, 'edit'])->name('editarHorario');
+
+////////////////////////////////////////////////////////////////////RESERVA//////////////////////////////////////////////////////////////////////////////////////
+
+
+//Route::get('reserva/list', [PsicologoController::class, 'filtroPrincipal'])->name('psicologo.list');
+Route::get('/reserva/list', [PsicologoController::class, 'filtroPrincipal'])->name('reserva.list');
+Route::get('/profile/{id}', [ProfileController::class, 'getProfile'])->name('busqueda');
+//Route::get('/profile/{id}', 'ProfileController@getProfile')->name('profile');
