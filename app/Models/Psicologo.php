@@ -231,4 +231,41 @@ class Psicologo extends Model
             ->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')->firstOrFail();
         return $user;
     }
+
+    //metodo que obtiene lista de psicologos
+    public static function getListaPsicologos()
+    {
+        $psicologos = Psicologo::select('especialidad', 'experiencia', 'id_psicologo', 'id_persona')
+            ->with(['persona' => function ($query)
+            {
+                $query->select(['id_persona','nombre', 'apellido_paterno', 'apellido_materno', 'direccion','comuna']);
+            }
+            ])
+            ->with(['servicioPsicologos' => function ($query)
+                {
+                    $query->select(['id_psicologo','id_modalidad_servicio'])
+                    ->with(['modalidadServicio' => function ($query)
+                        {
+                            $query->select(['id_modalidad_servicio','presencial', 'online', 'visita']);
+                        }
+                    ]);
+                }
+                ])
+        ->get();
+
+
+        return $psicologos;
+    }
+
+    //metodo obtención modalidades del psicologo
+    public static function getModalidad($psicologo){
+        return $modalidades = ServicioPsicologo::
+            select('id_psicologo', 'id_modalidad_servicio')
+            ->with(['modalidadServicio' => function ($query){
+                $query->select(['presencial', 'online', 'visita'])
+                    ->groupBy('presencial', 'online', 'visita');
+            }])
+            ->where('id_psicologo', $psicologo)
+            ->get();
+    }
 }

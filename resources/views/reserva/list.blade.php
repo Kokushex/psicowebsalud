@@ -36,31 +36,67 @@
         <div class="card-body">
             <div id="mensaje"></div>
             <div>
-               @foreach($psicologos as $profesional)
+               @foreach($listaPsicologos as $profesional)
                     <div class="col-md-6 mb-3">
                         <div class="card" style="box-shadow: 1px 2px 10px rgb(77, 77, 77);">
                             <div class="row no-gutters d-flex justify-content-center">
-
                                 <div class="col-8 align-self-center">
                                     <div class="card-body p-2">
-                                        <a href="{{ route('busqueda', $profesional->id_psicologo) }}">
-                                            <h5 class="title-3 darkblue-text mb-0">
-                                                {{ $profesional->nombre . ' ' . $profesional->apellido_paterno }}
-                                            </h5>
+                                        <a href="{{ route('busqueda', Crypt::encrypt($profesional->id_psicologo)) }}">
+                                            <h3 class="title-3 darkblue-text mb-0">
+                                                {{ $profesional->persona->nombre . ' ' . $profesional->persona->apellido_paterno }}
+                                            </h3>
                                         </a>
                                         <p class="text-4 bluegray-text mb-0">
-                                            Especialidad: {{ $profesional->especialidad }}
+                                            Especialidad: {{ $profesional->especialidad}}
                                         </p>
                                         <p class="text-4 bluegray-text mb-0">
-                                            <i class="fas fa-map-marker-alt"></i> {{ $profesional->direccion }}
+                                            <i class="fas fa-map-marker-alt"></i> {{ $profesional->persona->direccion . ', ' . $profesional->persona->comuna }}
                                         </p>
                                     </div>
                                 </div>
-
                             </div>
-
+                            <div class="row no-gutters d-flex justify-content-center">
+                                <div class="col-4 text-center">
+                                    <div class="card-body p-2 align-self-center">
+                                        <h5 class="text-4 bluegray-text mb-0">Modalidades</h5>
+                                        <p class="text-4 darkblue-text text-bold mb-0">
+                                            @if (empty($profesional->servicioPsicologos))
+                                                -
+                                            @else
+                                                @foreach ($profesional->servicioPsicologos as $servicio)
+                                                    @if ($servicio->modalidadServicio->presencial == 1)
+                                                        <abbr title="Presencial" class="initialism"> <i class="fa fa-hospital" aria-hidden="true"></i></abbr>
+                                                    @endif
+                                                    @if ($servicio->modalidadServicio->online == 1)
+                                                        <abbr title="Online" class="initialism"> <i class="fa fa-laptop" aria-hidden="true"></i></abbr>
+                                                    @endif
+                                                    @if ($servicio->modalidadServicio->visita == 1)
+                                                        <abbr title="Visita" class="initialism"> <i class="fa fa-home" aria-hidden="true"></i></abbr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div class="card-body p-2 align-self-center">
+                                        <h5 class="text-4 bluegray-text mb-0">Estrellas</h5>
+                                        <p class="text-4 darkblue-text text-bold mb-0">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= round($profesional->
+                                                    testimonios->avg('valoracion'), 1)) <i
+                                                    class="fas
+                                                        fa-star yellow-text align-self-center"></i>
+                                                @else
+                                                    <i class="far fa-star
+                                                        lightgray-text"></i> @endif
+                                            @endfor
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 @endforeach
             </div>

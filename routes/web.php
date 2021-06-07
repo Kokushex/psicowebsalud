@@ -129,6 +129,6 @@ Route::put('horario/dashboardHorario', [HorarioController::class, 'edit'])->name
 
 
 //Route::get('reserva/list', [PsicologoController::class, 'filtroPrincipal'])->name('psicologo.list');
-Route::get('/reserva/list', [PsicologoController::class, 'filtroPrincipal'])->name('reserva.list');
+Route::get('/reserva/list', [PsicologoController::class, 'index'])->name('reserva.list');
 Route::get('/profile/{id}', [ProfileController::class, 'getProfile'])->name('busqueda');
 //Route::get('/profile/{id}', 'ProfileController@getProfile')->name('profile');

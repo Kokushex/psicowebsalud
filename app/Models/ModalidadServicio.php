@@ -81,4 +81,11 @@ class ModalidadServicio extends Model
             }
 
         }
+
+
+    public static function getModalidadesServicio($idPsicologo){
+        return ModalidadServicio::join('servicio_psicologo',
+            'modalidad_servicio.id_modalidad_servicio','=','servicio_psicologo.id_modalidad_servicio')
+            ->select('presencial','online','visita')->where('id_psicologo','=',$idPsicologo)->get();
+    }
 }
