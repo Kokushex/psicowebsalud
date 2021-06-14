@@ -1,3 +1,4 @@
+@extends('layouts.app')
 
 <div class='header w-100'>
     <div class='d-flex justify-content-center'>
@@ -28,7 +29,7 @@
 
                                         <div class="col md-1">
                                             <div class="footer-left" role="group">
-                                                <a href="{{Route('profile',$id_user_psicologo)}}" >
+                                                <a href="{{Route('busqueda',$id_user_psicologo)}}" >
                                                     <button style="background-color: #3B83AE" class="btn btn-secondary">Volver Atrás</button>
                                                 </a>
 

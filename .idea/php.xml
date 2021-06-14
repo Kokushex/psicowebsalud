@@ -111,6 +111,7 @@
       <path value="$PROJECT_DIR$/vendor/laravel/legacy-factories" />
       <path value="$PROJECT_DIR$/vendor/laravel-frontend-presets/argon" />
       <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/transbank/transbank-sdk" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebPayRestController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -143,8 +144,13 @@ Route::get('/getPrecioModalidad', [ReservaController::class, 'getPrecioModalidad
 Route::post('/obtenerHorasDisponibles', [ReservaController::class, 'obtenerHorasDisponibles']);
 Route::get('/horarioPaciente', [ReservaController::class, 'horarioPaciente']);
 Route::get('comprobacionDiaHabilitado', [ReservaController::class, 'comprobacionDiaHabilitado'] );
-//Route::get('/comprobacionDiaHabilitado', 'ReservaController@comprobacionDiaHabilitado');
+Route::get('comprobacionYaTomadas', [ReservaController::class, 'comprobacionReservasTomadas']);
+//Route::get('/comprobacionYaTomadas', 'ReservaController@comprobacionReservasTomadas');
+
 
 //////////////////////////////////////PAGO////////////////////////////////////////////////////
+Route::get('checkout', [WebPayRestController::class, 'createdTransaction'])->name('pasarela.checkout');
+Route::post('return', [WebPayRestController::class, 'commitedTransaction'])->name('return');
+//Route::post('return', 'WebPayRestController@commitedTransaction')->name('pasarela.return');
 
 //Route::get('checkout', 'WebPayRestController@createdTransaction')->name('pasarela.checkout');

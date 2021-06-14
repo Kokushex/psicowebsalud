@@ -118,6 +118,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/legacy-factories" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-frontend-presets/argon" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/transbank/transbank-sdk" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DateTime;
+
 
 /**
  * @property int $id_reserva
@@ -81,4 +83,117 @@ class Reserva extends Model
             ->where('fecha', '=', $fechaformatoingles)
             ->where('hora_inicio', '=', $hora_inicio)->count();
     }
+
+    /**
+     * validarReservaNoTomada
+     *
+     * método para validar que la reserva (fecha y hora) no haya sido tomada mientras el paciente
+     * paga por medio de WebPay,
+     *
+     */
+    public static function validarReservaNoTomada($fecha_reserva, $hora_inicio, $id_servicio_psicologo)
+    {
+
+        return Reserva::where('reserva.fecha', '=', $fecha_reserva)
+            ->where('reserva.hora_inicio', '=', $hora_inicio)
+            ->where('reserva.confirmacion', '!=', 'Cancelado')
+            ->where('reserva.id_servicio_psicologo','=',$id_servicio_psicologo)
+            ->count();
+    }
+
+    /**
+     * store
+     *
+     * método que trabaja principalmente registro de la Reserva
+     *
+     *
+     */
+    public static function store($rut, $telefono, $servicio_id, $hora_inicioGet, $hora_terminoGet, $fecha, $modalidad, $prevision, $nombre = null, $apellido = null, $id_paciente_seleccionado = null)
+    {
+
+        if (auth()->user()) {
+
+            //--lógica que verifica y actualiza datos como el telefono y el rut del paciente de no tenerlos ---//
+            $id_paciente = $id_paciente_seleccionado;
+            $persona = new Persona();
+
+
+
+            if ($id_paciente_seleccionado == 0) {
+
+                $data = array();
+                $data['run'] = $rut;
+                $data['nombres'] = $nombre;
+                $data['apellido_pa'] = $apellido;
+                $data['apellido_ma'] = '';
+                $persona = Persona::createPersona($data);
+                $persona->telefono = $telefono;
+                $persona->save();
+                $paciente = Paciente::createPaciente(auth()->user()->id, $persona->id_persona);
+                $paciente->tipo_paciente = 'Carga';
+                $paciente->save();
+                $id_paciente = $paciente->id_paciente;
+
+            } else {
+
+                $persona = Persona::select("*")->join('paciente', 'paciente.id_persona', '=', 'persona.id_persona')
+                    ->where('paciente.id_paciente', '=', $id_paciente_seleccionado)->first();
+
+                if ($persona->run == null) {
+                    $persona->run = $rut;
+                }
+                $persona->telefono = $telefono;
+                $persona->save();
+            }
+
+            // --------------------------------------------------------------------------------------------//
+
+            $reserva = new Reserva();
+
+            $reserva->id_servicio_psicologo = $servicio_id;
+
+            //validar que no se repita el número de la reserva
+            $numero_random = 0;
+            $comprobacion_nro = 0;
+            while ($comprobacion_nro < 1) {
+
+                $numero_random = strval(rand(1, 9999999));
+
+                $cantidad = Reserva::where('nro_reserva', '=', $numero_random)->count();
+                if ($cantidad == 0) {
+
+                    $reserva->nro_reserva = $numero_random;
+                    $comprobacion_nro++;
+                }
+            }
+
+            $reserva->hora_inicio = $hora_inicioGet;
+            $hora_terminoGet = strtotime($hora_inicioGet) + 3600;
+            $hora_terminoGet = date('H:i', $hora_terminoGet);
+            $reserva->hora_termino =  $hora_terminoGet;
+            $fechaformatoingles= date('Y-m-d', strtotime($fecha));
+            $reserva->fecha = $fechaformatoingles;
+            $reserva->modalidad = $modalidad;
+
+            // si no hay previsión obtenida
+            if ($prevision != "") {
+                $reserva->prevision = $prevision;
+            }
+
+            //busqueda de precio de servicio seleccionado solo en caso de no contar con previsión
+            if ($prevision == "") {
+
+                $reserva->precio =  PrecioModalidad::getPrecioModalidad($modalidad, $servicio_id)->precio;
+
+            }
+
+            $reserva->confirmacion = ('Sin Confirmar');
+            $reserva->estado_pago = ('Pendiente');
+            $reserva->id_paciente = $id_paciente;
+
+
+            return ["reserva" => $reserva, "persona" => $persona];
+        }
+    }
+
 }

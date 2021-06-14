@@ -57,4 +57,20 @@ class Servicio extends Model
             ->where('servicio.id_servicio','=',$value)
             ->get();
     }
+
+    /**
+     * getDatosServicio
+     *
+     * obtener varios datos asociados al un determinado servicio psicológico.
+     *
+     */
+    public static function getDatosServicio($id_servicio_psicologo){
+        return Servicio::join('servicio_psicologo','servicio_psicologo.id_servicio','=','servicio.id_servicio')
+            ->join('psicologo','psicologo.id_psicologo','=','servicio_psicologo.id_psicologo')
+            ->join('persona','persona.id_persona','=','psicologo.id_persona')
+            ->where('servicio_psicologo.id_servicio_psicologo','=',$id_servicio_psicologo)
+            ->select('servicio.nombre as nombre_servicio','persona.nombre as nombre_psicologo','persona.apellido_paterno as apellido_psicologo', 'servicio.id_servicio','persona.id_user','servicio_psicologo.id_servicio_psicologo')
+            ->first();
+
+    }
 }

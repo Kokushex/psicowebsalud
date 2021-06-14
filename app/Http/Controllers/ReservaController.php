@@ -7,6 +7,7 @@ use App\Models\Reserva;
 use App\Models\Psicologo;
 use App\Models\Paciente;
 use App\Models\Persona;
+use App\Models\Servicio;
 use App\Models\HorarioDia;
 use App\Models\ModalidadServicio;
 use App\Models\ServicioPrevision;
@@ -161,6 +162,19 @@ class ReservaController extends Controller
     public function comprobacionDiaHabilitado(Request $request){
         if($request->ajax()){
             return HorarioDia::validarComprobacionDia($request->fechaD,$request->id_psicologo);
+        }
+    }
+
+    /*
+     *Comprobacion de reservas ya tomadas
+     * */
+
+    public function comprobacionReservasTomadas(Request $request){
+
+        if($request->ajax()){
+
+            return Reserva::validarReservaNoTomada($request->fecha,$request->hora_inicioGet,$request->servicio_id);
+
         }
     }
 

@@ -24,14 +24,14 @@ class Pago extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'pago';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'id_pago';
@@ -48,4 +48,30 @@ class Pago extends Model
     {
         return $this->hasMany('App\Models\DetallePago', 'id_pago', 'id_pago');
     }
+
+
+    /**
+     * validarOrdenDeCompraUnica
+     *
+     * método para validar que el numero otorgado a la orden de compra sea único
+     *
+     */
+    public static function validarOrdenDeCompraUnica($numero_random){
+
+        $comprobacion_nro = 0;
+        $retorno = 0;
+        while ($comprobacion_nro<1) {
+
+            $cantidad = Pago::where('orden_compra','=',$numero_random)->count();
+            if($cantidad==0){
+
+                $retorno = $numero_random;
+
+                $comprobacion_nro++;
+            }
+        }
+
+        return $retorno;
+    }
+
 }
