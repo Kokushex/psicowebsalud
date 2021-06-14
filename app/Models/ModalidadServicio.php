@@ -88,4 +88,33 @@ class ModalidadServicio extends Model
             'modalidad_servicio.id_modalidad_servicio','=','servicio_psicologo.id_modalidad_servicio')
             ->select('presencial','online','visita')->where('id_psicologo','=',$idPsicologo)->get();
     }
+
+    /**
+     * getModalidadesServicioModal
+     *
+     * método para obtener las modalidades del servicio para utilizar en el modal a la hora de
+     * crear una reserva por parte del paciente
+     *
+     */
+    public static function getModalidadesServicioModal($id){
+
+        $modalidad = ModalidadServicio::join('servicio_psicologo','modalidad_servicio.id_modalidad_servicio', '=' ,'servicio_psicologo.id_modalidad_servicio')->select('presencial','online','id_precio_modalidad')
+            ->where('servicio_psicologo.id_servicio_psicologo','=',$id)
+            ->first();
+
+        $modalidades = array();
+        if($modalidad->presencial == 1){
+            array_push($modalidades,'Presencial');
+
+        }
+
+        if($modalidad->online == 1){
+            array_push($modalidades,'Online');
+
+        }
+
+        return $modalidades;
+
+
+    }
 }

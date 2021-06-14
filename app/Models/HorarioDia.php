@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use DateTime;
+use DateInterval;
+use DatePeriod;
+
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -117,5 +121,140 @@ class HorarioDia extends Model
             ->where('horario.id_psicologo',$id_psicologo)
             ->get();
         return $horarioDia;
+    }
+
+    public static function getDiasHabiles($id_psicologo){
+        $query= HorarioDia::select('id_horario_dia','dia.lunes','dia.martes','dia.miercoles','dia.jueves','dia.viernes','dia.sabado','dia.domingo')
+            ->join('dia','dia.id_dia','=','horario_dia.id_dia')
+            ->join('horario','horario.id_horario','=','horario_dia.id_horario')
+            ->where('horario.id_psicologo',$id_psicologo)
+            ->where('habilitado',1)
+            ->get();
+        $conte=" ";
+        $dias=new Dia();
+
+        $dias->lunes = 0;
+        $dias->martes = 0;
+        $dias->miercoles = 0;
+        $dias->jueves = 0;
+        $dias->viernes = 0;
+        $dias->sabado = 0;
+        $dias->domingo = 0;
+
+        for ($i=0; $i < count($query) ; $i++) {
+            if($query[$i]->lunes=='1'){
+                $dias->lunes=1;
+            }
+            if($query[$i]->martes=='1'){
+                $dias->martes=1;
+            }
+            if($query[$i]->miercoles=='1'){
+                $dias->miercoles=1;
+            }
+            if($query[$i]->jueves=='1'){
+                $dias->jueves=1;
+            }
+            if($query[$i]->viernes=='1'){
+                $dias->viernes=1;
+            }
+            if($query[$i]->sabado=='1'){
+                $dias->sabado=1;
+            }
+            if($query[$i]->domingo=='1'){
+                $dias->domingo=1;
+            }
+        }
+        return $dias;
+    }
+
+    /**
+     * generadorDeHora
+     *
+     * Metodo utilizado para rellenar el combobox de horas disponibles de una cita al psicologo
+     *
+     */
+
+    public static function generadorDeHora($bloque, $dias, $id_psicologo){
+        if($bloque=="AM"){
+            $datosAm=HorarioDia::select('horario.hora_entrada_am','horario.hora_salida_am')
+                ->join('dia','dia.id_dia','=','horario_dia.id_dia')
+                ->join('horario','horario.id_horario','=','horario_dia.id_horario')
+                ->where('horario.id_psicologo',$id_psicologo)
+                ->where('habilitado',1)
+                ->where('dia.'.$dias,1)
+                ->get();
+
+            $hora_inicio = new DateTime( $datosAm[0]->hora_entrada_am);
+            $hora_fin    = new DateTime( $datosAm[0]->hora_salidad_am );
+            $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que muestre $hora_fin
+
+            // Si la hora de inicio es superior a la hora fin
+            // añadimos un día más a la hora fin
+            if ($hora_inicio > $hora_fin) {
+                $hora_fin->modify('+1 day');
+            }
+
+            // Establecemos el intervalo en minutos
+            $intervalo = new DateInterval('PT60M');
+
+            // Sacamos los periodos entre las horas
+            $periodo = new DatePeriod($hora_inicio, $intervalo, $hora_fin);
+
+            foreach( $periodo as $hora ) {
+                // Guardamos las horas intervalos
+                $horas[] =  $hora->format('H:i:s');
+            }
+
+            return $horas;
+
+        }else{
+            $datosPm=HorarioDia::select('horario.hora_entrada_pm','horario.hora_salida_pm')
+                ->join('dia','dia.id_dia','=','horario_dia.id_dia')
+                ->join('horario','horario.id_horario','=','horario_dia.id_horario')
+                ->where('horario.id_psicologo',$id_psicologo)
+                ->where('habilitado',1)
+                ->where('dia.'.$dias,1)
+                ->get();
+
+            $hora_inicio = new DateTime( $datosPm[0]->hora_entrada_pm);
+            $hora_fin    = new DateTime( $datosPm[0]->hora_salida_pm );
+            $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que muestre $hora_fin
+
+            // Si la hora de inicio es superior a la hora fin
+            // añadimos un día más a la hora fin
+            if ($hora_inicio > $hora_fin) {
+                $hora_fin->modify('+1 day');
+            }
+
+            // Establecemos el intervalo en minutos
+
+            $intervalo = new DateInterval('PT60M');
+
+            // Sacamos los periodos entre las horas
+            $periodo = new DatePeriod($hora_inicio, $intervalo, $hora_fin);
+
+            foreach( $periodo as $hora ) {
+                // Guardamos las horas intervalos
+                $horas[] =  $hora->format('H:i:s');
+            }
+            return $horas;
+        }
+    }
+
+
+    /**
+     * validarComprobacionDia
+     *
+     * Metodo utilizado para comprobar si el dia esta habilitado para trabajar o no
+     *
+     */
+    public static function validarComprobacionDia($fecha, $id_psicologo){
+        return $comprobacion = HorarioDia::select('id_horario_dia')
+            ->join('dia','dia.id_dia','=','horario_dia.id_dia')
+            ->join('horario','horario.id_horario','=','horario_dia.id_horario')
+            ->where('horario.id_psicologo',$id_psicologo)
+            ->where('habilitado',1)
+            ->where('dia.'.$fecha,1)
+            ->get();
     }
 }

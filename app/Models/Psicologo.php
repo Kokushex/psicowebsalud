@@ -223,12 +223,60 @@ class Psicologo extends Model
 
         }
     }
+/*
+    //metodo obtención modalidades del psicologo
+    public static function getModalidades($psicologos){
+        //RECORRER PSICOLOGOS Y SUS SERVICIOS
+        $modalidad = new ModalidadServicio();
+        $modalidades = [];
+        $modalidad->presencial = false;
+        $modalidad->online = false;
+        $modalidad->visita = false;
+        $presencial = 0;
+        $online = 0;
+        $visita = 0;
+        foreach ($psicologos as $profesional) {
+            foreach ($profesional->servicioPsicologos as $servicio) {
+                if($servicio->modalidadServicio->presencial == 1){
+                    $presencial += 1;
+                    if ($presencial >= 1) {
+                        $modalidad->presencial = true;
+                    }
+                }
+                if($servicio->modalidadServicio->online == 1 ){
+                    $online += 1;
+                    if ($online >= 1) {
+                        $modalidad->online = true;
+                    }
+                }
+                if($servicio->modalidadServicio->visita == 1){
+                    $visita += 1;
+                    if ($visita >= 1) {
+                        $modalidad->visita = true;
+                    }
+                }
+            }
+        }
+        array_push($modalidades, $modalidad);
+       // dd($modalidades);
+        dd([$presencial, $online, $visita]);
 
+    }
+*/
     //obtiene el perfil del psicologo
+   /*
     public static function getProfile($id){
         //obtención de datos del psicólogo aplicando un join para intercalar datos de otra tabla asociada
         $user = Psicologo::where('id_psicologo', '=', $id)->join('users', 'id_user', '=', 'psicologo.id_user')
             ->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')->firstOrFail();
+        return $user;
+    }
+*/
+    //obtiene el perfil del psicologo
+    public static function getProfile($id){
+        //obtención de datos del psicólogo aplicando un join para intercalar datos de otra tabla asociada
+        $user = Psicologo::where('id_psicologo', '=', $id)->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')
+            ->firstOrFail();
         return $user;
     }
 

@@ -17,14 +17,14 @@ class PrecioModalidad extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'precio_modalidad';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'id_precio_modalidad';
@@ -40,5 +40,18 @@ class PrecioModalidad extends Model
     public function modalidadServicios()
     {
         return $this->hasMany('App\Models\ModalidadServicio', 'id_precio_modalidad', 'id_precio_modalidad');
+    }
+
+    /**
+     * getPrecioModalidad
+     *
+     * obtener los precios según modalidad
+     *,
+     * @return Any
+     */
+    public static function getPrecioModalidad($modalidad, $id_servicio){
+        return  PrecioModalidad::join('modalidad_servicio','modalidad_servicio.id_precio_modalidad','=','precio_modalidad.id_precio_modalidad')
+            ->join('servicio_psicologo','servicio_psicologo.id_modalidad_servicio','=','modalidad_servicio.id_modalidad_servicio')
+            ->where('servicio_psicologo.id_servicio_psicologo','=', $id_servicio)->select('precio_modalidad.precio_'.$modalidad.' as precio')->first();
     }
 }

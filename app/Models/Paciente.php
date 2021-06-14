@@ -132,4 +132,13 @@ class Paciente extends Model
                 'grupo_familiar' => $request->grupo_familiar,
             ]);
     }
+
+    public static function getDatosLogeado(){
+        $usuarioLogeado = Paciente::join('persona', 'persona.id_persona', '=', 'paciente.id_persona')
+            ->join('users', 'users.id_user', '=', 'persona.id_user')->select('users.email','persona.nombre',
+                'persona.apellido_paterno','persona.run','persona.telefono','paciente.id_paciente')
+            ->where('users.id_user', '=', auth()->user()->id_user)->first();
+
+        return $usuarioLogeado;
+    }
 }

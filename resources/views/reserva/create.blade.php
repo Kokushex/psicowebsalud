@@ -18,10 +18,10 @@
                 </div>
                 <div class="modal-body p-4" id="model_body">
                     @csrf
-                    @include('reservas.steps')
+                    @include('reserva.steps')
                     <div id="mensaje">
                     </div>
-                    @include('reservas.tabs')
+                    @include('reserva.tabs')
                 </div>
                 <div class="" id="modal_footer">
                     <div class="col-lg-4 col-5 float-left">
@@ -45,3 +45,4 @@
         </form>
     </div>
 </div>
+

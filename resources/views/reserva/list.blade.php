@@ -6,7 +6,7 @@
             <div class="header-body text-center mt-1 mb-1">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Listado') }}</h1>
+                        <h1 class="text-white">{{ __('Elige tu Psicologo') }}</h1>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                             <div class="row no-gutters d-flex justify-content-center">
                                 <div class="col-8 align-self-center">
                                     <div class="card-body p-2">
-                                        <a href="{{ route('busqueda', Crypt::encrypt($profesional->id_psicologo)) }}">
+                                        <a href="{{ route('busqueda', /*Crypt::encrypt*/($profesional->id_psicologo)) }}">
                                             <h3 class="title-3 darkblue-text mb-0">
                                                 {{ $profesional->persona->nombre . ' ' . $profesional->persona->apellido_paterno }}
                                             </h3>
@@ -79,6 +79,7 @@
                                         </p>
                                     </div>
                                 </div>
+                                <!-- VALORACION
                                 <div class="col-4 text-center">
                                     <div class="card-body p-2 align-self-center">
                                         <h5 class="text-4 bluegray-text mb-0">Estrellas</h5>
@@ -95,6 +96,7 @@
                                         </p>
                                     </div>
                                 </div>
+                                -->
                             </div>
                         </div>
                     </div>

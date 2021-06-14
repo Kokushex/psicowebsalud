@@ -26,14 +26,14 @@ class Reserva extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'reserva';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'id_reserva';
@@ -65,5 +65,20 @@ class Reserva extends Model
     public function detallePagos()
     {
         return $this->hasMany('App\Models\DetallePago', 'id_reserva', 'id_reserva');
+    }
+
+    /**
+     * validarHorarioPaciente
+     *
+     * valida la cantidad de reservas pedidas en un determinado horario (fecha y hora) por parte del paciente
+     *
+     */
+    public static function validarHorarioPaciente($id_paciente, $fecha, $hora_inicio)
+    {
+        $fechaformatoingles= date('Y-m-d', strtotime($fecha));
+        return Reserva::where('confirmacion', '!=', 'Cancelado')
+            ->where('id_paciente', '=', $id_paciente)
+            ->where('fecha', '=', $fechaformatoingles)
+            ->where('hora_inicio', '=', $hora_inicio)->count();
     }
 }

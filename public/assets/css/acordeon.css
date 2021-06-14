@@ -1,0 +1,124 @@
+.accordion {
+    font-size: 0.90rem;
+    margin: 0 auto;
+    border-radius: 25px;
+    margin-top: 2%;
+}
+
+.accordion-header,
+.accordion-body {
+    background: white;
+}
+
+.accordion-header {
+    padding: 1.5em 1.5em;
+    background: rgb(72, 74, 240);
+    color: white;
+    cursor: pointer;
+    font-size: .7em;
+    letter-spacing: .1em;
+    transition: all .3s;
+    text-transform: uppercase;
+    border-top-style: solid;
+    border-radius: 10px;
+}
+
+.accordion__item .accordion__item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.accordion-header:hover {
+    background: #2D3D99;
+    position: relative;
+    z-index: 5;
+}
+
+.accordion-body {
+    background: #fcfcfc;
+    color: #353535;
+    display: none;
+}
+
+.accordion-body__contents {
+    padding: 1.5em 1.5em;
+    font-size: .85em;
+}
+
+.accordion__item.active:last-child .accordion-header {
+    border-radius: none;
+}
+
+.accordion:first-child>.accordion__item>.accordion-header {
+    border-bottom: 1px solid transparent;
+}
+
+.accordion__item>.accordion-header:after {
+    content: "\f078";
+    font-family: "FontAwesome";
+    font-size: 1.2em;
+    float: right;
+    position: relative;
+    top: -2px;
+    transition: .3s all;
+    transform: rotate(0deg);
+}
+
+.accordion__item.active>.accordion-header:after {
+    transform: rotate(-180deg);
+}
+
+.accordion__item.active .accordion-header {
+    background: #2D3D99;
+}
+
+.accordion__item .accordion__item .accordion-header {
+    background: #f1f1f1;
+    color: #353535;
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        padding: 1em;
+    }
+    .accordion {
+        width: 100%;
+    }
+}
+
+hr {
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    /* border: 12px; */
+    border-top: 1px solid #3e43477d;
+}
+
+
+/* BUTON */
+
+.u-button-style.u-palette-3-base,
+.u-button-style.u-palette-3-base[class="u-border-"] {
+    color: #ffffff !important;
+    background-color: rgb(72, 74, 240) !important;
+}
+
+.u-button-style.u-palette-3-base:hover,
+.u-button-style.u-palette-3-base[class="u-border-"]:hover,
+.u-button-style.u-palette-3-base:focus,
+.u-button-style.u-palette-3-base[class="u-border-"]:focus,
+.u-button-style.u-button-style.u-palette-3-base:active,
+.u-button-style.u-button-style.u-palette-3-base[class="u-border-"]:active,
+.u-button-style.u-button-style.u-palette-3-base.active,
+.u-button-style.u-button-style.u-palette-3-base[class="u-border-"].active {
+    color: #4b4ef8 !important;
+    background-color: #ffffff !important;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(72, 74, 240);
+}
+
+.u-btn-1 {
+    background-image: none;
+    border-style: none;
+    transition-duration: 0.85s;
+    border-radius: 5px;
+}

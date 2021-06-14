@@ -132,3 +132,19 @@ Route::put('horario/dashboardHorario', [HorarioController::class, 'edit'])->name
 Route::get('/reserva/list', [PsicologoController::class, 'index'])->name('reserva.list');
 Route::get('/profile/{id}', [ProfileController::class, 'getProfile'])->name('busqueda');
 //Route::get('/profile/{id}', 'ProfileController@getProfile')->name('profile');
+
+Route::post('/busqueda/create', [ReservaController::class, 'store'])->name('reserva.create');
+
+//////////////////////////////AJAX RESERVA////////////////////////////////////////////
+Route::post('/obtenerDiasDisponibles', [ReservaController::class, 'obtenerDiasDisponibles']);
+Route::get('buscarRut', [ReservaController::class, 'buscarRut']);
+Route::get('getDetailsServicio', [ReservaController::class, 'getDetallesServicioModal']);
+Route::get('/getPrecioModalidad', [ReservaController::class, 'getPrecioModalidad']);
+Route::post('/obtenerHorasDisponibles', [ReservaController::class, 'obtenerHorasDisponibles']);
+Route::get('/horarioPaciente', [ReservaController::class, 'horarioPaciente']);
+Route::get('comprobacionDiaHabilitado', [ReservaController::class, 'comprobacionDiaHabilitado'] );
+//Route::get('/comprobacionDiaHabilitado', 'ReservaController@comprobacionDiaHabilitado');
+
+//////////////////////////////////////PAGO////////////////////////////////////////////////////
+
+//Route::get('checkout', 'WebPayRestController@createdTransaction')->name('pasarela.checkout');

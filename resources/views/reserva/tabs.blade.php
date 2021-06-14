@@ -1,3 +1,4 @@
+
 <div class="tab text-4" id="tab">
 
     <div class="text-center mb-4">
@@ -58,8 +59,8 @@
                     <div class="form-group row pl-3 pr-3 mb-3" id="div_rut">
                         <label class="col-md-12 text-5 darkgray-text text-bold">Rut</label>
                         <div class="col-12">
-                            <input id="rut" onkeypress="return soloNumerosRut(event)" maxlength="10" type="text" placeholder="Ejemplo: 12345678-0" @if (auth()->user()&&$usuarioLogeado->rut!="")
-                            value="{{$usuarioLogeado->rut}}" readonly="true"
+                            <input id="rut" onkeypress="return soloNumerosRut(event)" maxlength="10" type="text" placeholder="Ejemplo: 12345678-0" @if (auth()->user()&&$usuarioLogeado->run!="")
+                            value="{{$usuarioLogeado->run}}" readonly="true"
                                    @endif class="form-control text-4 bluegray-text" name="rut"  required="" autocomplete="rut">
                             <label id="msgRun" style="color: red; display:none"></label>
                         </div>
@@ -97,7 +98,7 @@
         </div>
     </div>
 </div>
-<div class="tab text-4">
+<div class="tab text-4" style="display: none;">
     <div class="text-center mb-4">
         <h1 class="title-4 darkblue-text">
             Seleccione fecha
@@ -130,7 +131,7 @@
         </div>
     </div>
 </div>
-<div class="tab text-4">
+<div class="tab text-4" style="display: none;">
     <div class="text-center mb-4">
         <h1 class="title-4 darkblue-text">
             Detalles de tu reserva
@@ -199,7 +200,7 @@
                     <input type="hidden" id="rutTitular"
 
                            @if (auth()->user())
-                           value="{{$usuarioLogeado->rut}}"
+                           value="{{$usuarioLogeado->run}}"
                         @endif
                     >
                 </tr>
