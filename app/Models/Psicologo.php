@@ -114,42 +114,44 @@ class Psicologo extends Model
         return $psicologo;
     }
 
-        public function datosPsicologoLogeado(){
+    public function datosPsicologoLogeado()
+    {
         $user_id = auth()->user()->id;
         $paciente = Persona::
         select('id_persona')
-        ->with('psicologo')
-        ->where('persona.id_user', $user_id)
-        ->first();
+            ->with('psicologo')
+            ->where('persona.id_user', $user_id)
+            ->first();
 
-        if(empty($psicologo)){
+        if (empty($psicologo)) {
             $psicologo = new stdClass();
-            $psicologo->run= '';
-            $psicologo->nombre= '';
-            $psicologo->apellido_paterno= '';
-            $psicologo->apellido_materno= '';
-            $psicologo->fecha_nacimiento= '';
-            $psicologo->genero= '';
-            $psicologo->direccion= '';
-            $psicologo->comuna= '';
-            $psicologo->region= '';
-            $psicologo->telefono= '';
-            $psicologo->id_psicologo= '';
-            $psicologo->titulo= '';
-            $psicologo->especialidad= '';
-            $psicologo->descripcion= '';
-            $psicologo->verificado= '';
-            $psicologo->casa_academica='';
-            $psicologo->grado_academico='';
-            $psicologo->fecha_egreso='';
-            $psicologo->experiencia='';
-            $psicologo->imagen_titulo='';
+            $psicologo->run = '';
+            $psicologo->nombre = '';
+            $psicologo->apellido_paterno = '';
+            $psicologo->apellido_materno = '';
+            $psicologo->fecha_nacimiento = '';
+            $psicologo->genero = '';
+            $psicologo->direccion = '';
+            $psicologo->comuna = '';
+            $psicologo->region = '';
+            $psicologo->telefono = '';
+            $psicologo->id_psicologo = '';
+            $psicologo->titulo = '';
+            $psicologo->especialidad = '';
+            $psicologo->descripcion = '';
+            $psicologo->verificado = '';
+            $psicologo->casa_academica = '';
+            $psicologo->grado_academico = '';
+            $psicologo->fecha_egreso = '';
+            $psicologo->experiencia = '';
+            $psicologo->imagen_titulo = '';
 
         }
-    return $psicologo;
+        return $psicologo;
     }
 
-    public function updatePsicologo($request){
+    public function updatePsicologo($request)
+    {
         return Psicologo::where('id_persona', auth()->user()->persona->id_persona)
             ->update([
                 'titulo' => $request->titulo,
@@ -176,7 +178,7 @@ class Psicologo extends Model
                 "direccion",
                 "avatar",
                 "provider as valoracion"
-            )->where('verificado','=','VERIFICADO');
+            )->where('verificado', '=', 'VERIFICADO');
 
         if ($filtro == null) {
 
@@ -187,7 +189,7 @@ class Psicologo extends Model
             $psicologos = $psicologos->where(function ($query) use ($filtro) {
                 $query->where('persona.nombre', 'LIKE', "%$filtro%")
                     ->orWhere('persona.apellido_paterno', 'LIKE', "%$filtro%")
-                    ->orWhere(DB::RAW("CONCAT(persona.nombre, ' ', apellido_paterno, ' ', apellido_materno)"),'LIKE',"%$filtro%");
+                    ->orWhere(DB::RAW("CONCAT(persona.nombre, ' ', apellido_paterno, ' ', apellido_materno)"), 'LIKE', "%$filtro%");
             })->paginate(8);
         }
         // metodo para obtener la edad y la valoracion
@@ -197,83 +199,85 @@ class Psicologo extends Model
     }
 
     //metodo obtención modalidades del psicologo
-    public static function getModalidades($psicologos){
+    public static function getModalidades($psicologos)
+    {
         foreach ($psicologos as $item) {
             $presencial = false;
             $online = false;
 
             $obtenerModalidades = ModalidadServicio::getModalidadesServicio($item->id_psicologo);
-            foreach($obtenerModalidades as $item2){
-                if($item2->presencial=="1"){
+            foreach ($obtenerModalidades as $item2) {
+                if ($item2->presencial == "1") {
                     $presencial = true;
                 }
-                if($item2->online=="1"){
+                if ($item2->online == "1") {
                     $online = true;
                 }
-                if($presencial==true&&$online==true){
+                if ($presencial == true && $online == true) {
                     break;
                 }
             }
-            if($presencial==true){
+            if ($presencial == true) {
                 $item->modalidades = "Presencial";
             }
-            if($online==true){
-                $item->modalidades = $item->modalidades.','."Online";
+            if ($online == true) {
+                $item->modalidades = $item->modalidades . ',' . "Online";
             }
 
         }
     }
-/*
-    //metodo obtención modalidades del psicologo
-    public static function getModalidades($psicologos){
-        //RECORRER PSICOLOGOS Y SUS SERVICIOS
-        $modalidad = new ModalidadServicio();
-        $modalidades = [];
-        $modalidad->presencial = false;
-        $modalidad->online = false;
-        $modalidad->visita = false;
-        $presencial = 0;
-        $online = 0;
-        $visita = 0;
-        foreach ($psicologos as $profesional) {
-            foreach ($profesional->servicioPsicologos as $servicio) {
-                if($servicio->modalidadServicio->presencial == 1){
-                    $presencial += 1;
-                    if ($presencial >= 1) {
-                        $modalidad->presencial = true;
+    /*
+        //metodo obtención modalidades del psicologo
+        public static function getModalidades($psicologos){
+            //RECORRER PSICOLOGOS Y SUS SERVICIOS
+            $modalidad = new ModalidadServicio();
+            $modalidades = [];
+            $modalidad->presencial = false;
+            $modalidad->online = false;
+            $modalidad->visita = false;
+            $presencial = 0;
+            $online = 0;
+            $visita = 0;
+            foreach ($psicologos as $profesional) {
+                foreach ($profesional->servicioPsicologos as $servicio) {
+                    if($servicio->modalidadServicio->presencial == 1){
+                        $presencial += 1;
+                        if ($presencial >= 1) {
+                            $modalidad->presencial = true;
+                        }
                     }
-                }
-                if($servicio->modalidadServicio->online == 1 ){
-                    $online += 1;
-                    if ($online >= 1) {
-                        $modalidad->online = true;
+                    if($servicio->modalidadServicio->online == 1 ){
+                        $online += 1;
+                        if ($online >= 1) {
+                            $modalidad->online = true;
+                        }
                     }
-                }
-                if($servicio->modalidadServicio->visita == 1){
-                    $visita += 1;
-                    if ($visita >= 1) {
-                        $modalidad->visita = true;
+                    if($servicio->modalidadServicio->visita == 1){
+                        $visita += 1;
+                        if ($visita >= 1) {
+                            $modalidad->visita = true;
+                        }
                     }
                 }
             }
-        }
-        array_push($modalidades, $modalidad);
-       // dd($modalidades);
-        dd([$presencial, $online, $visita]);
+            array_push($modalidades, $modalidad);
+           // dd($modalidades);
+            dd([$presencial, $online, $visita]);
 
-    }
-*/
+        }
+    */
     //obtiene el perfil del psicologo
-   /*
-    public static function getProfile($id){
-        //obtención de datos del psicólogo aplicando un join para intercalar datos de otra tabla asociada
-        $user = Psicologo::where('id_psicologo', '=', $id)->join('users', 'id_user', '=', 'psicologo.id_user')
-            ->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')->firstOrFail();
-        return $user;
-    }
-*/
+    /*
+     public static function getProfile($id){
+         //obtención de datos del psicólogo aplicando un join para intercalar datos de otra tabla asociada
+         $user = Psicologo::where('id_psicologo', '=', $id)->join('users', 'id_user', '=', 'psicologo.id_user')
+             ->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')->firstOrFail();
+         return $user;
+     }
+ */
     //obtiene el perfil del psicologo
-    public static function getProfile($id){
+    public static function getProfile($id)
+    {
         //obtención de datos del psicólogo aplicando un join para intercalar datos de otra tabla asociada
         $user = Psicologo::where('id_psicologo', '=', $id)->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')
             ->firstOrFail();
@@ -284,32 +288,30 @@ class Psicologo extends Model
     public static function getListaPsicologos()
     {
         $psicologos = Psicologo::select('especialidad', 'experiencia', 'id_psicologo', 'id_persona')
-            ->with(['persona' => function ($query)
-            {
-                $query->select(['id_persona','nombre', 'apellido_paterno', 'apellido_materno', 'direccion','comuna']);
+            ->with(['persona' => function ($query) {
+                $query->select(['id_persona', 'nombre', 'apellido_paterno', 'apellido_materno', 'direccion', 'comuna']);
             }
             ])
-            ->with(['servicioPsicologos' => function ($query)
-                {
-                    $query->select(['id_psicologo','id_modalidad_servicio'])
-                    ->with(['modalidadServicio' => function ($query)
-                        {
-                            $query->select(['id_modalidad_servicio','presencial', 'online', 'visita']);
-                        }
+            ->with(['servicioPsicologos' => function ($query) {
+                $query->select(['id_psicologo', 'id_modalidad_servicio'])
+                    ->with(['modalidadServicio' => function ($query) {
+                        $query->select(['id_modalidad_servicio', 'presencial', 'online', 'visita']);
+                    }
                     ]);
-                }
-                ])
-        ->get();
+            }
+            ])
+            ->get();
 
 
         return $psicologos;
     }
 
     //metodo obtención modalidades del psicologo
-    public static function getModalidad($psicologo){
+    public static function getModalidad($psicologo)
+    {
         return $modalidades = ServicioPsicologo::
-            select('id_psicologo', 'id_modalidad_servicio')
-            ->with(['modalidadServicio' => function ($query){
+        select('id_psicologo', 'id_modalidad_servicio')
+            ->with(['modalidadServicio' => function ($query) {
                 $query->select(['presencial', 'online', 'visita'])
                     ->groupBy('presencial', 'online', 'visita');
             }])
@@ -317,3 +319,4 @@ class Psicologo extends Model
             ->get();
     }
 }
+

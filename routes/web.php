@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagoController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ReservaController;
@@ -147,10 +148,16 @@ Route::get('comprobacionDiaHabilitado', [ReservaController::class, 'comprobacion
 Route::get('comprobacionYaTomadas', [ReservaController::class, 'comprobacionReservasTomadas']);
 //Route::get('/comprobacionYaTomadas', 'ReservaController@comprobacionReservasTomadas');
 
+Route::get('/getCentro', [ReservaController::class, 'getCentroServicio']);
+
+  //  Route::get('/getCentroServicio', 'ReservaController@getCentroServicio');
 
 //////////////////////////////////////PAGO////////////////////////////////////////////////////
-Route::get('checkout', [WebPayRestController::class, 'createdTransaction'])->name('pasarela.checkout');
-Route::post('return', [WebPayRestController::class, 'commitedTransaction'])->name('return');
-//Route::post('return', 'WebPayRestController@commitedTransaction')->name('pasarela.return');
+Route::get('/checkout', [WebPayRestController::class, 'createdTransaction'])->name('pasarela.checkout');
+Route::get('/return', [WebPayRestController::class, 'commitedTransaction'])->name('return');
+Route::get('ordencompra/{ordencompra}', [PagoController::class, 'mostrarDetalle'])->name('pago.ordenCompra');
+//Route::get('ordencompra/{ordencompra}', 'PagoController@mostrarDetalle')->name('pasarela.ordenCompra');
 
-//Route::get('checkout', 'WebPayRestController@createdTransaction')->name('pasarela.checkout');
+
+
+

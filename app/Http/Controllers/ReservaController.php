@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Reserva;
-use App\Models\Psicologo;
 use App\Models\Paciente;
 use App\Models\Persona;
 use App\Models\Servicio;
@@ -177,6 +177,22 @@ class ReservaController extends Controller
 
         }
     }
+
+    /**
+     * getCentroServicio
+     *
+     * método que llama a método encapsulado para obtener el centro del servicio psicológico
+     *
+     */
+    public function getCentroServicio(Request $request)
+    {
+        if ($request->ajax()) {
+
+            return json_encode(Persona::getCentro($request->id));
+        }
+    }
+
+
 
 
 }

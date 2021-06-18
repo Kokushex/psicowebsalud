@@ -518,6 +518,7 @@ $("#servicio_id").on('change', function () {
             .fail(function (data) {
 
             });
+
         $("#modalidad").on('change', function () {
             $('#precio_id').remove();
             $("#hidenModalidad").val("asdf");
@@ -561,6 +562,11 @@ $("#servicio_id").on('change', function () {
             $("#centro_id").remove();
             $("#modalidadD").text($("#modalidad option:selected").text());
             var tipoModalidad = $("#modalidad").val();
+            /*
+            *
+            * Modalidad Presencial
+            *
+            * */
             if (tipoModalidad == "Presencial") {
                 var $centro = $('<div id="centro_id" class="mt-1" ><label for="centro" class="text-5 darkgray-text text-bold">Centro Atención</label></div>');
                 $("#servicios").append($centro);

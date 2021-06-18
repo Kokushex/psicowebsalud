@@ -52,28 +52,14 @@ class WebPayRestController extends Controller
         /* ========= Instancia de los Modelos a ocupar =========== */
         try {
 
-            //=========================DATOS QUE SON OBLIGATORIOS AL UTILIZAR LA API DE LA LINEA 15=========================
-            // PARA ASIGNAR EL NUMERO DE CUOTAS
-            // $token = "token obtenido como respuesta de la creacion de transaccion";
-            // $installmentsNumber = 10; // numero de cuotas;
 
-            // $transaction = new Transaction();
-            // $response = $transaction->installments(
-            //     $token,
-            //     $installmentsNumber
-            // );
-            //==============================================================================================================
 
             $transaction = new Transaction();
             $req = $request->except('_token');
             $response = $transaction->commit(
                 $token = $req["token_ws"]
-            //=========================DATOS QUE SON OBLIGATORIOS AL UTILIZAR LA API DE LA LINEA 15=========================
-            // $idQueryInstallments,
-            // $deferredPeriodIndex,
-            // $gracePeriod
-            //==============================================================================================================
-            );
+
+             );
             $pago = new Pago();
             $pago->orden_compra = Session::get('orden_compra'); //  necesario para retornar solo la orden de compra en caso de error
             Session::forget('orden_compra');

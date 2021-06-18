@@ -18,10 +18,9 @@
                         <div class="bg-light p-3">
                             <h1 class="text-center m-0">Detalle Reserva</h1>
                             <div class="row pt-3 mb-2">
-                                <div class="col-md-8 pull-left"><img src="{{ asset('assets/img/logoV2.png') }} "
+                                <div class="col-md-8 pull-left"><img src="{{ asset('http://127.0.0.1:8000/argon/img/brand/blue.png') }} "
                                                                      class="img-responsive" height="60px" class="logo" />
-                                    <h2 style="    display: inline;vertical-align: middle;font-weight: 500;">Psicologos
-                                        Temuco</h2>
+                                    <h2 style="    display: inline;vertical-align: middle;font-weight: 500;">Psicoweb Salud</h2>
                                 </div>
                                 <div class="col-md-4 text-right">
                                     <h5 class="pt-4">Orden de reserva: {{ $pago->orden_compra }}</h5>
@@ -149,9 +148,9 @@
         document.getElementById('relojito').innerHTML = totalTime;
         if (totalTime == 0) {
             if ({{ $resp }} === 0) {
-                window.location.replace('/pasareladepago/ordencompra/{{ $pago->orden_compra }}');
+                window.location.replace('/pago/ordencompra/{{ $pago->orden_compra }}');
             } else {
-                window.location.replace('/home');
+                window.location.replace('/reserva/list');
             }
         } else {
             totalTime -= 1;
@@ -161,4 +160,4 @@
 
 </script>
 
-</html>
+

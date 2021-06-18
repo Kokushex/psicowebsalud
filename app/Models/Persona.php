@@ -28,14 +28,14 @@ class Persona extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'persona';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'id_persona';
@@ -102,7 +102,7 @@ class Persona extends Model
             'direccion' => $request->direccion,
         ]);
     }
-    
+
 
         public static function generarPersona(){
         $persona = new Persona();
@@ -110,5 +110,26 @@ class Persona extends Model
         $persona->save();
         return $persona;
     }
+
+
+    /**
+     * get
+     *
+     * obtener el nombre del centro donde se impartirá el servicio
+     *
+     */
+    public static function getCentro($id_servicio_psicologo)
+    {
+        return Persona::join('servicio_psicologo', 'servicio_psicologo.id_psicologo', '=', 'psicologo.id_psicologo')
+            ->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')
+            ->where('servicio_psicologo.id_servicio_psicologo', '=', $id_servicio_psicologo)
+            ->select('persona.direccion')->first()->nombre;
+    }
+}
+/*join('modalidad_servicio','modalidad_servicio.id_centro','=','centro.id_centro')
+            ->join('servicio_psicologo','servicio_psicologo.id_modalidad_servicio','=','modalidad_servicio.id_modalidad_servicio')
+            ->where('servicio_psicologo.id_servicio_psicologo','=', $id_servicio_psicologo)
+            ->select('centro.nombre')->first()->nombre;
+}
 
 }

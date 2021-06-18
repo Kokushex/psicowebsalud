@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -73,7 +74,7 @@ class DetallePago extends Model
 
         $sesiones_pago["reserva"]->save();
 
-        $detallePago->id_servicio = $sesiones_pago["servicio"]->id_servicio_psicologo;
+        //$detallePago->id_servicio = $sesiones_pago["servicio"]->id_servicio_psicologo;
         $detallePago->id_reserva = $sesiones_pago["reserva"]->id_reserva;
         $detallePago->id_pago = $pago->id_pago;
         $detallePago->save();

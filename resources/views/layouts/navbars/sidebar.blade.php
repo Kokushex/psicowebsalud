@@ -78,7 +78,7 @@
             </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
-            
+
                 <!--Titulo de sidebar-->
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
@@ -111,7 +111,7 @@
                     </div>
                 </li>
 
-               
+
                     <!--Area de trabajo-->
                  <li class="nav-item">
                     <a class="nav-link active" href="#navbar-area_trabajo" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-area_trabajo">
@@ -121,7 +121,7 @@
 
                     <div class="collapse show" id="navbar-area_trabajo">
                         <ul class="nav nav-sm flex-column">
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('horario') }}">
                                     <i class="ni ni-watch-time text-blue"></i> {{ __('Horario') }}
@@ -147,7 +147,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('reserva') }}">
+                                <a class="nav-link" href="{{ route('reserva.list') }}">
                                     <i class="ni ni-book-bookmark text-blue"></i> {{ __('Reserva') }}
                                 </a>
                             </li>
@@ -180,7 +180,7 @@
                     </a>
                 </li>
             </ul>
-             --Divider-- 
+             --Divider--
             <hr class="my-3">
             -- Heading --
             <h6 class="navbar-heading text-muted">Documentation</h6>
