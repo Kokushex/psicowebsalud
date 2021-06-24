@@ -133,7 +133,14 @@ Route::put('horario/dashboardHorario', [HorarioController::class, 'edit'])->name
 //Route::get('reserva/list', [PsicologoController::class, 'filtroPrincipal'])->name('psicologo.list');
 Route::get('/reserva/list', [PsicologoController::class, 'index'])->name('reserva.list');
 Route::get('/profile/{id}', [ProfileController::class, 'getProfile'])->name('busqueda');
-//Route::get('/profile/{id}', 'ProfileController@getProfile')->name('profile');
+Route::get('/listar', [ReservaController::class, 'listarReservas'])->name('reserva.listar');
+Route::get('listar/page', [ReservaController::class, 'paginacionAjax']);
+Route::get('listPsicologo', [ReservaController::class, 'listarReservasProfesional'])->name('reserva.listarReservasPsicologos');
+
+//Route::get('listPsicologo', 'ReservaController@listarReservasProfesional')->name('reserva.listarReservasPsicologo');
+
+//Route::get('list/page', 'ReservaController@paginacionAjax');
+
 
 Route::post('/busqueda/create', [ReservaController::class, 'store'])->name('reserva.create');
 
@@ -146,7 +153,13 @@ Route::post('/obtenerHorasDisponibles', [ReservaController::class, 'obtenerHoras
 Route::get('/horarioPaciente', [ReservaController::class, 'horarioPaciente']);
 Route::get('comprobacionDiaHabilitado', [ReservaController::class, 'comprobacionDiaHabilitado'] );
 Route::get('comprobacionYaTomadas', [ReservaController::class, 'comprobacionReservasTomadas']);
-//Route::get('/comprobacionYaTomadas', 'ReservaController@comprobacionReservasTomadas');
+Route::get('/getResCantidadPendientes', [ReservaController::class, 'getResCantidadPendientes']);
+//Route::get('/getResCantidadPendientes', 'ReservaController@getResCantidadPendientes');
+Route::get('/llenarModalReservas', [ReservaController::class, 'llenarModalReservas']);
+Route::get('/validarFechaHora', [ReservaController::class, 'validarFechaHora']);
+Route::get('/actualizarReserva', [ReservaController::class, 'actualizarReserva']);
+//Route::get('/actualizarReserva', 'ReservaController@actualizarReserva');
+
 
 Route::get('/getCentro', [ReservaController::class, 'getCentroServicio']);
 

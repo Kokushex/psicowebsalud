@@ -152,6 +152,18 @@
                                 </a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('reserva.listar') }}">
+                                    <i class="ni ni-book-bookmark text-blue"></i> {{ __('Lista de Reservas') }}
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('reserva.listarReservasPsicologos') }}">
+                                    <i class="ni ni-book-bookmark text-blue"></i> {{ __('Lista de Reservas Psicologo') }}
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>
