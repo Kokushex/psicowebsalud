@@ -82,9 +82,9 @@
 
         </div>
 
-        <!--<ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center">
             {!! $reserva->appends(request()->query())->links() !!}
-        </ul> -->
+        </ul>
 
     </div>
 

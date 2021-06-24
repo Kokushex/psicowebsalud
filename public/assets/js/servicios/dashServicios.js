@@ -62,7 +62,7 @@ function agregarServicio() {
                         toastr["success"]("Servicio Agregado Exitosamente", "Agregar");
                         $("#modalAgregarServicio .close").click()
                         table.ajax.reload();
-                        //actualizarSelect2();
+                        actualizarSelect2();
                         resetModalAgregar();
                         bloquearCampos();
 
@@ -345,13 +345,14 @@ $(document).on("click", ".btnVer", function () {
             console.log(e[0].descripcion_particular);
             console.log(e[0].precio_presencial);
             console.log(e[0].precio_online);
-            if(e[0].presencial > 1000){
+            if(e[0].presencial > 0){
+
                 $("#dispPresencial").html("").append("Disponible");
             }else{
                 $("#dispPresencial").html("").append("No Disponible");
             }
-            if(e[0].online > 1000){
-                console.log(e[0].online)
+            if(e[0].online > 0){
+
                 $("#dispOnline").html("").append("Disponible");
             }else{
                 $("#dispOnline").html("").append("No Disponible");

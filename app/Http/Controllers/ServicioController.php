@@ -44,7 +44,7 @@ class ServicioController extends Controller
             $idServicio = $dato->id_servicio;
         }else {
             $servicio = Servicio::create([
-                'nombre' => $request->txtNombreServicio,
+                'nombre' => $request->textoOption,
                 'descripcion' => $request->txtDesGeneralServicio]);
                 $idServicio = $servicio->id_servicio;
         }
