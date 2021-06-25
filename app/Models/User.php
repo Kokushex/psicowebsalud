@@ -9,8 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Notifications\ResetPasswordNotification;
-
+use App\Models\Roles;
 
 /**
  * @property int $id_user
@@ -181,5 +182,72 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
 
      }
+
+    public static function listasCompleta()
+    {
+
+
+        $listasCompleta = DB::table('persona')
+            ->join('paciente', 'paciente.id_persona', '=', 'persona.id_persona')
+            ->join('users', 'users.id_user', '=', 'persona.id_user')
+            ->join('user_has_roles', 'user_has_roles.id_user', '=', 'users.id_user')
+            ->join('roles', 'roles.id_roles', '=', 'user_has_roles.id_rol')
+            ->select(
+                'user_has_roles.id_user_roles as id_user_rol',
+                'users.id_user as user_id',
+                'persona.id_persona as id_persona',
+                'persona.run as rut',
+                'users.email as email',
+                'users.banned_till as estado',
+                'persona.nombre as nombre',
+                'persona.apellido_paterno as apellido_p',
+                'persona.apellido_materno as apellido_m',
+                'persona.telefono as fono',
+                'roles.id_roles as id_rol',
+                'roles.name as nombre_rol'
+            );
+        $listasCompleta = DB::table('persona')
+            ->join('psicologo', 'psicologo.id_persona', '=', 'persona.id_persona')
+            ->join('users', 'users.id_user', '=', 'persona.id_user')
+            ->join('user_has_roles', 'user_has_roles.id_user', '=', 'users.id_user')
+            ->join('roles', 'roles.id_roles', '=', 'user_has_roles.id_rol')
+            ->select(
+                'user_has_roles.id_user_roles as id_user_rol',
+                'users.id_user as user_id',
+                'persona.id_persona as id_persona',
+                'persona.run as rut',
+                'users.email as email',
+                'users.banned_till as estado',
+                'persona.nombre as nombre',
+                'persona.apellido_paterno as apellido_p',
+                'persona.apellido_materno as apellido_m',
+                'persona.telefono as fono',
+                'roles.id_roles as id_rol',
+                'roles.name as nombre_rol'
+            )
+            ->unionAll($listasCompleta)
+            ->orderBy('id_user_rol', 'ASC')
+            ->get();
+
+        return $listasCompleta;
+    }
+
+    /**
+     * metodo que lista los roles
+     */
+
+    public static function listaRol()
+    {
+        $listaRol = Roles::select('id_roles', 'name')->get();
+        return $listaRol;
+    }
+    public static function rol($id)
+    {
+        $listaRol = Role::select('id_roles', 'name')
+            ->where('roles.id', $id)
+            ->first();
+        return $listaRol;
+    }
+
 
 }

@@ -135,7 +135,7 @@
                              </li>
 
                              <li class="nav-item">
-                                <a class="nav-link" href="{{ route('roles') }}">
+                                <a class="nav-link" href="{{ route('ges_usuarios') }}">
                                     <i class="ni ni-key-25 text-blue"></i> {{ __('Roles') }}
                                 </a>
                             </li>

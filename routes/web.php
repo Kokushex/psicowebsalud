@@ -171,6 +171,14 @@ Route::get('/return', [WebPayRestController::class, 'commitedTransaction'])->nam
 Route::get('ordencompra/{ordencompra}', [PagoController::class, 'mostrarDetalle'])->name('pago.ordenCompra');
 //Route::get('ordencompra/{ordencompra}', 'PagoController@mostrarDetalle')->name('pasarela.ordenCompra');
 
+//////////////////////////////////////ROLES///////////////////////////////////////////////
+Route::get('/gestionUsuarios', [RolesController::class, 'Listar'])->name('ges_usuarios');
+Route::get('vistaDetalle/{id_persona}', [RolesController::class, 'Buscar'])->name('detalle.gestion'); //falta
+Route::get('roles/rolesMantenedor/updateRol/{id}', [RolesController::class, 'mandaId'])->name('mandaId');
+Route::post('/gestionUsuarios/{id}', [RolesController::class, 'ban'])->name('ban'); //falta
+//Route::post('/dashboard/dash_admin/gestionUsuarios/{id}','RolesController@ban')->name('ban');
+
+
 
 
 
