@@ -71,34 +71,22 @@ class HorarioDia extends Model
             $query->where('dia.lunes','=',$request->diaLun)
             ->where('dia.lunes','like',1)
             ->where('habilitado',1);
-        })
-        ->orWhere(function($query) use($request) {
-            $query->where('dia.martes','=',$request->diaMar)
+            $query->orWhere('dia.martes','=',$request->diaMar)
             ->where('dia.martes','like',1)
             ->where('habilitado',1);
-        })
-        ->orWhere(function($query) use($request) {
-            $query->where('dia.miercoles','=',$request->diaMie)
+            $query->orWhere('dia.miercoles','=',$request->diaMie)
             ->where('dia.miercoles','like',1)
             ->where('habilitado',1);
-        })
-        ->orWhere(function($query) use($request) {
-            $query->where('dia.jueves','=',$request->diaJue)
+            $query->orWhere('dia.jueves','=',$request->diaJue)
             ->where('dia.jueves','like',1)
             ->where('habilitado',1);
-        })
-        ->orWhere(function($query) use($request) {
-            $query->where('dia.viernes','=',$request->diaVie)
+            $query->orWhere('dia.viernes','=',$request->diaVie)
             ->where('dia.viernes','like',1)
             ->where('habilitado',1);
-        })
-        ->orWhere(function($query) use($request) {
-            $query->where('dia.sabado','=',$request->diaSab)
+            $query->orWhere('dia.sabado','=',$request->diaSab)
             ->where('dia.sabado','like',1)
             ->where('habilitado',1);
-        })
-        ->orWhere(function($query) use($request) {
-            $query->where('dia.domingo','=',$request->diaDom)
+            $query->orWhere('dia.domingo','=',$request->diaDom)
             ->where('dia.domingo','like',1)
             ->where('habilitado',1);
         })

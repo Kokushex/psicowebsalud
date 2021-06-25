@@ -17,16 +17,16 @@ class PerfilValidaciones extends FormRequest
     public function rules()
     {
         return [
-            'run' =>'required|max:10',
-            'nombre' => 'required',
-            'apellido_paterno' => 'required',
-            'apellido_materno' => 'required:alpha',
-            'fecha_nacimiento'=> 'required',
+            'run' =>'required|regex:/^[kK0-9-]*$/|max:10',
+            'nombre' => 'bail|required|regex:/^[a-zA-Z -]*$/|max:191',
+            'apellido_paterno' => 'bail|required|regex:/^[a-zA-Z -]*$/|max:191',
+            'apellido_materno' => 'bail|required|regex:/^[a-zA-Z -]*$/|max:191',
+            'fecha_nacimiento'=> 'required|date',
             'genero'=> 'required|not_in:0',
             'comuna'=> 'required|not_in:0',
             'region'=> 'required|not_in:0',
-            'telefono'=> 'required|max:9|min:9',
-            
+            'telefono'=> 'required|digits:9',
+            'direccion'=> 'bail|regex:/^[a-zA-Z0-9 .-]*$/|max:191',            
         ];
     }
 

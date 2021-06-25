@@ -141,7 +141,7 @@ function soloNumerosPrecioModalidad(e){
 }
 
 //función que permite verificar el valor del checkbox,
-//de ser falso deshabilita la opción de ingrear un valor a la modalidad
+//de ser falso deshabilita la opción de ingresar un valor a la modalidad
 function comprobarPresencial(){
     if($("#presencialEdit").prop("checked") == false){
         document.getElementById('presencialPrecioEdit').disabled=true;

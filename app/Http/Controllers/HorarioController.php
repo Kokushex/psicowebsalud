@@ -38,31 +38,6 @@ class HorarioController extends Controller
 
     }
 
-    /*
-    public function index()
-    {
-        //Se abre un Try-Catch para que en caso de algun error se imprima un mensaje
-        try {
-            //Se autentifica el usuario
-            if (auth()->user()) {
-                $id_psicologo = auth()->user()->id;
-
-                //Devuelve la vista de DashboardHorario al encontrarse en una sesion
-                return view('horario.dashboardHorario');
-
-            }else{
-                //Si no se encuentra en una sesion es de vuelto al inicio
-                return view('welcome');
-            }
-
-        } catch (\Exception $e) {
-            //Se imprime el error encontrado
-            print_r($e->getMessage());
-        }
-
-    }
-    */
-
     //Funcion para listar datos
     public function datos(){
         //Se abre un Try-Catch para que en caso de algun error se imprima un mensaje
@@ -165,8 +140,7 @@ class HorarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
-    {
+    public function edit(Request $request){
         //Obtener el id del psicologo de la sesion
         $id_psicologo = auth()->user()->persona->psicologo->id_psicologo;
 
@@ -177,7 +151,9 @@ class HorarioController extends Controller
             //el cual realiza la condicion de que si request rescatando el idHorarioDia el si es distinto a query[i]
             //el cual contiene el id_horario_dia el contador aumenta
             for ($i=0; $i<count($query); $i++) {
-                $contador++;
+                if($request->idHorarioDia != $query[$i]->id_horario_dia){
+                    $contador++;
+                }
             }
             //Luego se realiza un ifelse el cual pregunta si el contador es mayor a 0 no agrega un dia demostrando un conflicto de horario,
             //en cambio si el contador es 0 se da el pase a editar el horario

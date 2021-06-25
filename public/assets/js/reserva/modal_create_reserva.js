@@ -208,7 +208,7 @@ window.validarRut = function (rut) {
 
 
 function validarEmail(valor, flag) {
-    if (/^\w+([\.-]?\w+)*@(?:|hotmail|outlook|yahoo|live|gmail)\.(?:|com|es|cl)+$/.test(valor)) {
+    if (/^\w+([\.-]?\w+)*@(?:|hotmail|outlook|yahoo|live|gmail|prueba)\.(?:|com|es|cl)+$/.test(valor)) {
         document.getElementById("correo").style.borderColor = "";
     } else {
         flag = false;

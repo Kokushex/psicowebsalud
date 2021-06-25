@@ -33,7 +33,7 @@ class RegisterValidaciones extends FormRequest
     {
         return[ 'unique' => 'El :attribute ya se encuentra registrado',
         'required' => 'El campo :attribute es obligatorio.',
-        'same' => 'Las contraseñas no coinciden (RegisterValidaciones)',
+        'same' => 'Las contraseñas no coinciden',
         'max' => 'Demasiados caracteres',
         'min' => 'La contraseña debe contener minimo 8 caracteres'];
 

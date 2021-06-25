@@ -147,7 +147,14 @@ class ProfileController extends Controller
     }
 
     public function updatePaciente(Request $request)
-    {
+    {   
+        $validated = $request->validate([
+            'escolaridad' => 'bail|required|regex:/^[a-zA-Z ]*$/|max:191',
+            'ocupacion' => 'bail|required|regex:/^[a-zA-Z .-]*$/|max:191',
+            'estado_civil' => 'bail|required|regex:/^[a-zA-Z ]*$/|max:191',
+            'grupo_familiar' => 'bail|required|regex:/^[a-zA-Z ]*$/|max:191',
+        ]);
+
         $paciente = new Paciente();
         $paciente = $paciente->updatePaciente($request);
         if(!empty($paciente)){
@@ -166,6 +173,16 @@ class ProfileController extends Controller
 
     public function updatePsicologo(Request $request)
     {
+        $validated = $request->validate([
+            'titulo' => 'bail|required|regex:/^[a-zA-Z .-]*$/|max:191',
+            'especialidad' => 'bail|required|regex:/^[a-zA-Z .-]*$/|max:191',
+            'casa_academica' => 'bail|required|regex:/^[a-zA-Z .-]*$/|max:191',
+            'grado_academico' => 'bail|required|regex:/^[a-zA-Z .-]*$/|max:191',
+            'fecha_egreso' => 'bail|required|date',
+            //'experiencia' => 'bail|required|max:11',
+            'descripcion' => 'bail|required|regex:/^[a-zA-Z0-9 ,.-]*$/|max:191',
+        ]);
+
         $psicologo = new Psicologo();
         $psicologo = $psicologo->updatePsicologo($request);
         if(!empty($psicologo)){
@@ -175,7 +192,7 @@ class ProfileController extends Controller
             $user->casa_academica=$request->casa_academica;
             $user->grado_academico=$request->grado_academico;
             $user->fecha_egreso=$request->fecha_egreso;
-            $user->experiencia=$request->experiencia;
+            //$user->experiencia=$request->experiencia;
             session()->put(['user' => $user]);
             return json_encode($user);
 

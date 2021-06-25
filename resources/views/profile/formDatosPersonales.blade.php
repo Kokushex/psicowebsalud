@@ -118,7 +118,7 @@
         </div>
 
         <!-- LOGICA PARA MOSTRAR LOS BOTONES O MENSAJE DE ESTADO -->
-        <div id="div_confirmacion1">
+        <div class="text-center" id="div_confirmacion1">
             @if(auth()->user()->persona->run != '')
                 @if($rol == 2)
                     @if(isset(auth()->user()->persona->psicologo->verificado))
@@ -127,20 +127,16 @@
                                  id="esperandoVerificacion" role="alert"><b>Solicitud en espera de revisión.</b>
                             </div>
                         @else
-                            <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Registrar Datos 1') }}</button>
+                            <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios') }}</button>
                         @endif
-
                     @else
-                        <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios 2') }}</button>
+                        <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Registrar Datos') }}</button>
                     @endif
                 @else
-                    <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios 3') }}</button>
-
+                    <button type="submit" class="btn btn-success mt-4" id="update_datosP"> {{ __('Guardar Cambios') }}</button>
                 @endif
             @else
-
-                <button type="submit" class="btn btn-success mt-4" id="registrarDatos"> {{ __('Registrar Datos 4') }}</button>
-
+                <button type="submit" class="btn btn-success mt-4" id="registrarDatos"> {{ __('Registrar Datos') }}</button>
             @endif
         </div>
     </div>

@@ -122,7 +122,7 @@ class RegisterController extends Controller
                         return redirect()->to('/profile'); //('/email/verify
                     }
                 }else{
-                    $status = 'Las contraseñas no coinciden este es.';
+                    $status = 'Las contraseñas no coinciden.';
                     return back()->with(compact('status'));
                 }
             }else{

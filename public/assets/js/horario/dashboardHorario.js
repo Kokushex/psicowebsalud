@@ -264,7 +264,7 @@ function fn_agregar_horario() {
                    dataType: 'json',//Los datos seran enviados como tipo json
                    //En caso de ejecutarse el controlador correctamente
                    success:function(e){//Rescatar la variable de retorno
-                       //si la variable de retorno es 0 (0=no agrego), quiere decir que exsisten horarios duplicados
+                       //si la variable de retorno es 0 (0=no agrego), quiere decir que existen horarios duplicados
                        if(e.mensaje == 0){
                            console.log(e);
                            //se modifican las opciones del mensaje en pantalla
@@ -292,7 +292,7 @@ function fn_agregar_horario() {
                            //se recarga la tabla dinamicamente de horario
                            table.ajax.reload();
                            //se cierra el modal de Agregar
-                           $("#modalAgregar .close").click()
+                           $("#modalAgregarHorario .close").click()
                            //se modifica las opciones del mensaje en pantalla
                            toastr.options = {
                                "closeButton": false,
@@ -315,7 +315,7 @@ function fn_agregar_horario() {
                            toastr["success"]("Horario agregado!", "Exito");
                        }
                    },
-                   //En caso de no ejecutarse correcatmente el controlador, avisara por consola el error
+                   //En caso de no ejecutarse correctamente el controlador, avisara por consola el error
                     error:function(e){
                        alert("no funciona");
                        console.log(e);
@@ -547,7 +547,7 @@ function fn_editar_horario() {
                 dataType: 'json',//Los datos seran enviados como tipo json
                 //En caso de ejecutarse el controlador correctamente
                 success:function(e){//Rescatar la variable de retorno
-                    //si la variable de retorno es 0 (0=no edito), quiere decir que exsisten horarios duplicados
+                    //si la variable de retorno es 0 (0=no edito), quiere decir que existen horarios duplicados
                     if(e.mensaje == 0){
                         console.log(e);
                         //se modifican las opciones del mensaje en pantalla
@@ -575,7 +575,7 @@ function fn_editar_horario() {
                         //se recarga la tabla dinamicamente de horario
                         table.ajax.reload();
                         //se cierra el modal de editar
-                        $("#modalEditar .close").click()
+                        $("#modalEditarHorario .close").click()
                         //se modifica las opciones del mensaje en pantalla
                         toastr.options = {
                             "closeButton": false,
@@ -597,7 +597,7 @@ function fn_editar_horario() {
                           //se muestra el mensaje en pantalla
                         toastr["success"]("Horario editado!", "Exito");
                     }
-                },//En caso de no ejecutarse correcatmente el controlador, avisara por consola el error
+                },//En caso de no ejecutarse correctamente el controlador, avisara por consola el error
                 error:function(e){
                     alert("no funciona");
                     console.log(e);
@@ -741,10 +741,10 @@ $(document).on("click", ".btnVer", function () {
         textDias = textDias +"Martes <br>"
     }
     if(fila.find('td:eq(5)').text()=='1'){
-        textDias = textDias +"Martes <br>"
+        textDias = textDias +"Miercoles <br>"
     }
     if(fila.find('td:eq(6)').text()=='1'){
-        textDias = textDias +"Martes <br>"
+        textDias = textDias +"Jueves <br>"
     }
     if(fila.find('td:eq(7)').text()=='1'){
         textDias = textDias +"Viernes <br>"

@@ -23,11 +23,17 @@
         <div class="card mt-xl-5">
         <!-- Boton modal -->
         <div class="card tarjeta mt-5">
-            <a class="btn btn-success text-white my-2 mx-4" role="button" data-toggle="modal" data-target="#modalAgregarServicio">
-                <i class="ni ni-fat-add"></i>
-                Agregar Servicio
-            </a>
-        </div>
+                @if(auth()->user()->persona->psicologo->verificado =='EN ESPERA')
+                    <div class="alert alert-warning text-center my-2 mx-4" id="mensajeInformativo">
+                        <b id="msgPsicologo">{{__('Confirmación de datos profesionales pendiente.')}}</b>
+                    </div>
+                @else
+                    <a class="btn btn-success text-white my-2 mx-4" role="button" data-toggle="modal" data-target="#modalAgregarServicio">
+                        <i class="ni ni-fat-add"></i>
+                        Agregar Servicio
+                    </a>
+                @endif
+            </div>
         <!-- Fin-->
 
         <!--tabla ejemplo-->

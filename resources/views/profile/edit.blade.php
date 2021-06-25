@@ -76,13 +76,13 @@
                                     </ul>
                                 </div>
                                 <div>
-                                    @if($rol == 2)
+                                    @if($rol==2)
                                         <!--Comprobacion de verificacion de psicologo-->
-                                            @if($user->verificado=='EN ESPERA')
+                                            @if(auth()->user()->persona->psicologo->verificado =='EN ESPERA')
                                                 <div class="alert alert-warning text-center" id="mensajeInformativo">
                                                     <b id="msgPsicologo">Solicitud en espera de revisión.</b>
                                                 </div>
-                                                <div class="alert alert-warning" id="mensajeInformativo">
+                                                <div class="alert alert-warning text-center" id="mensajeInformativo">
                                                     {{ __('Debe completar sus datos para poder acceder a todas las funcionalidades que ofrecemos,') }}
                                                     <b id="msgPsicologo">{{__('previo a espera de la confirmación por nuestra parte de sus datos profesionales.')}}
                                                     </b>
@@ -90,12 +90,9 @@
                                             @endif
                                     @else
                                         <!-- Se usa isset para verificar campo vacio-->
-                                            @if(isset($user->persona->run))
+                                            @if(auth()->user()->persona->run == '')
                                                 <div class="alert alert-warning" id="mensajeInformativo">
-                                                    {{ __('Al completar sus datos podrá acceder a todas las funcionalidades que ofrecemos,') }}
-                                                    @if($rol == 1)
-                                                        <b id="msgPsicologo">{{__('previo a espera de la confirmación de sus datos personales.')}}</b>
-                                                    @endif
+                                                    {{ __('Al completar sus datos podrá acceder a todas las funcionalidades que ofrecemos.') }}
                                                 </div>
                                             @endif
                                     @endif

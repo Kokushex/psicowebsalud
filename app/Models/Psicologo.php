@@ -117,7 +117,8 @@ class Psicologo extends Model
     public function datosPsicologoLogeado()
     {
         $user_id = auth()->user()->id;
-        $paciente = Persona::
+        //$paciente = Persona::
+        $psicologo = Persona::
         select('id_persona')
             ->with('psicologo')
             ->where('persona.id_user', $user_id)
@@ -160,7 +161,7 @@ class Psicologo extends Model
                 'casa_academica' => $request->casa_academica,
                 'grado_academico' => $request->grado_academico,
                 'fecha_egreso' => $request->fecha_egreso,
-                'experiencia' => $request->experiencia,
+                //'experiencia' => $request->experiencia,
             ]);
     }
 

@@ -24,7 +24,7 @@
             <input type="text" name="grupo_familiar" id="grupo_familiar" class="form-control " placeholder="{{ __('Grupo familiar') }}" value="{{auth()->user()->persona->paciente->grupo_familiar}}" required>
         </div>
         <div class="text-center">
-            <div class="offset-sm-3 col-sm-8" id="div_confirmacion2">
+            <div class="text-center" id="div_confirmacion2">
                 <button type="submit" class="btn btn-success mt-4" id="update_datos_comple">{{ __('Guardar Cambios') }}</button>
             </div>
         </div>

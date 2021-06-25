@@ -32,18 +32,13 @@
                    value="{{auth()->user()->persona->psicologo->fecha_egreso ? date('Y-m-d', strtotime(auth()->user()->persona->psicologo->fecha_egreso)) : ''}}"
                    placeholder="Fecha Egreso" required>
         </div>
-        <!--Experiencia-->
-        <div class="form-group">
-            <label class="form-control-label" for="experiencia">{{ __('Experiencia') }}</label>
-            <input type="text" name="experiencia" id="experiencia" class="form-control " placeholder="{{ __('Experiencia') }}" value="{{auth()->user()->persona->psicologo->experiencia}}" required>
-        </div>
         <!--Descripcion-->
         <div class="form-group">
             <label class="form-control-label" for="descripcion">{{ __('Descripcion') }}</label>
             <textarea type="text" name="descripcion" id="descripcion" class="form-control " placeholder="{{ __('Descripcion') }}" value="{{auth()->user()->persona->psicologo->descripcion}}" required></textarea>
         </div>
         <div class="text-center">
-            <div class="offset-sm-3 col-sm-8" id="div_confirmacion2">
+            <div class="text-center" id="div_confirmacion2">
                 <button type="submit" class="btn btn-success mt-4" id="update_datos_comple">{{ __('Guardar Cambios') }}</button>
             </div>
         </div>

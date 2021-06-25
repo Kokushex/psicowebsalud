@@ -31,7 +31,7 @@
                     </div>
                     <input type="text" id="onlinePrecioEdit" name="onlinePrecioEdit" class="form-control mb-2" onkeypress="return soloNumerosPrecioModalidad(event)"  disabled=""/>
                     <div id="mensajePrecioOnline"></div>
-                    <label class="text-bold">Descipción Personal</label>
+                    <label class="text-bold">Descripción Personal</label>
                     <div id="mensajeDescripcionoEdit"></div>
                             <input type="text-area" id="descripcionPersonalEdit" name="descripcionPersonalEdit" class="form-control mb-2"/>
 
