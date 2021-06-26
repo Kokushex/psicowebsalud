@@ -183,6 +183,10 @@ class User extends Authenticatable
 
      }
 
+    /**
+     *Metodo para listar los usuarios en la tabla de gestion de usuarios
+    */
+
     public static function listasCompleta()
     {
 
@@ -233,6 +237,57 @@ class User extends Authenticatable
     }
 
     /**
+     *Metodo para obtener los valores de los datos de los usuarios en gestion de usuarios
+     */
+
+    public static function BuscarValores($id)
+    {
+
+
+        $BuscarValores = DB::table('persona')
+            ->join('paciente', 'paciente.id_persona', '=', 'persona.id_persona')
+            ->join('users', 'users.id_user', '=', 'persona.id_user')
+            ->join('user_has_roles', 'user_has_roles.id_user', '=', 'users.id_user')
+            ->join('roles', 'roles.id_roles', '=', 'user_has_roles.id_rol')
+            ->select(
+                'user_has_roles.id_user_roles as id_user_rol',
+                'users.id_user as user_id',
+                'persona.id_persona as id_persona',
+                'persona.run as rut',
+                'users.email as email',
+                'persona.nombre as nombre',
+                'persona.apellido_paterno as apellido_p',
+                'persona.apellido_materno as apellido_m',
+                'persona.telefono as fono',
+                'roles.name as nombre_rol',
+                'user_has_roles.id_rol as id_roles'
+            )->where('user_has_roles.id_user_roles', $id);
+        $BuscarValores = DB::table('persona')
+            ->join('psicologo', 'psicologo.id_persona', '=', 'persona.id_persona')
+            ->join('users', 'users.id_user', '=', 'persona.id_user')
+            ->join('user_has_roles', 'user_has_roles.id_user', '=', 'users.id_user')
+            ->join('roles', 'roles.id_roles', '=', 'user_has_roles.id_rol')
+            ->select(
+                'user_has_roles.id_user_roles as id_user_rol',
+                'users.id_user as user_id',
+                'persona.id_persona as id_persona',
+                'persona.run as rut',
+                'users.email as email',
+                'persona.nombre as nombre',
+                'persona.apellido_paterno as apellido_p',
+                'persona.apellido_materno as apellido_m',
+                'persona.telefono as fono',
+                'roles.name as nombre_rol',
+                'user_has_roles.id_rol as id_roles'
+            )
+            ->where('user_has_roles.id_user_roles', $id)
+            ->unionAll($BuscarValores)
+            ->first();
+
+        return $BuscarValores;
+    }
+
+    /**
      * metodo que lista los roles
      */
 
@@ -247,6 +302,78 @@ class User extends Authenticatable
             ->where('roles.id', $id)
             ->first();
         return $listaRol;
+    }
+
+    /**
+     * metodo que buscar al usuario si resulta ser un psicologo
+     */
+
+    public static function buscarpsicologo($id)
+    {
+        $buscarpsicologo = DB::table('persona')
+            ->join('psicologo', 'psicologo.id_persona', '=', 'persona.id_persona')
+            ->join('users', 'users.id_user', '=', 'persona.id_user')
+            ->join('user_has_roles', 'user_has_roles.id_user', '=', 'users.id_user')
+            ->join('roles', 'roles.id_roles', '=', 'user_has_roles.id_rol')
+            ->select(
+                'roles.name as nombre_rol',
+                'users.id_user as id_user',
+                'users.email as email',
+                'persona.id_persona as id_per',
+                'persona.nombre as nombre',
+                'persona.apellido_paterno as apellido_p',
+                'persona.apellido_materno as apellido_m',
+                'persona.run as rut',
+                'persona.direccion as direccion',
+                'persona.comuna as comuna',
+                'persona.region as region',
+                'persona.telefono as fono',
+                'persona.fecha_nacimiento as fecha_nac',
+                'persona.genero as genero',
+                'psicologo.id_psicologo as id_psi',
+                'psicologo.grado_academico as grado',
+                'psicologo.casa_academica as casa_academica',
+                'psicologo.especialidad as especialidad'
+
+            )
+            ->where('user_has_roles.id_user_roles', $id)
+            ->first();
+        return $buscarpsicologo;
+    }
+
+    public static function buscarPaciente($id)
+    {
+
+        $buscarpaciente = DB::table('persona')
+            ->join('paciente', 'paciente.id_persona', '=', 'persona.id_persona')
+            ->join('users', 'users.id_user', '=', 'persona.id_user')
+            ->join('user_has_roles', 'user_has_roles.id_user', '=', 'users.id_user')
+            ->join('roles', 'roles.id_roles', '=', 'user_has_roles.id_rol')
+            ->select(
+                'roles.name as nombre_rol',
+                'users.id_user as id_user',
+                'users.email as email',
+                'persona.id_persona as id_per',
+                'persona.nombre as nombre',
+                'persona.apellido_paterno as apellido_p',
+                'persona.apellido_materno as apellido_m',
+                'persona.run as rut',
+                'persona.direccion as direccion',
+                'persona.comuna as comuna',
+                'persona.region as region',
+                'persona.telefono as fono',
+                'persona.fecha_nacimiento as fecha_nac',
+                'persona.genero as genero',
+                'paciente.id_paciente as id_pac',
+                'paciente.escolaridad as escolar',
+                'paciente.ocupacion as ocupacion',
+                'paciente.estado_civil as estado_civ',
+                'paciente.grupo_familiar as grupo_fami',
+                //'paciente.estado_clinico as estado_clin'
+            )
+            ->where('user_has_roles.id_user_roles', $id)
+            ->first();
+        return $buscarpaciente;
     }
 
 

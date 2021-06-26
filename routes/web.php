@@ -176,7 +176,9 @@ Route::get('/gestionUsuarios', [RolesController::class, 'Listar'])->name('ges_us
 Route::get('vistaDetalle/{id_persona}', [RolesController::class, 'Buscar'])->name('detalle.gestion'); //falta
 Route::get('roles/rolesMantenedor/updateRol/{id}', [RolesController::class, 'mandaId'])->name('mandaId');
 Route::post('/gestionUsuarios/{id}', [RolesController::class, 'ban'])->name('ban'); //falta
-//Route::post('/dashboard/dash_admin/gestionUsuarios/{id}','RolesController@ban')->name('ban');
+Route::post('/roles/detallepaciente', [RolesController::class, 'updatePa'])->name('updatePa');
+//Route::post('/dashboard/dash_admin/detallePaciente', 'RolesController@updatePa')->name('updatePa');
+
 
 
 

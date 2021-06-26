@@ -161,8 +161,5 @@
 @endpush
 
 
-
-
-
     @include('layouts.footers.auth')
 @endsection
