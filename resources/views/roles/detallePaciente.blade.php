@@ -74,28 +74,28 @@
                             </div>
 
 
-                                <!--Region-->
-                                <div class="form-group">
+                            <!--Region-->
+                            <div class="form-group">
                                     <label class="form-control-label" for="regiones">{{ __('Region') }}</label>
                                     <select class="form-control select2 select2-hidden-accessible" name="region" id="regiones" >
 
                                     </select>
-                                </div>
+                            </div>
                                 <!--Comuna-->
-                                <div class="form-group">
+                            <div class="form-group">
                                     <label class="form-control-label" for="comunas">{{ __('Comuna') }}</label>
                                     <select class="form-control select2 select2-hidden-accessible"
                                             name="comuna" id="comunas">
 
                                     </select>
-                                </div>
+                            </div>
 
                             <div class="form-group ">
-                            <label for="">Fecha Nacimiento</label>
-                            <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"  min="1930-04-01" max="2017-01-01"
-                                   value="{{$usuario2->fecha_nac ? date('Y-m-d', strtotime($usuario2->fecha_nac)) : ''}}"
-                                   placeholder="Fecha de nacimiento" required>
-                        </div>
+                                <label for="">Fecha Nacimiento</label>
+                                <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"  min="1930-04-01" max="2017-01-01"
+                                       value="{{$usuario2->fecha_nac ? date('Y-m-d', strtotime($usuario2->fecha_nac)) : ''}}"
+                                       placeholder="Fecha de nacimiento" required>
+                            </div>
 
 
 

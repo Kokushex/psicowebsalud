@@ -305,7 +305,7 @@ class User extends Authenticatable
     }
 
     /**
-     * metodo que buscar al usuario si resulta ser un psicologo
+     * metodo que busca al usuario si resulta ser un psicologo
      */
 
     public static function buscarpsicologo($id)
@@ -341,6 +341,10 @@ class User extends Authenticatable
         return $buscarpsicologo;
     }
 
+    /**
+     * metodo que buscar al usuario si resulta ser un paciente
+     */
+
     public static function buscarPaciente($id)
     {
 
@@ -374,6 +378,31 @@ class User extends Authenticatable
             ->where('user_has_roles.id_user_roles', $id)
             ->first();
         return $buscarpaciente;
+    }
+
+    /**
+     * metodo para revisar las solicitudes de psicologos
+     */
+
+    public static function psicologoSolicitud()
+    {
+        $solicitud = DB::table('persona')
+            ->join('psicologo', 'psicologo.id_persona', '=', 'persona.id_persona')
+            ->join('users', 'users.id_user', '=', 'persona.id_user')
+            ->select(
+                'users.email as email',
+                'persona.nombre as nombre',
+                'persona.apellido_paterno as apellido_p',
+                'persona.apellido_materno as apellido_m',
+                'persona.run as rut',
+                'persona.telefono as fono',
+                'psicologo.id_psicologo as id_psi',
+                'psicologo.verificado as verificacion'
+
+            )
+            ->where('psicologo.verificado', '=', 'EN ESPERA')
+            ->get();
+        return $solicitud;
     }
 
 

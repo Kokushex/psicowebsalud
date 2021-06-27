@@ -177,7 +177,13 @@ Route::get('vistaDetalle/{id_persona}', [RolesController::class, 'Buscar'])->nam
 Route::get('roles/rolesMantenedor/updateRol/{id}', [RolesController::class, 'mandaId'])->name('mandaId');
 Route::post('/gestionUsuarios/{id}', [RolesController::class, 'ban'])->name('ban'); //falta
 Route::post('/roles/detallepaciente', [RolesController::class, 'updatePa'])->name('updatePa');
-//Route::post('/dashboard/dash_admin/detallePaciente', 'RolesController@updatePa')->name('updatePa');
+Route::post('/roles/detallePsicologo', [RolesController::class, 'updatePsi'])->name('updatePsi');
+Route::get('/roles', [RolesController::class, 'solicitudes'])->name('solicitudes');
+Route::get('/roles/solicitudes/{id}', [RolesController::class, 'cambioEstado'])->name('estado');
+//Route::get('/dashboard/dash_admin/solicitudes/{id}','RolesController@cambioEstado')->name('estado');
+
+
+
 
 
 

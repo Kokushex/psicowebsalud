@@ -140,6 +140,83 @@ class RolesController extends Controller
         return back()->with('success', 'Datos editados con exito');;
     }
 
+    /**
+     * Metodo para realizar la actualizacion en los campos necesarios para el psicologo
+     */
+
+    public function updatePsi(Request $request)
+    {
+        $iduser = $request->id_user;
+        $idper = $request->id_per;
+        $idpsi = $request->id_psi;
+
+        $correo = $request->email;
+
+        $rut = $request->rut;
+        $telefono = $request->telefono;
+        $comuna = $request->comuna;
+        $region = $request->region;
+        $fecha_nac = $request->fecha_nacimiento;
+        $nombre = $request->nombre;
+        $apellido_p = $request->apellido_paterno;
+        $apellido_m = $request->apellido_materno;
+        $direccion = $request->direccion;
+        $genero = $request->genero;
+
+        $grado = $request->grado;
+        $casa_academica = $request->casa_aca;
+        $especialidad = $request->especial;
+
+
+        $updateuser = User::findOrFail($iduser);
+        $updateuser->email = $correo;
+
+        $updatepsicologo = Psicologo::findOrFail($idpsi);
+        $updatepsicologo->grado_academico = $grado;
+        $updatepsicologo->casa_academica = $casa_academica;
+        $updatepsicologo->especialidad = $especialidad;
+
+        $updatepersona = Persona::findOrFail($idper);
+        $updatepersona->run = $rut;
+        $updatepersona->telefono = $telefono;
+        $updatepersona->comuna = $comuna;
+        $updatepersona->region = $region;
+        $updatepersona->fecha_nacimiento = $fecha_nac;
+        $updatepersona->nombre = $nombre;
+        $updatepersona->apellido_paterno = $apellido_p;
+        $updatepersona->apellido_materno = $apellido_m;
+        $updatepersona->direccion = $direccion;
+        $updatepersona->genero = $genero;
+
+        $updateuser->save();
+        $updatepsicologo->save();
+        $updatepersona->save();
+        return back()->with('success', 'Datos editados con exito');
+    }
+
+    /**
+     * Metodo para
+     */
+
+    public function solicitudes()
+    {
+        $solicitud = User::psicologoSolicitud();
+        return view('roles.solicitudes', compact('solicitud'));
+    }
+
+    /**
+     * Metodo para
+     */
+
+    public function cambioEstado($id)
+    {
+        $updateestado = Psicologo::findOrFail($id);
+        $updateestado->verificado = "VERIFICADO";
+        $updateestado->save();
+        return back()->with('success', 'Estado cambiado');
+    }
+
+
 
 
 }

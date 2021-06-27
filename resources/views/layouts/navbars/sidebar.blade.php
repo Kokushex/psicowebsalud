@@ -141,6 +141,12 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('solicitudes') }}">
+                                    <i class="ni ni-key-25 text-blue"></i> {{ __('Solicitudes Psicologos') }}
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('agenda') }}">
                                     <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Agenda') }}
                                 </a>

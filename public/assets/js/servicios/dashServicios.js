@@ -341,17 +341,19 @@ $(document).on("click", ".btnVer", function () {
             $("#descServicio").html("").append(e[0].descripcion_particular);
             $("#precPresencial").html("").append(e[0].precio_presencial);
             $("#precOnline").html("").append(e[0].precio_online);
+            var precioPresencial = (e[0].precio_presencial);
+            var precioOnline = (e[0].precio_online);
             console.log(e[0].nombre);
             console.log(e[0].descripcion_particular);
-            console.log(e[0].precio_presencial);
-            console.log(e[0].precio_online);
-            if(e[0].presencial > 0){
+            console.log(precioPresencial);
+            console.log(precioOnline);
+            if(precioPresencial > 0){
 
                 $("#dispPresencial").html("").append("Disponible");
             }else{
                 $("#dispPresencial").html("").append("No Disponible");
             }
-            if(e[0].online > 0){
+            if(precioOnline > 0){
 
                 $("#dispOnline").html("").append("Disponible");
             }else{
