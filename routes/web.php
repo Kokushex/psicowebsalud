@@ -175,12 +175,18 @@ Route::get('ordencompra/{ordencompra}', [PagoController::class, 'mostrarDetalle'
 Route::get('/gestionUsuarios', [RolesController::class, 'Listar'])->name('ges_usuarios');
 Route::get('vistaDetalle/{id_persona}', [RolesController::class, 'Buscar'])->name('detalle.gestion'); //falta
 Route::get('roles/rolesMantenedor/updateRol/{id}', [RolesController::class, 'mandaId'])->name('mandaId');
-Route::post('/gestionUsuarios/{id}', [RolesController::class, 'ban'])->name('ban'); //falta
+Route::post('/gestionUsuarios/{id}', [RolesController::class, 'ban'])->name('ban');
+Route::post('/gestionUsuario/{id}', [RolesController::class, 'unban'])->name('unban');
+//Route::post('/dashboard/dash_admin/{id}','RolesController@unban')->name('unban');
+
 Route::post('/roles/detallepaciente', [RolesController::class, 'updatePa'])->name('updatePa');
 Route::post('/roles/detallePsicologo', [RolesController::class, 'updatePsi'])->name('updatePsi');
 Route::get('/roles', [RolesController::class, 'solicitudes'])->name('solicitudes');
 Route::get('/roles/solicitudes/{id}', [RolesController::class, 'cambioEstado'])->name('estado');
 //Route::get('/dashboard/dash_admin/solicitudes/{id}','RolesController@cambioEstado')->name('estado');
+
+//////////////////////////////////////AGENDA//////////////////////////////////////////////////
+Route::get('/agenda/listar', [AgendaController::class, 'listarAgenda']);
 
 
 

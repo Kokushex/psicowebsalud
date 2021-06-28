@@ -506,6 +506,41 @@ class Reserva extends Model
             ->where('psicologo.id_persona', '=', $id)->paginate(5);
     }
 
+    /**
+     * reservasPsicologoEnAgenda
+     *
+     * obtener reservas asociadas al psicólogos desplegadas en el calendario/agenda del psicologo
+     *
+     */
+    public static function reservasPsicologoEnAgenda($user_id)
+    {
+
+        $retorno = Reserva::join('servicio_psicologo', 'servicio_psicologo.id_servicio_psicologo', '=', 'reserva.id_servicio_psicologo')
+            ->join('psicologo', 'psicologo.id_psicologo', '=', 'servicio_psicologo.id_psicologo')
+            ->join('paciente', 'paciente.id_paciente', '=', 'reserva.id_paciente')
+            ->join('persona', 'persona.id_persona', '=', 'paciente.id_persona')
+            ->join('servicio', 'servicio.id_servicio', '=', 'servicio_psicologo.id_servicio')
+            ->select(
+                'reserva.id_reserva',
+                'persona.nombre',
+                'persona.apellido_paterno',
+                'persona.telefono',
+                'servicio.nombre as servicio',
+                'reserva.fecha',
+                'reserva.hora_termino',
+                'reserva.hora_inicio',
+                'reserva.confirmacion',
+                'reserva.precio',
+                'reserva.estado_pago',
+                'reserva.modalidad',
+                'reserva.prevision'
+            )
+            ->where('psicologo.id_persona', '=', $user_id)->where('reserva.estado_pago', '=', 'Pagado')->where('reserva.confirmacion', '=', 'Confirmado')->get();
+
+        return $retorno;
+    }
+
+
 
 
 }

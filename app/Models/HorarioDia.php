@@ -173,7 +173,7 @@ class HorarioDia extends Model
                 ->get();
 
             $hora_inicio = new DateTime( $datosAm[0]->hora_entrada_am);
-            $hora_fin    = new DateTime( $datosAm[0]->hora_salidad_am );
+            $hora_fin    = new DateTime( $datosAm[0]->hora_salida_am );
             $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que muestre $hora_fin
 
             // Si la hora de inicio es superior a la hora fin
@@ -183,6 +183,7 @@ class HorarioDia extends Model
             }
 
             // Establecemos el intervalo en minutos
+
             $intervalo = new DateInterval('PT60M');
 
             // Sacamos los periodos entre las horas
@@ -192,8 +193,8 @@ class HorarioDia extends Model
                 // Guardamos las horas intervalos
                 $horas[] =  $hora->format('H:i:s');
             }
-
             return $horas;
+
 
         }else{
             $datosPm=HorarioDia::select('horario.hora_entrada_pm','horario.hora_salida_pm')

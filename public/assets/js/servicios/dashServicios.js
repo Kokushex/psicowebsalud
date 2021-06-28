@@ -343,10 +343,7 @@ $(document).on("click", ".btnVer", function () {
             $("#precOnline").html("").append(e[0].precio_online);
             var precioPresencial = (e[0].precio_presencial);
             var precioOnline = (e[0].precio_online);
-            console.log(e[0].nombre);
-            console.log(e[0].descripcion_particular);
-            console.log(precioPresencial);
-            console.log(precioOnline);
+
             if(precioPresencial > 0){
 
                 $("#dispPresencial").html("").append("Disponible");

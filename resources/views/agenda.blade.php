@@ -20,25 +20,78 @@
         </div>
     </div>
 
-    <script src="{{asset('assets/fullcalendar/main.js')}}"></script>
+
     <script>
 
-        document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendario');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth'
-        });
-        calendar.render();
-        });
+        window.onload = () => {
+            $(function() {
+                var calendarEl = document.getElementById('calendario');
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    themeSystem: 'bootstrap',
+                    eventClick: function(info) {
+
+                        $('#td_id_res').val(info.event.extendedProps.id_reserva);
+                        $('#txt_telefono').val(info.event.extendedProps.telefono);
+                        $('#txt_prevision').val(info.event.extendedProps.prevision);
+                        $('#txt_precio').val(info.event.extendedProps.precio);
+                        $('#txt_modalidad').val(info.event.extendedProps.modalidad);
+                        $('#txt_hora_inicio').val(info.event.extendedProps.hora_inicio);
+                        $('#txt_fecha_cita').val(info.event.extendedProps.fecha);
+                        $('#txt_hora_termino').val(info.event.extendedProps.hora_termino);
+                        $('#txt_estado_pago').val(info.event.extendedProps.estado_pago);
+                        $('#txt_nombre').val(info.event.extendedProps.nombre);
+                        $('#txt_servicio').val(info.event.extendedProps.servicio);
+
+                        //Desplegamos el modal con la informacion
+                        $('#modal_agenda').modal()
+                    },
+
+                    //funcionalidad para cambiar la zona horaria de fullcalendar
+                    timeZone: 'America/Santiago',
+                    //funcionalidad para cambiar el idioma de fullcalendar
+                    locale: 'es',
+                    //funcionalidad para reemplazar el primer dia en la vista
+                    firstDay: 1,
+                    //Carga de botones en el encabezado del calendario
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                    },
+
+                    navLinks: true,
+
+                    //Carga del array de citas y los dias feriados nacionales a través de google
+                    eventSources: [{
+                        url: '/agenda/listar',
+                    },
+                        {
+                            googleCalendarId: 'es.cl#holiday@group.v.calendar.google.com',
+
+                        }
+                    ],
+                    googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
+
+                });
+                //Renderizado del calendario
+                calendar.render();
+            });
+        }
 
     </script>
-    
-    
-    <div id='calendario'></div>
-    
-    <div class="container mt--10 pb-5"></div>
 
-   
+<div class="container mt--10 pb-5"></div>
+<div class="card-body">
+    <div id='calendario'></div>
+</div>
+
+@include('agenda.modalAgenda')
+
+@push('js')
+    <script src="{{asset('assets/fullcalendar/main.js')}}"></script>
+@endpush
+
 
     @include('layouts.footers.auth')
 @endsection
