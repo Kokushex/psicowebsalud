@@ -32,12 +32,13 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card ">
         <div class="card-body">
             <div id="mensaje"></div>
             <div>
                @foreach($listaPsicologos as $profesional)
-                    <div class="col-md-6 mb-3">
+
+                    <div class="col-md-6 mb-3" style="width: auto; margin: auto auto">
                         <div class="card" style="box-shadow: 1px 2px 10px rgb(77, 77, 77);">
                             <div class="row no-gutters d-flex justify-content-center">
                                 <div class="col-8 align-self-center">
@@ -56,6 +57,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Modalidades
                             <div class="row no-gutters d-flex justify-content-center">
                                 <div class="col-4 text-center">
                                     <div class="card-body p-2 align-self-center">
@@ -79,7 +81,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <!-- VALORACION
+                                 VALORACION
                                 <div class="col-4 text-center">
                                     <div class="card-body p-2 align-self-center">
                                         <h5 class="text-4 bluegray-text mb-0">Estrellas</h5>
@@ -96,8 +98,9 @@
                                         </p>
                                     </div>
                                 </div>
-                                -->
+                                
                             </div>
+                            -->
                         </div>
                     </div>
                 @endforeach

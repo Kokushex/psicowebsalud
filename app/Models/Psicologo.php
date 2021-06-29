@@ -117,7 +117,6 @@ class Psicologo extends Model
     public function datosPsicologoLogeado()
     {
         $user_id = auth()->user()->id;
-        //$paciente = Persona::
         $psicologo = Persona::
         select('id_persona')
             ->with('psicologo')

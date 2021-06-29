@@ -47,15 +47,13 @@
                     <input type="hidden" name="id_user"value="{{$usuario2->id_user}}">
                     <input type="hidden"name="id_per"value="{{$usuario2->id_per}}">
                     <input type="hidden"name="id_pac"value="{{$usuario2->id_pac}}">
+                    <div class="form-group">
+                        <label for="">Correo</label>
+                        <input class="form-control" required maxlength="191" id="email" name="email" 
+                            value="{{$usuario2->email}}" type="email">
+                    </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-6">
-
-                            <div class="form-group">
-                                <label for="">Correo</label>
-                                <input class="form-control" required maxlength="191" id="email" name="email"
-                                       value="{{$usuario2->email}}" type="email">
-
-                            </div>
                             @error('telefono')
                             <strong>{{$message}}</strong>
                             @enderror
@@ -65,65 +63,24 @@
                                        onkeypress="return soloNumerosRut(event)" id="rut" maxlength="20" name="rut"
                                        value="{{$usuario2->rut}}">
                             </div>
-                            <div class="form-group">
-                                <label for="">Telefono</label>
-                                <input type="text" class="form-control" required onkeypress="return soloNumeros(event)"
-                                       maxlength="30" name="telefono" value="{{$usuario2->fono}}"  pattern="[0-9]+">
-
-
-                            </div>
-
-
-                            <!--Region-->
-                            <div class="form-group">
-                                    <label class="form-control-label" for="regiones">{{ __('Region') }}</label>
-                                    <select class="form-control select2 select2-hidden-accessible" name="region" id="regiones" >
-
-                                    </select>
-                            </div>
-                                <!--Comuna-->
-                            <div class="form-group">
-                                    <label class="form-control-label" for="comunas">{{ __('Comuna') }}</label>
-                                    <select class="form-control select2 select2-hidden-accessible"
-                                            name="comuna" id="comunas">
-
-                                    </select>
-                            </div>
-
-                            <div class="form-group ">
-                                <label for="">Fecha Nacimiento</label>
-                                <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"  min="1930-04-01" max="2017-01-01"
-                                       value="{{$usuario2->fecha_nac ? date('Y-m-d', strtotime($usuario2->fecha_nac)) : ''}}"
-                                       placeholder="Fecha de nacimiento" required>
-                            </div>
-
-
-
-
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <!--Nombre-->
                             <div class="form-group">
                                 <label for="">Nombre</label>
                                 <input type="text" class="form-control" required maxlength="191" name="nombre"
-                                       value="{{$usuario2->nombre}}" pattern="[a-zA-Z]+">
+                                       value="{{$usuario2->nombre}}" pattern="[a-zA-Z ]+">
                             </div>
+                            <!--Apellido Paterno-->
                             <div class="form-group">
                                 <label for="">Apellido Paterno</label>
                                 <input type="text" class="form-control" required maxlength="191" name="apellido_paterno"
                                        value="{{$usuario2->apellido_p}}" pattern="[a-zA-Z]+">
                             </div>
+                            <!--Apellido Materno-->
                             <div class="form-group">
                                 <label for="">Apellido Materno</label>
                                 <input type="text" class="form-control" maxlength="191" name="apellido_materno"
                                        value="{{$usuario2->apellido_m}}" required pattern="[a-zA-Z]+">
                             </div>
-
-                            <div class="form-group">
-                                <label for="">Direccion</label>
-                                <input type="text" class="form-control" maxlength="191" name="direccion"
-                                       value="{{$usuario2->direccion}}">
-                            </div>
-
                             <!--Genero-->
                             <div class="form-group">
                                 <label class="form-control-label" for="genero">{{ __('Genero') }}</label>
@@ -137,49 +94,72 @@
                                     <option value="O" {{($usuario2->genero =="O") ? 'selected' : ''}}>
                                         Otro</option>
                                 </select>
-
                             </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <!--Fecha Nacimiento-->
+                            <div class="form-group ">
+                                <label for="">Fecha Nacimiento</label>
+                                <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"  min="1930-04-01" max="2017-01-01"
+                                       value="{{$usuario2->fecha_nac ? date('Y-m-d', strtotime($usuario2->fecha_nac)) : ''}}"
+                                       placeholder="Fecha de nacimiento" required>
+                            </div>
+                            <!--Telefono-->
+                            <div class="form-group">
+                                <label for="">Telefono</label>
+                                <input type="text" class="form-control" required onkeypress="return soloNumeros(event)"
+                                       maxlength="30" name="telefono" value="{{$usuario2->fono}}"  pattern="[0-9]+">
+                            </div>
+                            <!--Direccion-->
+                            <div class="form-group">
+                                <label for="">Direccion</label>
+                                <input type="text" class="form-control" maxlength="191" name="direccion"
+                                       value="{{$usuario2->direccion}}">
+                            </div>                         
+                            <!--Region-->
+                            <div class="form-group">
+                                    <label class="form-control-label" for="regiones">{{ __('Region') }}</label>
+                                    <select class="form-control select2 select2-hidden-accessible" name="region" id="regiones" >
 
+                                    </select>
+                            </div>
+                            <!--Comuna-->
+                            <div class="form-group">
+                                    <label class="form-control-label" for="comunas">{{ __('Comuna') }}</label>
+                                    <select class="form-control select2 select2-hidden-accessible"
+                                            name="comuna" id="comunas">
 
+                                    </select>
+                            </div>
                         </div>
                     </div>
+                    <!--Datos Paciente-->
                     <div class="form-group">
                         <label for="">Rol</label>
                         <input type="text" class="form-control" name="name" readonly value="{{$usuario2->nombre_rol}}">
                     </div>
-
                     <div class="form-group">
-
                         <div class="title"></div>
                         <h3>Datos Paciente</h3>
                     </div>
-
                     <div class="form-group">
                         <label for="">Estado Civil</label>
-                        <input type="text" class="form-control" name="estado_civ"  value="{{$usuario2->estado_civ}}" required pattern="[a-zA-Z]+">
+                        <input type="text" class="form-control" name="estado_civ"  value="{{$usuario2->estado_civ}}" required pattern="[a-zA-Z ]+">
                     </div>
-
-
-
                     <div class="form-group">
                         <label for="">Escolaridad</label>
-                        <input type="text" class="form-control" name="escolar"  value="{{$usuario2->escolar}}" required pattern="[a-zA-Z]+">
+                        <input type="text" class="form-control" name="escolar"  value="{{$usuario2->escolar}}" required pattern="[a-zA-Z ]+">
                     </div>
-
                     <div class="form-group">
                         <label for="">Profesion</label>
-                        <input type="text" class="form-control" name="profesion"  value="{{$usuario2->ocupacion}}" required pattern="[a-zA-Z]+">
+                        <input type="text" class="form-control" name="profesion"  value="{{$usuario2->ocupacion}}" required pattern="[a-zA-Z ]+">
                     </div>
-
                     <div class="form-group">
                         <label for="">Grupo Familiar</label>
                         <input type="text" class="form-control" name="grupo_fam"  value="{{$usuario2->grupo_fami}}">
                     </div>
-
                     <a href="{{route('ges_usuarios')}}" class="btn btn-sm btn-secondary">Volver</a>
                     <button id="update_user" type="submit" class="btn btn-primary float-right" value="Aceptar" style="background-color:#3C4BB7;">Guardar Cambios</button>
-
-
                 </form>
             </div>
         </div>

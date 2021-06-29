@@ -201,21 +201,37 @@ class ReservaController extends Controller
     public function listarReservas()
     {
         try {
+            //Se autentifica el usuario
             if (auth()->user()) {
-                $reservas  = Reserva::getReservasPorPaciente();
-                $socios = Reserva::getAsociadosTitular(auth()->user()->persona->id_persona);
-                session()->put('socios_user', $socios);
-                $paciente = '0';
-                $fecha = '';
-                $modalidad = '0';
-                foreach($socios as $item){
-                    $item->nombre = "Mis ";
-                    $item->apellido_paterno = "Reservas";
-                    break;
+                //Se verifica que usuario sea paciente 
+                if(isset(auth()->user()->persona->paciente->id_paciente)) {
+                    try {
+                        if (auth()->user()) {
+                            $reservas  = Reserva::getReservasPorPaciente();
+                            $socios = Reserva::getAsociadosTitular(auth()->user()->persona->id_persona);
+                            session()->put('socios_user', $socios);
+                            $paciente = '0';
+                            $fecha = '';
+                            $modalidad = '0';
+                            foreach($socios as $item){
+                                $item->nombre = "Mis ";
+                                $item->apellido_paterno = "Reservas";
+                                break;
+                            }
+                            return view('reserva.gestionReserva.listadoPaciente', ['reserva' => $reservas, 'paciente' => $paciente, 'rank' => $reservas->firstItem(), 'estado' => "0", 'socios' => $socios, 'fecha' => $fecha, 'modalidad' => $modalidad]);
+                        }
+                    } catch (\Exception $e) {
+                        print_r($e->getMessage());
+                    }
+                }else{
+                    return view('home');
                 }
-                return view('reserva.gestionReserva.listadoPaciente', ['reserva' => $reservas, 'paciente' => $paciente, 'rank' => $reservas->firstItem(), 'estado' => "0", 'socios' => $socios, 'fecha' => $fecha, 'modalidad' => $modalidad]);
+            }else{
+                //Si no se encuentra en una sesion es devuelto al inicio
+                return view('welcome');
             }
         } catch (\Exception $e) {
+            //Se imprime el error encontrado
             print_r($e->getMessage());
         }
     }
@@ -332,12 +348,28 @@ class ReservaController extends Controller
     public function listarReservasProfesional()
     {
         try {
+            //Se autentifica el usuario
             if (auth()->user()) {
-                $filtro="";
-                $reservas = Reserva::reservasProfesional(auth()->user()->persona->id_persona);
-                return view('reserva.gestionReserva.listadoPsicologo', ['reservas' => $reservas, 'rank' => $reservas->firstItem(),'filtro' => $filtro]);
+                //Se verifica que usuario sea psicologo 
+                if(isset(auth()->user()->persona->psicologo->id_psicologo)) {
+                    try {
+                        if (auth()->user()) {
+                            $filtro="";
+                            $reservas = Reserva::reservasProfesional(auth()->user()->persona->id_persona);
+                            return view('reserva.gestionReserva.listadoPsicologo', ['reservas' => $reservas, 'rank' => $reservas->firstItem(),'filtro' => $filtro]);
+                        }
+                    } catch (\Exception $e) {
+                        print_r($e->getMessage());
+                    }
+                }else{
+                    return view('home');
+                }
+            }else{
+                //Si no se encuentra en una sesion es devuelto al inicio
+                return view('welcome');
             }
         } catch (\Exception $e) {
+            //Se imprime el error encontrado
             print_r($e->getMessage());
         }
     }

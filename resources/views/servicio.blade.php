@@ -18,9 +18,26 @@
                 </svg>
             </div>
     </div>
+    <div class="container mt--10 pb-5"></div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Gestión de Servicios</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Gestión de Servicios</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container" id="supContainer">
-        <div class="card mt-xl-5">
+        <div class="card mb-5">
         <!-- Boton modal -->
         <div class="card tarjeta mt-5">
                 @if(auth()->user()->persona->psicologo->verificado =='EN ESPERA')

@@ -15,17 +15,6 @@
                     <div class="card-header bg-transparent pb-5">
                         @if (Route::currentRouteName() == 'login_paciente')
                             <h3 class="box-title mt-5 mb-0 text-center">Iniciar sesión Paciente</h3>
-                            <div class="text-muted text-center mt-2 mb-3"><small>{{ __('Iniciar sesión con') }}</small></div>
-                            <div class="btn-wrapper text-center">
-                                <a href="#" class="btn btn-neutral btn-icon">
-                                    <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/facebook.svg"></span>
-                                    <span class="btn-inner--text">{{ __('Facebook') }}</span>
-                                </a>
-                                <a href="#" class="btn btn-neutral btn-icon">
-                                    <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
-                                    <span class="btn-inner--text">{{ __('Google') }}</span>
-                                </a>
-                            </div>
                         @else
                             <h3 class="box-title  mt-5 mb-0 text-center">Iniciar sesión Psicólogo</h3>
                             <!-- @include('auth.register_confirmacion') -->
@@ -35,14 +24,10 @@
                         <div class="text-center text-muted mb-4">
                             <small>
                                     Crea una nueva cuenta o inicia sesión con tus credenciales:
-                                    <br>
-                                    Correo: <strong>correo@email.com</strong> Contraseña: <strong>secret</strong>
                             </small>
                         </div>
                         @if (session('status'))
-
                             <script>
-
                                 toastr.options = {
                                     "closeButton": true,
                                     "debug": false,
@@ -61,12 +46,9 @@
                                 }
                                     toastr["error"]('{{ session('status') }}', "Advertencia")
                             </script>
-
-
                         @endif
                         <form class="needs-validation" method="POST" action="{{ route('logear', $tipo) }}">
                             @csrf
-
                             <div class="form-group mb-3">
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
@@ -92,12 +74,14 @@
                                             </span>
                                 @enderror
                             </div>
+                            <!-- 
                             <div class="custom-control custom-control-alternative custom-checkbox">
                                 <input class="custom-control-input" name="remember" id="customCheckLogin" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheckLogin">
                                     <span class="text-muted">{{ __('Recordarme') }}</span>
                                 </label>
                             </div>
+                            -->
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary my-4">{{ __('Iniciar sesión') }}</button>
                             </div>

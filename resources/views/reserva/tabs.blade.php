@@ -11,7 +11,6 @@
             <div id="datos_rut">
                 <form action="">
                     <div class="form-group row pl-3 pr-3 mb-3">
-                        <label class="col-md-12 text-5 darkgray-text text-bold">¿Para quién es la Reserva?</label>
                         <div class="col-md-12">
                             <input type="hidden" id="id_paciente_titular" @if (auth()->user())
                             value="{{$usuarioLogeado->id_paciente}}"
@@ -19,12 +18,9 @@
                             <input type="hidden" name="id_paciente_seleccionado" id="id_paciente_seleccionado" @if (auth()->user())
                             value="{{$usuarioLogeado->id_paciente}}"
                                 @endif>
-                            <select name="slFiltro" class="form-control" id="slFiltro">
-                                <option value="1">Para Mí</option>
-                                <option value="2">Para un Paciente Atendido con Anterioridad</option>
-                                <option value="3">Para un Paciente Nuevo</option>
-                                {{-- <option value="2">Para un tercero</option> ----}}
-                            </select>
+                            <input type="hidden" id="slFiltro" @if (auth()->user())
+                            value="1"
+                                @endif>
                         </div>
                     </div>
                     <div class="form-group row pl-3 pr-3 mb-3" id="contenedor_carga" style="display: none">

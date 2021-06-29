@@ -1,3 +1,7 @@
+@php
+    $user=session()->get('user');
+    $rol=session()->get('rol');
+@endphp
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
@@ -26,18 +30,7 @@
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('Mi perfil') }}</span>
                     </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-settings-gear-65"></i>
-                        <span>{{ __('Configuraciones') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-calendar-grid-58"></i>
-                        <span>{{ __('Actividad') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-support-16"></i>
-                        <span>{{ __('Soporte') }}</span>
-                    </a>
+
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -65,17 +58,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Form -->
-            <form class="mt-4 mb-3 d-md-none">
-                <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="{{ __('Search') }}" aria-label="Search">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <span class="fa fa-search"></span>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            
             <!-- Navigation -->
             <ul class="navbar-nav">
 
@@ -100,12 +83,15 @@
                                 </a>
                             </li>
 
+                            
                             <!--tabla administrador-->
+                            <!--
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.index') }}">
                                     {{ __('User Management') }}
                                 </a>
                             </li>
+                            -->
 
                         </ul>
                     </div>
@@ -122,58 +108,61 @@
                     <div class="collapse show" id="navbar-area_trabajo">
                         <ul class="nav nav-sm flex-column">
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('horario') }}">
-                                    <i class="ni ni-watch-time text-blue"></i> {{ __('Horario') }}
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('servicio') }}">
-                                     <i class="ni ni-bullet-list-67 text-blue"></i> {{ __('Servicios') }}
-                                </a>
-                             </li>
-
-                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('ges_usuarios') }}">
-                                    <i class="ni ni-key-25 text-blue"></i> {{ __('Roles') }}
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('solicitudes') }}">
-                                    <i class="ni ni-key-25 text-blue"></i> {{ __('Solicitudes Psicologos') }}
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('agenda') }}">
-                                    <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Agenda') }}
-                                </a>
-                            </li>
-
+                            @if($rol==1)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('reserva.list') }}">
                                     <i class="ni ni-book-bookmark text-blue"></i> {{ __('Reserva') }}
                                 </a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('reserva.listar') }}">
                                     <i class="ni ni-book-bookmark text-blue"></i> {{ __('Lista de Reservas') }}
                                 </a>
                             </li>
+                            @endif
 
+                            @if($rol==2)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('horario') }}">
+                                    <i class="ni ni-watch-time text-blue"></i> {{ __('Horario') }}
+                                </a>
+                            </li>                    
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('servicio') }}">
+                                     <i class="ni ni-bullet-list-67 text-blue"></i> {{ __('Servicios') }}
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('reserva.listarReservasPsicologos') }}">
                                     <i class="ni ni-book-bookmark text-blue"></i> {{ __('Lista de Reservas Psicologo') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('agenda') }}">
+                                    <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Agenda') }}
+                                </a>
+                            </li>
+                            @endif
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('ges_usuarios') }}">
+                                    <i class="ni ni-key-25 text-blue"></i> {{ __('Roles') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('solicitudes') }}">
+                                    <i class="ni ni-key-25 text-blue"></i> {{ __('Solicitudes Psicologos') }}
+                                </a>
+                            </li>
+                            <!--@if($rol==3)-->
+                            <!--@endif-->
 
                         </ul>
                     </div>
                 </li>
 
+
+<!--
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('icons') }}">
                         <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
@@ -191,7 +180,7 @@
                     </a>
                 </li>
 
-<!--
+
                 <li class="nav-item mb-5 mr-4 ml-4 pl-1 bg-danger" style="position: absolute; bottom: 0;">
                     <a class="nav-link text-white" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">
                         <i class="ni ni-cloud-download-95"></i> Upgrade to PRO

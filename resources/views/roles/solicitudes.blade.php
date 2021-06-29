@@ -65,6 +65,7 @@
                         <th>Telefono</th>
                         <th>Estado</th>
                         <th>Cambiar estado</th>
+                        <th>Cambiar estado2</th>
 
 
                     </tr>
@@ -81,6 +82,8 @@
                             <td>{{ $fila->verificacion }}</td>
                             <td><a class="btn btn-success" href="{{ route('estado', $fila->id_psi) }}"><i
                                         class="fas fa-edit"></i></a></td>
+                            <td><a class="btn btn-success" type="submit" class="btnVerificado" onclick="fn_validar();">This shit<i
+                                        class="fas fa-edit"></i></a></td>            
                         </tr>
                     @endforeach
                     </tbody>
@@ -115,6 +118,9 @@
         });
 
     </script>
+
+    <!--Solicitud-->
+    <script src="{{asset('assets/js/solicitudes/psiSolicitud.js')}}"></script>
 @endpush
 
 @endsection
