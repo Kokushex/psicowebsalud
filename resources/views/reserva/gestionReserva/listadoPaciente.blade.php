@@ -32,7 +32,7 @@
 
     @push('js')
         <!--Librerias de Datatables-->
-
+        <link href="{{asset('assets/css/reserva/table.css')}}" rel="stylesheet">
 
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js">
@@ -46,6 +46,6 @@
 
         <script src="{{asset('assets/js/reserva/funciones_lista_reservas.js')}}"></script>
 
-        <link href="{{asset('assets/css/reserva/table.css')}}" rel="stylesheet">
+
     @endpush
 @endsection

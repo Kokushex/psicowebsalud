@@ -1,4 +1,3 @@
-
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -7,7 +6,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Perfil</a></li>
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                         <li class="breadcrumb-item active">Lista Reserva</li>
                     </ol>
                 </div>
@@ -37,12 +36,12 @@
                         <tr class="tabla_datos_solicitados">
 
                             <th></th>
-                            <th >Fecha</th>
-                            <th >Hora inicio</th>
-                            <th >Modalidad</th>
-                            <th >Estado Reserva</th>
-                            <th >Estado de Pago</th>
-                            <th >Ver</th>
+                            <th>Fecha</th>
+                            <th>Hora inicio</th>
+                            <th>Modalidad</th>
+                            <th>Estado Reserva</th>
+                            <th>Estado de Pago</th>
+                            <th>Ver</th>
                             @csrf
                         </tr>
                         </thead>
@@ -51,7 +50,7 @@
 
                         @foreach ($reserva as $reservas)
                             <tr class="text-lg-center">
-                                <th >{{$rank++}}</th>
+                                <th>{{$rank++}}</th>
                                 <td id="td_fecha{{$reservas->id_reserva}}">{{ date('d-m-Y', strtotime($reservas->fecha))}}</td>
                                 <td id="td_hora_inicio{{$reservas->id_reserva}}">{{ date('H:i', strtotime($reservas->hora_inicio)) }}</td>
                                 <td>{{$reservas->modalidad}}</td>
@@ -100,7 +99,6 @@
                             Sin reservas que mostrar.
                         </div>
                     @endif
-
                 </div>
                     <ul class="dataTables_paginate" style="display: table" >
                         {!! $reserva->appends(request()->query())->links() !!}

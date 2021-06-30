@@ -117,8 +117,6 @@ class Pago extends Model
 
 
         return Pago::join('users','users.id_user','=','pago.id_user')
-          //  ->join('paciente','paciente.id_user','=','users.id')
-          //  ->join('persona','persona.id_persona','=','paciente.id_persona')
               ->join('persona','persona.id_user','=','users.id_user')
               ->join('paciente','paciente.id_persona','=','persona.id_persona')
 

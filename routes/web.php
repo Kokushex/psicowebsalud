@@ -167,8 +167,10 @@ Route::get('/getCentroServicio', [ReservaController::class, 'getCentroServicio']
 //////////////////////////////////////PAGO////////////////////////////////////////////////////
 Route::get('/checkout', [WebPayRestController::class, 'createdTransaction'])->name('pasarela.checkout');
 Route::get('/return', [WebPayRestController::class, 'commitedTransaction'])->name('return');
-Route::get('ordencompra/{ordencompra}', [PagoController::class, 'mostrarDetalle'])->name('pago.ordenCompra');
-//Route::get('ordencompra/{ordencompra}', 'PagoController@mostrarDetalle')->name('pasarela.ordenCompra');
+Route::get('pago/ordencompra/{ordencompra}', [PagoController::class, 'mostrarDetalle'])->name('pago.ordencompra');
+Route::get('/descargarDetalle/{ordencompra}', [PagoController::class, 'descargarDetalle'])->name('pago.pagoDetalle');
+//Route::get('descargardetalle/{ordencompra}', 'PagoController@descargarDetalle')->name('pasarela.descargarDetalle');
+
 
 //////////////////////////////////////ROLES///////////////////////////////////////////////
 Route::get('/gestionUsuarios', [RolesController::class, 'Listar'])->name('ges_usuarios');

@@ -213,20 +213,7 @@ class Reserva extends Model
             ->join('paciente', 'paciente.id_paciente', '=', 'reserva.id_paciente')
             ->where('paciente.id_persona', '=', auth()->user()->persona->id_persona)
             ->orderBy('fecha', 'desc')
-            ->orderBy('hora_inicio', 'desc')->paginate(5);
-    }
-
-    /**
-     * getAsociadosTitular
-     * Método para realizar el llenado de la etiqueta select, para realizar los filtros por socios
-     *
-     */
-    public static function getAsociadosTitular($id_persona)
-    {
-        $socios = Persona::join('paciente', 'paciente.id_persona', '=', 'persona.id_persona')
-            ->select('persona.nombre', 'persona.apellido_paterno', 'persona.run', 'paciente.id_paciente')
-            ->where('paciente.id_persona', '=', $id_persona)->get();
-        return $socios;
+            ->orderBy('hora_inicio', 'desc')->simplePaginate(5);
     }
 
     /**
@@ -364,7 +351,8 @@ class Reserva extends Model
                 'modalidad',
                 'precio',
                 'persona.nombre',
-                'persona.apellido_paterno'
+                'persona.apellido_paterno',
+                'persona.direccion as centro'
             )
             ->where('reserva.id_reserva', '=', $id_reserva)->first();
     }
@@ -495,7 +483,7 @@ class Reserva extends Model
             ->join('persona', 'persona.id_persona', '=', 'paciente.id_persona')
             ->join('servicio', 'servicio.id_servicio', '=', 'servicio_psicologo.id_servicio')
             ->select('persona.run', 'persona.nombre', 'persona.apellido_paterno', 'servicio.nombre as servicio', 'reserva.fecha', 'reserva.hora_inicio', 'reserva.confirmacion', 'reserva.estado_pago', 'reserva.modalidad')
-            ->where('psicologo.id_persona', '=', $id)->paginate(5);
+            ->where('psicologo.id_persona', '=', $id)->simplePaginate(5);
     }
 
     /**
@@ -531,8 +519,5 @@ class Reserva extends Model
 
         return $retorno;
     }
-
-
-
 
 }

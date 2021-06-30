@@ -4,6 +4,7 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property int $id_detalle_pago
@@ -88,6 +89,34 @@ class DetallePago extends Model
 
         // retorno de pago utilizado en el controlador que lo utiliza en WebPayRestController
         return $pago;
+
+    }
+
+
+    /**
+     * getDetallePago
+     *
+     * método para obtener detalles del pago de la reserva
+     *
+     */
+    public static function getDetallePago($orden_compra){
+
+        $pago       = Pago::where('orden_compra','=', $orden_compra)->first();
+        $detalle    = DetallePago::where('id_pago','=', $pago->id_pago)->first();
+        $reserva    = Reserva::findOrFail($detalle->id_reserva);
+        $servicio   = Servicio::join('servicio_psicologo','servicio_psicologo.id_servicio','=','servicio.id_servicio')
+            ->join('reserva','reserva.id_servicio_psicologo','=','servicio_psicologo.id_servicio_psicologo')
+            ->select('servicio.nombre','servicio.descripcion')->where('servicio_psicologo.id_servicio_psicologo','=',$reserva->id_servicio_psicologo)->first();
+
+        $user       = Pago::datosDePagoUsuario(auth()->user()->id_user);
+
+        $paciente   = Paciente::getDatosPaciente($reserva->id_reserva);
+
+        // almacen de los objetos en un arreglo
+        $detalles =  array("pago" => $pago, "detalle" => $detalle, "reserva" => $reserva,
+            "servicio" => $servicio, "user" => $user, 'paciente'=>$paciente);
+
+        return $detalles;
 
     }
 }

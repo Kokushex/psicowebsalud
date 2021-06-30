@@ -165,7 +165,7 @@ class Psicologo extends Model
                 //'experiencia' => $request->experiencia,
             ]);
     }
-
+/*
     //metodo que obtiene lista de psicologos
     public static function getListaDePsicologos($filtro = null)
     {
@@ -199,7 +199,7 @@ class Psicologo extends Model
 
         return $psicologos;
     }
-
+*/
     //metodo obtención modalidades del psicologo
     public static function getModalidades($psicologos)
     {

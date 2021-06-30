@@ -136,12 +136,8 @@ $("#nextBtn").on('click', function () {
 
             $("#nextBtn").hide();
 
+            $("#nextBtn").before('<button type="button" id="submit_1" onclick="comprobate()" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Ir a Pagar</button>');
 
-            if ($("#hidenPrevision").val() == "") {
-                $("#nextBtn").before('<button type="button" id="submit_1" onclick="comprobate()" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Ir a Pagar</button>');
-            } else {
-                $("#nextBtn").before('<button type="button" onclick="comprobate()" id="submit_2" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Reservar</button>');
-            }
 
         } else {
             $("#submit_1").remove();

@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use \stdClass;
-
 /**
  * @property int $id_paciente
  * @property int $id_persona
@@ -141,4 +141,28 @@ class Paciente extends Model
 
         return $usuarioLogeado;
     }
+
+    /**
+     * getDatosPaciente
+     *
+     * obtencion de datos generales del paciente de una determinada reserva
+     *
+     */
+    public static function getDatosPaciente($id_reserva){
+
+        $paciente = Paciente::join('persona','persona.id_persona','=','paciente.id_persona')
+            ->join('reserva','reserva.id_paciente','=','paciente.id_paciente')
+            ->where('reserva.id_reserva','=',$id_reserva)
+            ->select('persona.nombre','persona.apellido_paterno','persona.apellido_materno',
+                'persona.fecha_nacimiento as edad')
+            ->first();
+
+        $fecha = Carbon::parse($paciente->edad); //captura de edad
+        $edadCalculada = Carbon::now()->diffInYears($fecha); //calculo de edad
+        $paciente->edad = $edadCalculada;
+
+        return $paciente;
+
+    }
+
 }
