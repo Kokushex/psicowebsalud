@@ -63,16 +63,12 @@
                         showConfirmButton: false,
                         showCancelButton: true,
                         cancelButtonColor: '#3b83ae',
-
-
                     });
                 }
-
             </script>
+
             <link href="{{ asset('assets/css/acordeon.css') }}" rel="stylesheet">
             <script src="{{ asset('assets/js/acordeon.js') }}"></script>
-
-
 
     @endpush
 

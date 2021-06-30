@@ -14,7 +14,7 @@
                                 <div class='desc'><strong>Descripción: </strong>{{ $servicio->descripcion }}</div>
                                 <div><strong id="dura">Duración:</strong> 60 Minutos<span></span></div>
                                 <div><strong>Modalidad: </strong>{{ $servicio->id_servicio }}</div>
-                                <div><strong>Valor:</strong> ${{ $servicio->precio_particular }}</div>
+
                             </div>
 
                         </div>

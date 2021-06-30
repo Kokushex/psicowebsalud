@@ -111,6 +111,8 @@ class Psicologo extends Model
         $psicologo->imagen_titulo = '';
         $psicologo->save();
 
+        $direccionAtencion = DireccionAtencion::generarDireccion();
+
         return $psicologo;
     }
 
@@ -319,5 +321,16 @@ class Psicologo extends Model
             ->where('id_psicologo', $psicologo)
             ->get();
     }
+
+    public static function getCentroServicio($id)
+    {
+        $id_psicologo =ServicioPsicologo::findOrFail($id,['id_psicologo']);
+        $id_persona = Psicologo::findOrFail($id_psicologo->id_psicologo,['id_persona']);
+        $id_user = Persona::findOrFail($id_persona->id_persona,['id_user']);
+        $direccion = DireccionAtencion::select('direccion')->where('id_user', $id_user->id_user)->first();
+        return $direccion->direccion;
+
+    }
+
 }
 

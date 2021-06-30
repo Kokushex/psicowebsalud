@@ -36,76 +36,7 @@ var gobal_id_user_psicologo = 0;
 var global_id_paciente = 0;
 
 
-//evento que activa la paginación ajax al darle click al número de la página o dar boton siguiente
-$(document).on('click', '.pagination a', function (event) {
 
-    event.preventDefault();
-    var page = $(this).attr('href').split('page=')[1];
-    pagination(page);
-});
-
-
-//paginación ajax
-function pagination(page) {
-
-    configPaginacionAjax(page);
-
-}
-
-$("#spsocios").on('change', function () {
-    configPaginacionAjax("1");
-});
-$("#estadopago").on('change', function () {
-    configPaginacionAjax("1");
-});
-$("#filtro_fecha").on('change', function () {
-    configPaginacionAjax("1");
-});
-$("#modalidad").on('change', function () {
-    configPaginacionAjax("1");
-});
-
-//restaura a estado inicial los filtros de la lista de reservas
-function limpiarFiltros(){
-    document.getElementById("form_reservas").reset();
-    configPaginacionAjax("1");
-}
-
-// configuración de la paginación ajax
-function configPaginacionAjax(page){
-// recepción de parámetros si la paginación requiere considerar de parámetros
-    estado = $("#estadopago").val();
-    paciente = $("#spsocios").val();
-    fecha = $("#filtro_fecha").val();
-    modalidad = $("#modalidad").val();
-    var validador = false;
-    if(estado != "0"){
-        validador = true;
-    }
-    if(paciente != "0"){
-        validador = true;
-    }
-    if(fecha != ''){
-        validador = true;
-    }
-    if(modalidad != "0"){
-        validador = true;
-    }
-    if(!validador){
-
-        $("#btnQuitarFiltro").fadeOut(1450);
-    }else{
-        $("#btnQuitarFiltro").fadeIn(1450);
-
-    }
-    $.ajax({
-        url: "/listar/page?page="+page+"&estadopago="+estado+"&spsocios="+paciente+"&fecha="+fecha+"&modalidad="+modalidad,
-        success: function (data) {
-            $("#table_data").html(data);
-
-        }
-    })
-}
 
 //Función encargada de notificar al usuario logueado, tenemos 2 casos: Al  realizar una reserva con previsión y al tener reservas pendientes de confirmación.
 function mensaje_entrada_lista(cantidad) {

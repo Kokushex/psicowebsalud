@@ -220,6 +220,8 @@
                 </tr>
                 </tbody>
             </table>
-            <label><input class="" type="checkbox" id="condicionesid" name="condiciones"> si acepto los terminos y condiciones. <a href="" data-dismiss="modal" data-toggle="modal" data-target="#condiciones">Leer mas</a> </label><br>
+
+            <label><input class="" type="checkbox" id="condicionesid" name="condiciones"> si acepto los terminos y condiciones. <a href="" data-toggle="modal" data-target="#condiciones">Leer mas</a> </label><br>
+
         </div>
     </div>

@@ -95,6 +95,7 @@ class WebPayRestController extends Controller
                     $numero_tarjeta = $response->getCardDetail();
                     $numero_tarjeta = $numero_tarjeta['card_number'];
 
+
                     $fecha = $fechaTransaccion;
                     $tipo_pago = "";
                     $cantidad_cuotas = "";

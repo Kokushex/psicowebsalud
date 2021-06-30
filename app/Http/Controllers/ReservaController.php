@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Reserva;
 use App\Models\Paciente;
 use App\Models\Persona;
+use App\Models\Psicologo;
 use App\Models\Servicio;
 use App\Models\HorarioDia;
 use App\Models\ModalidadServicio;
 use App\Models\ServicioPrevision;
 use App\Models\PrecioModalidad;
+use App\Mail\Testmail;
+
+use App\Models\ServicioPsicologo;
 use Carbon\Carbon;
 
 
@@ -22,7 +27,7 @@ class ReservaController extends Controller
         return view('reserva');
     }
 
-
+//metodo para crear la reserva
     public function store(Request $request)
     {
         //validación de inputs venidos desde el formulario
@@ -190,33 +195,7 @@ class ReservaController extends Controller
     {
         if ($request->ajax()) {
 
-            return json_encode(Persona::getCentro($request->id));
-        }
-    }
-
-    /**
-     *  Recupera los datos de las reservas de un usuario desde la base de datos.
-     *  Retorna a la vista y los objetos necesarios para ser mostrados.
-     */
-    public function listarReservas()
-    {
-        try {
-            if (auth()->user()) {
-                $reservas  = Reserva::getReservasPorPaciente();
-                $socios = Reserva::getAsociadosTitular(auth()->user()->persona->id_persona);
-                session()->put('socios_user', $socios);
-                $paciente = '0';
-                $fecha = '';
-                $modalidad = '0';
-                foreach($socios as $item){
-                    $item->nombre = "Mis ";
-                    $item->apellido_paterno = "Reservas";
-                    break;
-                }
-                return view('reserva.gestionReserva.listadoPaciente', ['reserva' => $reservas, 'paciente' => $paciente, 'rank' => $reservas->firstItem(), 'estado' => "0", 'socios' => $socios, 'fecha' => $fecha, 'modalidad' => $modalidad]);
-            }
-        } catch (\Exception $e) {
-            print_r($e->getMessage());
+            return json_encode(Psicologo::getCentroServicio($request->id));
         }
     }
 
@@ -342,6 +321,52 @@ class ReservaController extends Controller
         }
     }
 
+    /**
+     *  Recupera los datos de las reservas de un usuario desde la base de datos.
+     *  Retorna a la vista y los objetos necesarios para ser mostrados.
+     */
+
+    public function listarReservas()
+    {
+        try {
+            if (auth()->user()) {
+                $reservas = Reserva::getReservasPorPaciente(auth()->user()->persona->id_persona);
+                $paciente = '0';
+                $fecha = '';
+                $modalidad = '0';
+                return view('reserva.gestionReserva.listadoPaciente',
+                    ['reserva' => $reservas, 'paciente' => $paciente, 'rank' => $reservas->firstItem(), 'estado' => "0", 'fecha' => $fecha, 'modalidad' => $modalidad]);
+
+
+            }
+        } catch (\Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    /*
+    public function listarReservas()
+    {
+        try {
+            if (auth()->user()) {
+                $reservas  = Reserva::getReservasPorPaciente();
+                $socios = Reserva::getAsociadosTitular(auth()->user()->persona->id_persona);
+                session()->put('socios_user', $socios);
+                $paciente = '0';
+                $fecha = '';
+                $modalidad = '0';
+                foreach($socios as $item){
+                    $item->nombre = "Mis ";
+                    $item->apellido_paterno = "Reservas";
+                    break;
+                }
+                return view('reserva.gestionReserva.listadoPaciente', ['reserva' => $reservas, 'paciente' => $paciente, 'rank' => $reservas->firstItem(), 'estado' => "0", 'socios' => $socios, 'fecha' => $fecha, 'modalidad' => $modalidad]);
+            }
+        } catch (\Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+*/
 
 
 }

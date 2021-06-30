@@ -458,17 +458,9 @@ class Reserva extends Model
 
             // si faltan más de 12 horas
             if ($retorno_anos > 0 || $retorno_meses > 0 || $retorno_dias > 0 || $retorno_horas >= 12) {
-
-                //
-                // TRABAJAR REEMBOLSO AQUI
-                //
             }
 
-            // se obtiene el email de esta manera porque es posible que la cancelación +
-            // sea realizada por el psicólogo
 
-            //$paciente = Paciente::findOrFail($reserva->id_paciente);
-            //$usuario_paciente = User::findOrFail($paciente->id_user);
 
             $paciente = Paciente::findOrFail($reserva->id_paciente);
             $persona_paciente= Persona::findOrFail($paciente->id_persona);

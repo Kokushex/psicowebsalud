@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\DireccionAtencion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -86,7 +87,13 @@ class Persona extends Model
     }
 //Cambiar por update persona
     public function updatePersona($request){
-    $persona = new Persona();
+
+
+        if (isset(auth()->user()->persona->psicologo)) {
+            $direccionAtencion = DireccionAtencion::updateDireccionAtencion($request);
+        }
+
+        $persona = new Persona();
 
     return $persona = Persona::where('id_user', Auth::id())
         ->update([
@@ -101,36 +108,17 @@ class Persona extends Model
             'comuna' => $request->comuna,
             'direccion' => $request->direccion,
         ]);
+
     }
-
-
         public static function generarPersona(){
+
         $persona = new Persona();
         $persona->id_user = Auth::id();
         $persona->save();
         return $persona;
+
     }
 
 
-    /**
-     * get
-     *
-     * obtener el nombre del centro donde se impartirá el servicio
-     *
-     */
-    public static function getCentro($id_servicio_psicologo)
-    {
-        return Persona::join('servicio_psicologo', 'servicio_psicologo.id_psicologo', '=', 'psicologo.id_psicologo')
-            ->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')
-            ->where('servicio_psicologo.id_servicio_psicologo', '=', $id_servicio_psicologo)
-            ->select('persona.direccion')->first()->nombre;
-    }
-}
-/*join('modalidad_servicio','modalidad_servicio.id_centro','=','centro.id_centro')
-            ->join('servicio_psicologo','servicio_psicologo.id_modalidad_servicio','=','modalidad_servicio.id_modalidad_servicio')
-            ->where('servicio_psicologo.id_servicio_psicologo','=', $id_servicio_psicologo)
-            ->select('centro.nombre')->first()->nombre;
-}
 
 }
-*/

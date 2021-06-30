@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\UserHasRoles;
 use App\Models\ModalidadServicio;
 use App\Models\ServicioPsicologo;
+use App\Models\DireccionAtencion;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -147,7 +148,7 @@ class ProfileController extends Controller
     }
 
     public function updatePaciente(Request $request)
-    {   
+    {
         $validated = $request->validate([
             'escolaridad' => 'bail|required|regex:/^[a-zA-Z ]*$/|max:191',
             'ocupacion' => 'bail|required|regex:/^[a-zA-Z .-]*$/|max:191',

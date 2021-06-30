@@ -154,14 +154,13 @@ Route::get('/horarioPaciente', [ReservaController::class, 'horarioPaciente']);
 Route::get('comprobacionDiaHabilitado', [ReservaController::class, 'comprobacionDiaHabilitado'] );
 Route::get('comprobacionYaTomadas', [ReservaController::class, 'comprobacionReservasTomadas']);
 Route::get('/getResCantidadPendientes', [ReservaController::class, 'getResCantidadPendientes']);
-//Route::get('/getResCantidadPendientes', 'ReservaController@getResCantidadPendientes');
 Route::get('/llenarModalReservas', [ReservaController::class, 'llenarModalReservas']);
 Route::get('/validarFechaHora', [ReservaController::class, 'validarFechaHora']);
 Route::get('/actualizarReserva', [ReservaController::class, 'actualizarReserva']);
-//Route::get('/actualizarReserva', 'ReservaController@actualizarReserva');
 
 
-Route::get('/getCentro', [ReservaController::class, 'getCentroServicio']);
+
+Route::get('/getCentroServicio', [ReservaController::class, 'getCentroServicio']);
 
   //  Route::get('/getCentroServicio', 'ReservaController@getCentroServicio');
 

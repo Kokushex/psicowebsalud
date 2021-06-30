@@ -121,28 +121,30 @@ $("#nextBtn").on('click', function () {
 
     flag += 1;
     document.getElementById("nextBtn").disabled = true;
-
     if ($("#hidenHoras").val() == "si") {
         document.getElementById("nextBtn").disabled = false;
 
     }
 
     if (flag == 2) {
+
         document.getElementById("nextBtn").disabled = true;
+
         let checkCondiciones = document.getElementById("condicionesid");
 
         if (checkCondiciones.checked) {
 
             $("#nextBtn").hide();
 
+
             if ($("#hidenPrevision").val() == "") {
-                $("#nextBtn").before('<button type="submit" id="submit" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Ir a Pagar</button>');
+                $("#nextBtn").before('<button type="button" id="submit_1" onclick="comprobate()" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Ir a Pagar</button>');
             } else {
-                $("#nextBtn").before('<button type="submit" id="submit" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Reservar</button>');
+                $("#nextBtn").before('<button type="button" onclick="comprobate()" id="submit_2" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Reservar</button>');
             }
 
         } else {
-            $("#submit").remove();
+            $("#submit_1").remove();
             $("#nextBtn").show();
         }
 
@@ -568,17 +570,20 @@ $("#servicio_id").on('change', function () {
             *
             * */
             if (tipoModalidad == "Presencial") {
-                var $centro = $('<div id="centro_id" class="mt-1" ><label for="centro" class="text-5 darkgray-text text-bold">Centro Atención</label></div>');
+                var $centro = $('<div id="centro_id" class="mt-1" ><label for="centro" class="text-5 darkgray-text text-bold">Direccion de Atencion</label></div>');
                 $("#servicios").append($centro);
                 $.ajax({
                     type: "get",
                     url: "/getCentroServicio",
+
                     data: {
                         id: servicio_id
                     }
+
                 })
                     .done(function (data) {
                         var datos = JSON.parse(data);
+                        console.log(datos);
                         $("#centro_id").append($('<input id="datosCentro" type="text" readonly="true" class="form-control text-4 bluegray-text">'));
                         var nombre = document.getElementById('datosCentro');
                         nombre.value = datos;
