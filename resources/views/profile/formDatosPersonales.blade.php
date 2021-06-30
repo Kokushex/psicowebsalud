@@ -87,15 +87,27 @@
             </div>
             <!--Direccion-->
             <div class="form-group{{ $errors->has('direccion') ? ' has-danger' : '' }} col-6">
-                <label class="form-control-label" for="direccion">{{ __('Direccion') }}</label>
-                <input type="text" name="direccion" id="direccion"
-                       class="form-control form-control-alternative{{ $errors->has('direccion') ? ' is-invalid' : '' }}" placeholder="{{ __('Direccion') }}" value="{{ auth()->user()->persona->direccion }}" required>
+                @if($rol == 2)
+                    <label class="form-control-label" for="direccion">{{ __('Direccion de atención') }}</label>
+                    <input type="text" name="direccion" id="direccion"
+                        class="form-control form-control-alternative{{ $errors->has('direccion') ? ' is-invalid' : '' }}" placeholder="{{ __('Direccion') }}" value="{{ auth()->user()->persona->direccion }}" required>
 
-                @if ($errors->has('direccion'))
-                    <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $errors->first('direccion') }}</strong>
-                                                                </span>
-                @endif
+                    @if ($errors->has('direccion'))
+                        <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $errors->first('direccion') }}</strong>
+                                                                    </span>
+                    @endif
+                @else
+                    <label class="form-control-label" for="direccion">{{ __('Direccion') }}</label>
+                    <input type="text" name="direccion" id="direccion"
+                        class="form-control form-control-alternative{{ $errors->has('direccion') ? ' is-invalid' : '' }}" placeholder="{{ __('Direccion') }}" value="{{ auth()->user()->persona->direccion }}" required>
+
+                    @if ($errors->has('direccion'))
+                        <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $errors->first('direccion') }}</strong>
+                                                                    </span>
+                    @endif    
+                @endif    
             </div>
         </div>
 

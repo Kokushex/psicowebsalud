@@ -22,20 +22,22 @@ class HorarioController extends Controller
         try {
             //Se autentifica el usuario
             if (auth()->user()) {
-                $id_psicologo = auth()->user()->persona->psicologo->id_psicologo;
-
-                //Devuelve la vista de DashboardHorario al encontrarse en una sesion
-                return view('horario');
+                //Se filtra el acceso solo a usuarios psicologos
+                if(isset(auth()->user()->persona->psicologo->id_psicologo)) {
+                    $id_psicologo = auth()->user()->persona->psicologo->id_psicologo;
+                    //Devuelve la vista de DashboardHorario al encontrarse en una sesion
+                    return view('horario');
+                }else{
+                return view('home');
+                }
             }else{
-                //Si no se encuentra en una sesion es de vuelto al inicio
+                //Si no se encuentra en una sesion es devuelto al inicio
                 return view('welcome');
             }
-
         } catch (\Exception $e) {
             //Se imprime el error encontrado
             print_r($e->getMessage());
         }
-
     }
 
     //Funcion para listar datos

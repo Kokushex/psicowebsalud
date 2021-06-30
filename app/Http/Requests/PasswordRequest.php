@@ -47,7 +47,7 @@ class PasswordRequest extends FormRequest
             //'correo.unique' => 'El :attribute no se puede cambiar',
             'contraseña_act.required' => 'Completar la :attribute',
             'password.required' => 'Completar el  campo :attribute',
-            'password.min:8' => 'Minino de 8 caracteres la :attribute',
+            'password.min:8' => 'Minimo de 8 caracteres la :attribute',
             'password_confirmation.confirmed' => 'Las contraseñas no coinciden',
 
         ];

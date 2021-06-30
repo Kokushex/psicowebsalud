@@ -44,16 +44,15 @@
                     <input type="hidden" name="id_user"value="{{$usuario1->id_user}}">
                     <input type="hidden"name="id_per"value="{{$usuario1->id_per}}">
                     <input type="hidden"name="id_psi"value="{{$usuario1->id_psi}}">
-
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-
-                            <div class="form-group">
+                    <div class="form-group">
                                 <label for="">Correo</label>
                                 <input class="form-control" required maxlength="191" id="email" name="email"
                                        value="{{$usuario1->email}}" type="email">
 
                             </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
                             @error('telefono')
                             <strong>{{$message}}</strong>
                             @enderror
@@ -63,66 +62,24 @@
                                        onkeypress="return soloNumerosRut(event)" id="rut" maxlength="20" name="rut"
                                        value="{{$usuario1->rut}}">
                             </div>
-                            <div class="form-group">
-                                <label for="">Telefono</label>
-                                <input type="text" class="form-control" required onkeypress="return soloNumeros(event)"
-                                       maxlength="30" name="telefono" value="{{$usuario1->fono}}" pattern="[0-9]+">
-
-
-                            </div>
-
-
-                            <!--Region-->
-                            <div class="form-group">
-                                <label class="form-control-label" for="regiones">{{ __('Region') }}</label>
-                                <select class="form-control select2 select2-hidden-accessible" name="region" id="regiones" >
-
-                                </select>
-                            </div>
-                            <!--Comuna-->
-                            <div class="form-group">
-                                <label class="form-control-label" for="comunas">{{ __('Comuna') }}</label>
-                                <select class="form-control select2 select2-hidden-accessible"
-                                        name="comuna" id="comunas">
-
-                                </select>
-                            </div>
-
-
-                            <div class="form-group ">
-                                <label for="">Fecha Nacimiento</label>
-                                <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"  min="1930-04-01" max="2017-01-01"
-                                       value="{{$usuario1->fecha_nac ? date('Y-m-d', strtotime($usuario1->fecha_nac)) : ''}}"
-                                       placeholder="Fecha de nacimiento" required>
-                            </div>
-
-
-
-
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <!--Nombre-->
                             <div class="form-group">
                                 <label for="">Nombre</label>
                                 <input type="text" class="form-control" required maxlength="191" name="nombre"
-                                       value="{{$usuario1->nombre}}" pattern="[a-zA-Z]+">
+                                       value="{{$usuario1->nombre}}" pattern="[a-zA-Z ]+">
                             </div>
+                            <!--Apellido Paterno-->
                             <div class="form-group">
                                 <label for="">Apellido Paterno</label>
                                 <input type="text" class="form-control" required maxlength="191" name="apellido_paterno"
-                                       value="{{$usuario1->apellido_p}}"  pattern="[a-zA-Z]+">
+                                       value="{{$usuario1->apellido_p}}" pattern="[a-zA-Z]+">
                             </div>
+                            <!--Apellido Materno-->
                             <div class="form-group">
                                 <label for="">Apellido Materno</label>
-                                <input type="text" class="form-control" maxlength="191" name="apellido_materno"
-                                       value="{{$usuario1->apellido_m}}" required pattern="[a-zA-Z]+">
+                                <input type="text" class="form-control" required maxlength="191" name="apellido_materno"
+                                       value="{{$usuario1->apellido_m}}" pattern="[a-zA-Z]+">
                             </div>
-
-                            <div class="form-group">
-                                <label for="">Direccion</label>
-                                <input type="text" class="form-control" maxlength="191" name="direccion"
-                                       value="{{$usuario1->direccion}}" >
-                            </div>
-
                             <!--Genero-->
                             <div class="form-group">
                                 <label class="form-control-label" for="genero">{{ __('Genero') }}</label>
@@ -136,10 +93,51 @@
                                     <option value="O" {{($usuario1->genero =="O") ? 'selected' : ''}}>
                                         Otro</option>
                                 </select>
-
                             </div>
+                         
+                            
 
 
+                            
+
+
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                        <!--Fecha Nacimiento-->
+                        <div class="form-group ">
+                                <label for="">Fecha Nacimiento</label>
+                                <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento"  min="1930-04-01" max="2017-01-01"
+                                       value="{{$usuario1->fecha_nac ? date('Y-m-d', strtotime($usuario1->fecha_nac)) : ''}}"
+                                       placeholder="Fecha de nacimiento" required>
+                            </div>
+                            <!--Telefono-->
+                            <div class="form-group">
+                                <label for="">Telefono</label>
+                                <input type="text" class="form-control" required onkeypress="return soloNumeros(event)"
+                                       maxlength="30" name="telefono" value="{{$usuario1->fono}}"  pattern="[0-9]+">
+                            </div>
+                            <!--Direccion-->
+                            <div class="form-group">
+                                <label for="">Direccion</label>
+                                <input type="text" class="form-control" maxlength="191" name="direccion"
+                                       value="{{$usuario1->direccion}}">
+                            </div>                         
+                            <!--Region-->
+                            <div class="form-group">
+                                    <label class="form-control-label" for="regiones">{{ __('Region') }}</label>
+                                    <select class="form-control select2 select2-hidden-accessible" name="region" id="regiones" >
+
+                                    </select>
+                            </div>
+                            
+                            <!--Comuna-->
+                            <div class="form-group">
+                                    <label class="form-control-label" for="comunas">{{ __('Comuna') }}</label>
+                                    <select class="form-control select2 select2-hidden-accessible"
+                                            name="comuna" id="comunas">
+
+                                    </select>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -160,18 +158,18 @@
 
 
                     <div class="form-group">
-                        <label for="">Grado</label>
-                        <input type="text" class="form-control" name="grado"  value="{{$usuario1->grado}}">
+                        <label for="">Grado academico</label>
+                        <input type="text" class="form-control" name="grado"  value="{{$usuario1->grado}}" pattern="[a-zA-Z -.]+">
                     </div>
 
                     <div class="form-group">
                         <label for="">Casa academica</label>
-                        <input type="text" class="form-control" name="casa_aca"  value="{{$usuario1->casa_academica}}">
+                        <input type="text" class="form-control" name="casa_aca"  value="{{$usuario1->casa_academica}}" pattern="[a-zA-Z -.]+">
                     </div>
 
                     <div class="form-group">
                         <label for="">Especialidad </label>
-                        <input type="text" class="form-control" name="especial"  value="{{$usuario1->especialidad}}">
+                        <input type="text" class="form-control" name="especial"  value="{{$usuario1->especialidad}}" pattern="[a-zA-Z -.]+">
                     </div>
                     <a href="{{route('ges_usuarios')}}" class="btn btn-sm btn-secondary">Volver</a>
                     <button id="update_user" type="submit" class="btn btn-primary float-right" value="Aceptar" style="background-color:#3C4BB7;">Guardar Cambios</button>

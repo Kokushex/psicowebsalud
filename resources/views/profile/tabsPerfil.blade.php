@@ -1,4 +1,4 @@
-<div class="tab-content">
+<div class="tab-content" >
 
     <!--Formulario Contraseña-->
     <div class="active tab-pane" id="c_contraseña">

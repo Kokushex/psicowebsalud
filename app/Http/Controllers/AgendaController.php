@@ -10,7 +10,26 @@ class AgendaController extends Controller
 {
     public function indexAgenda()
     {
-        return view('agenda');
+        //Se abre un Try-Catch para que en caso de algun error se imprima un mensaje
+        try {
+            //Se autentifica el usuario
+            if (auth()->user()) {
+                //Se filtra el acceso solo a usuarios psicologos
+                if(isset(auth()->user()->persona->psicologo->id_psicologo)) {
+                    $id_psicologo = auth()->user()->persona->psicologo->id_psicologo;
+                    //Devuelve la vista de Agenda
+                    return view('agenda');
+                }else{
+                return view('home');
+                }
+            }else{
+                //Si no se encuentra en una sesion es devuelto al inicio
+                return view('welcome');
+            }
+        } catch (\Exception $e) {
+            //Se imprime el error encontrado
+            print_r($e->getMessage());
+        }
     }
 
 

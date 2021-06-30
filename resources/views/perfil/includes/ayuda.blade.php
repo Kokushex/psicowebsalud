@@ -17,10 +17,12 @@
                     {{ __('Al registrarse podrá acceder a todas las funcionalidades que ofrecemos.') }}
                 </div>
             @endif
+            <!--
             <button id="btnModal" class="btn btn-block white indigo-text indigo-border text-4 " data-toggle="modal"
                     data-target="#modalMensaje">
                 <em class="far fa-paper-plane fa-fw"></em> Enviar mensaje
             </button>
+            -->
         </div>
 
 <!--RESERVA-->
