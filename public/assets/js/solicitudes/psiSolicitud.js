@@ -2,6 +2,8 @@ function fn_validar() {
     //evita el submit automatico
     event.preventDefault();
 
+    let form = event.target;
+
     Swal.fire({
     title: '¿Desea Verificar el estado de este Usuario?',
     text: 'Esta accion actualizara los datos del sistema',
@@ -12,6 +14,7 @@ function fn_validar() {
     confirmButtonText: 'Verificar'
     }).then((result) => {
         if (result.isConfirmed) {
+            $
             action: "{{ route('estado', $fila->id_psi) }}",
             Swal.fire(
                 'Verificado',

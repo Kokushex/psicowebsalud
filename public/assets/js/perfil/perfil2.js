@@ -291,7 +291,7 @@ function verAlertas(mensaje) {
         "preventDuplicates": false,
         "showDuration": "300",
         "hideDuration": "1000",
-        "timeOut": "5000",
+        "timeOut": "50000",
         "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
@@ -340,7 +340,7 @@ function updatePassword(){
                     $("#alert").remove();
                     }, 4000);
             } else if (data['success'] == true){
-                console.log(data);
+                
 
                 toastr["success"]('Contraseña actualizada.', "Exito");
 

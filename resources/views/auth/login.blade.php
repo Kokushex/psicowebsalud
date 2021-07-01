@@ -12,11 +12,11 @@
             <div class="col-lg-5 col-md-7">
                 
                 <div class="card bg-secondary shadow border-0">
-                    <div class="card-header bg-transparent pb-5">
+                    <div class="card-header bg-transparent pb-4">
                         @if (Route::currentRouteName() == 'login_paciente')
-                            <h3 class="box-title mt-5 mb-0 text-center">Iniciar sesión Paciente</h3>
+                            <h3 class="box-title mt-4 mb-0 text-center">Iniciar sesión Paciente</h3>
                         @else
-                            <h3 class="box-title  mt-5 mb-0 text-center">Iniciar sesión Psicólogo</h3>
+                            <h3 class="box-title  mt-4 mb-0 text-center">Iniciar sesión Psicólogo</h3>
                             <!-- @include('auth.register_confirmacion') -->
                         @endif
                     </div>

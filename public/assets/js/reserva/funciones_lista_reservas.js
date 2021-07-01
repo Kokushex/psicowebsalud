@@ -429,3 +429,10 @@ function conversorFecha(fecha) {
     return retorno;
 
 }
+
+$(document).ready(function() {
+    $('#lista_reserva').DataTable( {
+        "scrollX": true
+        
+    } );
+} );
