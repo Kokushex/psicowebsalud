@@ -35,7 +35,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item active">Solicitudes de Registros</li>
+                        <li class="breadcrumb-item active">Solicitudes</li>
                     </ol>
                 </div>
             </div>
@@ -44,8 +44,15 @@
     <div class="container-fluid mt-5 containerregistros">
 
         <div class="card shadow mb-12">
-            <div class="card-header">
-                <h3 class="card-title">Solicitudes de registro de usuarios</h3>
+            <div class="card-header container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h3 class="card-title">Solicitudes de registro de usuarios</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="btn btn-success text-white float-sm-right" href="https://rnpi.superdesalud.gob.cl/" target="_blank">Superintendencia de Salud<em class="fas fa-arrow-right"></em></a>
+                    </div>
+                </div>
             </div>
             @if (session()->has('success'))
                 <div class="alert alert-success">
@@ -66,8 +73,6 @@
                         <th>Estado</th>
                         <th>Cambiar estado</th>
                         <th>Cambiar estado2</th>
-
-
                     </tr>
                     </thead>
 
@@ -83,7 +88,7 @@
                             <td><a class="btn btn-success" href="{{ route('estado', $fila->id_psi) }}"><i
                                         class="fas fa-edit"></i></a></td>
                             <td><a class="btn btn-success" type="submit" class="btnVerificado" onclick="fn_validar();">This shit<i
-                                        class="fas fa-edit"></i></a></td>
+                                        class="fas fa-edit"></i></a></td>            
                         </tr>
                     @endforeach
                     </tbody>
@@ -108,6 +113,7 @@
     <script>
         $(document).ready(function() {
             $('#lista_usuarios').DataTable({
+                "scrollX": true,
 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

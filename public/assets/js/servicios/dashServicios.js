@@ -293,7 +293,8 @@ $(document).on("click", ".btnEstado", function () {
         showCancelButton: true,
         confirmButtonColor: '#484AF0',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Cambiar'
+        confirmButtonText: 'Cambiar',
+        cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.value) {
             $.ajax({

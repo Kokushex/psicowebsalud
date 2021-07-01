@@ -13,28 +13,18 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary shadow border-0">
-                    <div class="card-header bg-transparent pb-5 text-center">
+                    <div class="card-header bg-transparent pb-4 text-center">
                         @if (Route::currentRouteName() == 'register_paciente')
-                            <h3 class="box-title mt-5 mb-0">Registro Paciente</h3>
+                            <h3 class="box-title mt-4 mb-0">Registro Paciente</h3>
                         @else
-                            <h3 class="box-title  mt-5 mb-0 text-center">Registro Psicólogo</h3>
+                            <h3 class="box-title  mt-4 mb-0 text-center">Registro Psicólogo</h3>
                             @include('auth.register_confirmacion')
                         @endif
-                        <div class="text-muted text-center mt-2 mb-4"><small>{{ __('Registrate con tus redes sociales:') }}</small></div>
-                        <div class="text-center">
-                            <a href="#" class="btn btn-neutral btn-icon mr-4">
-                                <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/github.svg"></span>
-                                <span class="btn-inner--text">{{ __('Facebook') }}</span>
-                            </a>
-                            <a href="#" class="btn btn-neutral btn-icon">
-                                <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
-                                <span class="btn-inner--text">{{ __('Google') }}</span>
-                            </a>
-                        </div>
+                        
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
-                            <small>{{ __('O registrate con tus credenciales') }}</small>
+                            <small>{{ __('Registrate con tus credenciales') }}</small>
                         </div>
                         @if (session('status'))
                                 <div class="alert alert-danger" role="alert">
@@ -205,9 +195,11 @@
                                         <!-- <input class="form-control" placeholder="{{ __('Confirmar contraseña') }}" type="password" name="password_confirmation" required> -->
                                 </div>
                             </div>
+                            <!--
                             <div class="text-muted font-italic">
                                 <small>{{ __('password strength') }}: <span class="text-success font-weight-700">{{ __('strong') }}strong</span></small>
                             </div>
+                            -->
                             <div class="row my-4">
                                 <div class="col-12">
                                     <div class="custom-control custom-control-alternative custom-checkbox">

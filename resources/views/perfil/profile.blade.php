@@ -21,7 +21,7 @@
 
     <input type="hidden" id="idPerfil" value="{{auth()->id()}}">
     <div class="container" style="margin-top: 100px; min-height: 600px">
-        <div class="row ">
+        <div class="row justify-content-center">
             <div class="col-lg-4">
                 @include('perfil.includes.informacion')
             </div>

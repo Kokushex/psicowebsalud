@@ -249,7 +249,8 @@ function fn_agregar_horario() {
         showCancelButton: true,
         confirmButtonColor: '#484AF0',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Agregar'
+        confirmButtonText: 'Agregar',
+        cancelButtonText: 'Cancelar'
         }).then((result) => {
             //si se aceptan los cambios
             if (result.value) {
@@ -533,7 +534,8 @@ function fn_editar_horario() {
      showCancelButton: true,
      confirmButtonColor: '#484AF0',
      cancelButtonColor: '#d33',
-     confirmButtonText: 'Editar'
+     confirmButtonText: 'Editar',
+     cancelButtonText: 'Cancelar'
      }).then((result) => {
          //si se aceptan los cambios
          if (result.value) {
@@ -651,7 +653,8 @@ $(document).on("click", ".btnEliminar", function () {
         showCancelButton: true,
         confirmButtonColor: '#484AF0',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Cambiar'
+        confirmButtonText: 'Cambiar',
+        cancelButtonText: 'Cancelar'
     }).then((result) => {
         //si se aceptan los cambios
         if (result.value) {
