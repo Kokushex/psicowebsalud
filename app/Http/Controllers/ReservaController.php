@@ -344,29 +344,4 @@ class ReservaController extends Controller
         }
     }
 
-    /*
-    public function listarReservas()
-    {
-        try {
-            if (auth()->user()) {
-                $reservas  = Reserva::getReservasPorPaciente();
-                $socios = Reserva::getAsociadosTitular(auth()->user()->persona->id_persona);
-                session()->put('socios_user', $socios);
-                $paciente = '0';
-                $fecha = '';
-                $modalidad = '0';
-                foreach($socios as $item){
-                    $item->nombre = "Mis ";
-                    $item->apellido_paterno = "Reservas";
-                    break;
-                }
-                return view('reserva.gestionReserva.listadoPaciente', ['reserva' => $reservas, 'paciente' => $paciente, 'rank' => $reservas->firstItem(), 'estado' => "0", 'socios' => $socios, 'fecha' => $fecha, 'modalidad' => $modalidad]);
-            }
-        } catch (\Exception $e) {
-            print_r($e->getMessage());
-        }
-    }
-*/
-
-
 }

@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                         <li class="breadcrumb-item active">Solicitudes de Registros</li>
                     </ol>
                 </div>
@@ -83,7 +83,7 @@
                             <td><a class="btn btn-success" href="{{ route('estado', $fila->id_psi) }}"><i
                                         class="fas fa-edit"></i></a></td>
                             <td><a class="btn btn-success" type="submit" class="btnVerificado" onclick="fn_validar();">This shit<i
-                                        class="fas fa-edit"></i></a></td>            
+                                        class="fas fa-edit"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>

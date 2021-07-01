@@ -45,14 +45,25 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    /**
+     * Metodo para que la vista cargada sea con los apartados para paciente
+     */
 
-    //Metodo para la que la vista cargada sea con los apartados para paciente
     protected function viewLoginPaciente(){
         return view('auth.login');
     }
-    //Metodo para la que la vista cargada sea con los apartados para psicologo
+    /**
+     * Metodo para que la vista cargada sea con los apartados para psicologo
+     */
+
     protected function viewLoginPsicologo(){
         return view('auth.login');
+    }
+    /**
+     * Metodo para ingresar a la vista de login de administrador
+     */
+    protected function index_login_admin(){
+        return view('auth.login_admin');
     }
 
     //////Tipo segun ruta metodo 1
@@ -99,36 +110,47 @@ class LoginController extends Controller
     }
 
     protected function logear(LoginValidaciones $request,$tipo){
+
+
+
             //Auth::attempt metodo para logear al usuario si corresponde
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
                 // Verificar si el usuario corresponde con el rol
                 $user=new User();
                 $user=$user->encontrarUserConRol($request['email'],$tipo);
+                //Verificar si el usuario existe
                 if(is_null($user) || empty($user)){
                     //Deslogear usuario
                     Auth::logout();
-                    return back()->with('status','No tienes acceso para ingresar al sitio.');
+                    return back()->with('status','Tipo de cuenta incorrecta.');
                 }else{
-                    //Si es paciente se logea o si el psicologo esta verificado
-                    //if($tipo == 1 || $tipo ==2 || $tipo == 3){
-                    if($tipo == 1 || $tipo ==2){ 
-                        Cookie::queue('access_error', 0, 10);
-                        Auth::login($user);
-                        //Logeo para el administrador
-                        // if($tipo== 3){
-                             $user->getProfile($tipo);
-                        //     return redirect()->to('/dashboard');
-                        // }else{
-                            
-                            return redirect()->to('/home');
-                        //}
+                    $dato=User::ban($request->email);
+                    $dato1=$dato->banned_till;
+                    if($dato1=='1') {
+                        Auth::logout();
+                        return back()->with('status', 'Usted a sido baneado.');
                     }else{
-                        return back()->with('status','Psicologo no autorizado.');
+                        //Si es paciente se logea o si el psicologo esta verificado
+                        //if($tipo == 1 || $tipo ==2 || $tipo == 3){
+                        if($tipo == 1 || $tipo ==2){
+                            Cookie::queue('access_error', 0, 10);
+                            Auth::login($user);
+                            //Logeo para el administrador
+                             if($tipo== 3){
+                                $user->getProfile($tipo);
+                                 return redirect()->to('/gestionUsuarios');
+                             }else{
+                                $user->getProfile($tipo);
+                                return redirect()->to('/home');
+                            }
+                        }else{
+                            return back()->with('status','Psicologo no autorizado.');
+                        }
                     }
                 }
             }else{
                 Cookie::queue('access_error', Cookie::get('access_error')+1, 10);
-                return back()->with('status','Credenciales incorrectas.');
+                return back()->with('status','Usuario y/o Clave incorrecta(s).');
             }
     }
 }

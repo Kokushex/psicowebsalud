@@ -15,7 +15,7 @@ class Roles extends Model
 {
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'id_roles';
@@ -32,4 +32,5 @@ class Roles extends Model
     {
         return $this->hasMany('App\Models\UserHasRole', 'id_rol', 'id_roles');
     }
+
 }

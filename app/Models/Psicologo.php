@@ -331,5 +331,12 @@ class Psicologo extends Model
 
     }
 
+    public static function cambiarEstado2($id_psicologo){
+        $updateestado = Psicologo::findOrFail($id_psicologo);
+        $updateestado->verificado = "VERIFICADO";
+        $updateestado->save();
+
+    }
+
 }
 

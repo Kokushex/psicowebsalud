@@ -326,6 +326,7 @@ $(document).on("click", ".btnVer", function () {
     fila = $(this).closest("tr");
     var dataServicio = new FormData();
     dataServicio.append('id_servicio_psicologo', fila.find('td:eq(0)').text());
+    (console.log(dataServicio));
     $.ajax({
         url: '/servicios/detallesServicios',
         type: 'POST',

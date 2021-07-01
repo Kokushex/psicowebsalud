@@ -60,41 +60,30 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/servicio', [ServicioController::class, 'indexServicio'])->name('servicio');
-
 Route::get('/roles', [RolesController::class, 'indexRoles'])->name('roles');
-
 Route::get('/agenda', [AgendaController::class, 'indexAgenda'])->name('agenda');
-
 Route::get('/reserva', [ReservaController::class, 'indexReserva'])->name('reserva');
 
 /////////////////////////////////////////////////////////REGISTRO/////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/auth/rol_register', [RegisterController::class, 'viewRegistroRol'])->name('rol_register');
-
 Route::get('/register', [RegisterController::class, 'viewRegistroPaciente'])->name('register_paciente');
-
 Route::get('/register_psicologo', [RegisterController::class, 'viewRegistroPsicologo'])->name('register_psicologo');
-
 Route::post('/auth/register', [RegisterController::class, 'createUser'])->name('createPaciente');
-
 Route::post('/auth/register_psicologo', [RegisterController::class, 'createUser'])->name('createPsicologo');
 
 ///////////////////////////////////////////////////////////////////////////LOGIN//////////////////////////////////////////////////////////////////////
 
+Route::get('login_admin', [LoginController::class, 'index_login_admin'])->name('login_admin');
 Route::get('/login_paciente', [LoginController::class, 'index_login'])->name('login_paciente');
-
 Route::get('/login_psicologo', [LoginController::class, 'index_login'])->name('login_psicologo');
-
 Route::post('/login/{tipo}', [LoginController::class, 'logear'])->name('logear');
 
 //Restablecer Contraseña
 
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.update'); //request
-
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
 Route::get('auth/passwords/reset/{token}/{email}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-
 Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 
 ////////////////////////////////////////////////////////////////////////PERFIL////////////////////////////////////////////////////////////////////////////////////////
@@ -117,11 +106,9 @@ Route::post('servicios/cambiarEstado', [ServicioController::class, 'cambiarEstad
 Route::get('/servicios/cargarDatosSelect2', [ServicioController::class, 'cargarDatosSelect2'])->name('servicios.mostrar_informacion_servicio');
 Route::post('/servicios/rellenarModalAgregar', [ServicioController::class, 'rellenarModalAgregar'])->name('servicios.rellenar_modal_agregar');
 
-//////////////////////////////Horario
+//////////////////////////////HORARIO/////////////////////////////////////////////////////
 
 Route::get('/horario', [HorarioController::class, 'indexHorario'])->name('horario');
-
-//Route::get('horario/dashboardHorario', [HorarioController::class, 'index'])->name('dashboardHorario');
 Route::get('datatable/horario', [HorarioController::class, 'datos'])->name('datatableHorario');
 Route::post('horario/dashboardHorario', [HorarioController::class, 'create'])->name('crearHorario');
 Route::post('horario/cambiarHorarioAjax', [HorarioController::class, 'cambiarEstadoHorario'])->name('cambiarEstadoHorario');
@@ -129,19 +116,12 @@ Route::put('horario/dashboardHorario', [HorarioController::class, 'edit'])->name
 
 ////////////////////////////////////////////////////////////////////RESERVA//////////////////////////////////////////////////////////////////////////////////////
 
-
 //Route::get('reserva/list', [PsicologoController::class, 'filtroPrincipal'])->name('psicologo.list');
 Route::get('/reserva/list', [PsicologoController::class, 'index'])->name('reserva.list');
 Route::get('/profile/{id}', [ProfileController::class, 'getProfile'])->name('busqueda');
 Route::get('/listar', [ReservaController::class, 'listarReservas'])->name('reserva.listar');
 Route::get('listar/page', [ReservaController::class, 'paginacionAjax']);
 Route::get('listPsicologo', [ReservaController::class, 'listarReservasProfesional'])->name('reserva.listarReservasPsicologos');
-
-//Route::get('listPsicologo', 'ReservaController@listarReservasProfesional')->name('reserva.listarReservasPsicologo');
-
-//Route::get('list/page', 'ReservaController@paginacionAjax');
-
-
 Route::post('/busqueda/create', [ReservaController::class, 'store'])->name('reserva.create');
 
 //////////////////////////////AJAX RESERVA////////////////////////////////////////////
@@ -157,20 +137,13 @@ Route::get('/getResCantidadPendientes', [ReservaController::class, 'getResCantid
 Route::get('/llenarModalReservas', [ReservaController::class, 'llenarModalReservas']);
 Route::get('/validarFechaHora', [ReservaController::class, 'validarFechaHora']);
 Route::get('/actualizarReserva', [ReservaController::class, 'actualizarReserva']);
-
-
-
 Route::get('/getCentroServicio', [ReservaController::class, 'getCentroServicio']);
-
-  //  Route::get('/getCentroServicio', 'ReservaController@getCentroServicio');
 
 //////////////////////////////////////PAGO////////////////////////////////////////////////////
 Route::get('/checkout', [WebPayRestController::class, 'createdTransaction'])->name('pasarela.checkout');
 Route::get('/return', [WebPayRestController::class, 'commitedTransaction'])->name('return');
 Route::get('pago/ordencompra/{ordencompra}', [PagoController::class, 'mostrarDetalle'])->name('pago.ordencompra');
 Route::get('/descargarDetalle/{ordencompra}', [PagoController::class, 'descargarDetalle'])->name('pago.pagoDetalle');
-//Route::get('descargardetalle/{ordencompra}', 'PagoController@descargarDetalle')->name('pasarela.descargarDetalle');
-
 
 //////////////////////////////////////ROLES///////////////////////////////////////////////
 Route::get('/gestionUsuarios', [RolesController::class, 'Listar'])->name('ges_usuarios');
@@ -178,13 +151,11 @@ Route::get('vistaDetalle/{id_persona}', [RolesController::class, 'Buscar'])->nam
 Route::get('roles/rolesMantenedor/updateRol/{id}', [RolesController::class, 'mandaId'])->name('mandaId');
 Route::post('/gestionUsuarios/{id}', [RolesController::class, 'ban'])->name('ban');
 Route::post('/gestionUsuario/{id}', [RolesController::class, 'unban'])->name('unban');
-//Route::post('/dashboard/dash_admin/{id}','RolesController@unban')->name('unban');
 
 Route::post('/roles/detallepaciente', [RolesController::class, 'updatePa'])->name('updatePa');
 Route::post('/roles/detallePsicologo', [RolesController::class, 'updatePsi'])->name('updatePsi');
 Route::get('/roles', [RolesController::class, 'solicitudes'])->name('solicitudes');
 Route::get('/roles/solicitudes/{id}', [RolesController::class, 'cambioEstado'])->name('estado');
-//Route::get('/dashboard/dash_admin/solicitudes/{id}','RolesController@cambioEstado')->name('estado');
 
 //////////////////////////////////////AGENDA//////////////////////////////////////////////////
 Route::get('/agenda/listar', [AgendaController::class, 'listarAgenda']);

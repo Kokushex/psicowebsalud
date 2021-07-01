@@ -405,5 +405,17 @@ class User extends Authenticatable
         return $solicitud;
     }
 
+    // permite obtener el campo banned till por medio del email ingresado en el formulario de login correspondiente.
+    public static function ban($mail)
+    {
+        $ban = DB::table('users')
+            ->select(
+                'users.banned_till'
+            )
+            ->where('users.email', $mail)
+            ->first();
+        return $ban;
+    }
+
 
 }

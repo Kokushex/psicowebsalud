@@ -216,6 +216,12 @@ class RolesController extends Controller
         return back()->with('success', 'Estado cambiado');
     }
 
+    public function cambioEstado2(Request $request )
+    {
+        $solicitudPsi = Psicologo::cambiarEstado2($request->input('id_psicologo'));
+        return back()->with('success', 'Estado cambiado');
+    }
+
 
 
 
