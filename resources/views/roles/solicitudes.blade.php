@@ -54,45 +54,47 @@
                     </div>
                 </div>
             </div>
-            @if (session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                </div>
-            @endif
+            <div class="card shadow mb-12">
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
 
-            <div class="card-body">
-                <table id="lista_usuarios" class="table table-striped table-bordered align-content-lg-center"
-                       style="width:100%">
-                    <thead>
-                    <tr class="tabla_datos_solicitados">
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Rut</th>
-                        <th>Nombre Completo</th>
-                        <th>Telefono</th>
-                        <th>Estado</th>
-                        <th>Cambiar estado</th>
-                        <th>Cambiar estado2</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    @foreach ($solicitud as $fila)
-                        <tr class="text-lg-center">
-                            <td>{{ $fila->id_psi }}</td>
-                            <td>{{ $fila->email }}</td>
-                            <td>{{ $fila->rut }}</td>
-                            <td>{{ $fila->nombre }} {{ $fila->apellido_p }} {{ $fila->apellido_m }}</td>
-                            <td>{{ $fila->fono }}</td>
-                            <td>{{ $fila->verificacion }}</td>
-                            <td><a class="btn btn-success" href="{{ route('estado', $fila->id_psi) }}"><i
-                                        class="fas fa-edit"></i></a></td>
-                            <td><a class="btn btn-success" type="submit" class="btnVerificado" onclick="fn_validar();">This shit<i
-                                        class="fas fa-edit"></i></a></td>            
+                <div class="card-body">
+                    <table id="lista_usuarios" class="table table-striped table-bordered align-content-lg-center"
+                           style="width:100%">
+                        <thead>
+                        <tr class="tabla_datos_solicitados">
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Rut</th>
+                            <th>Nombre Completo</th>
+                            <th>Telefono</th>
+                            <th>Estado</th>
+                            <th>Cambiar estado</th>
+                            <th>Cambiar estado2</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+                        @foreach ($solicitud as $fila)
+                            <tr class="text-lg-center">
+                                <td>{{ $fila->id_psi }}</td>
+                                <td>{{ $fila->email }}</td>
+                                <td>{{ $fila->rut }}</td>
+                                <td>{{ $fila->nombre }} {{ $fila->apellido_p }} {{ $fila->apellido_m }}</td>
+                                <td>{{ $fila->fono }}</td>
+                                <td>{{ $fila->verificacion }}</td>
+                                <td><a class="btn btn-success" href="{{ route('estado', $fila->id_psi) }}"><i
+                                            class="fas fa-edit"></i></a></td>
+                                <td><a class="btn btn-success" type="submit" class="btnVerificado" onclick="fn_validar();">This shit<i
+                                            class="fas fa-edit"></i></a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

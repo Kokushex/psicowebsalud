@@ -213,7 +213,7 @@ class Reserva extends Model
             ->join('paciente', 'paciente.id_paciente', '=', 'reserva.id_paciente')
             ->where('paciente.id_persona', '=', auth()->user()->persona->id_persona)
             ->orderBy('fecha', 'desc')
-            ->orderBy('hora_inicio', 'desc')->simplePaginate(5);
+            ->orderBy('hora_inicio', 'desc')->simplePaginate(8);
     }
 
     /**
@@ -483,7 +483,7 @@ class Reserva extends Model
             ->join('persona', 'persona.id_persona', '=', 'paciente.id_persona')
             ->join('servicio', 'servicio.id_servicio', '=', 'servicio_psicologo.id_servicio')
             ->select('persona.run', 'persona.nombre', 'persona.apellido_paterno', 'servicio.nombre as servicio', 'reserva.fecha', 'reserva.hora_inicio', 'reserva.confirmacion', 'reserva.estado_pago', 'reserva.modalidad')
-            ->where('psicologo.id_persona', '=', $id)->simplePaginate(5);
+            ->where('psicologo.id_persona', '=', $id)->simplePaginate(8);
     }
 
     /**

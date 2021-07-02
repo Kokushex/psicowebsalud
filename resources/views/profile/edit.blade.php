@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <br>
+            <br>
             <!--PERFIL-->
             <div class="col-xl-8 order-xl-1">
                     <div class="card bg-secondary shadow">
@@ -108,9 +108,6 @@
                             </div>
                     </div>
             </div>
-        </div>
-        @include('layouts.footers.auth')
-
     </div>
 
     <!--Scripts: NOTA EL ORDEN LES AFECTA, si jquery esta abajo del script a funcionar los otros no funcionaran-->

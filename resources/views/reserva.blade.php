@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="header bg-gradient-primary py-7 py-lg-6">
+<div class="header bg-gradient-primary py-7 py-lg-6" style="height: 10rem">
         <div class="container">
             <div class="header-body text-center mt-1 mb-1">
                 <div class="row justify-content-center">
@@ -53,7 +53,7 @@
     </div>
 
 
-    @include('layouts.footers.auth')
+
     @push('js')
 
     @endpush

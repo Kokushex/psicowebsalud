@@ -1,7 +1,7 @@
 @extends('layouts.app', ['class' => 'bg-default'])
 
 @section('content')
-    <div class="header bg-gradient-primary py-7 py-lg-8">
+    <div class="header bg-gradient-primary py-7 py-lg-8" style="height: 10rem">
         <div class="container">
             <div class="header-body text-center mt-7 mb-7">
                 <div class="row justify-content-center">
@@ -25,10 +25,9 @@
                     <div class="card-body">
                         <h3 class="card-title">¿Quienes Somos?</h3>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in rutrum erat.
-                            Cras vel sollicitudin magna, nec ullamcorper dui. Nullam consequat tempor enim id commodo. Vestibulum
-                            ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer in efficitur lectus.
-                            Vivamus massa ex, aliquam vel laoreet vitae, feugiat id quam. Duis congue vehicula libero eget convallis.
+                            Psicoweb Salud es una plataforma destinada a recopilar la red de psicólogos más grande del país,
+                            para que estos puedan ofrecer sus servicios. A su vez los pacientes podrán tener un acceso de manera
+                            rápida y eficiente a los servicios de salud mental que más se acomoden a sus expectativas.
                         </p>
                     </div>
                 </div>

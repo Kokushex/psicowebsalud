@@ -6,13 +6,13 @@
         </div>
     @endif
 
-    <div class="header bg-gradient-primary py-7 py-lg-6">
+    <div class="header bg-gradient-primary py-7 py-lg-6" style="height: 10rem">
 
         <div class="container">
             <div class="header-body text-center mt-1 mb-1">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Lista de Reservas.') }}</h1>
+                        <h1 class="text-white">{{ __('Lista de Reservas') }}</h1>
                     </div>
                 </div>
             </div>

@@ -12,13 +12,13 @@
         </div>
     @endif
 
-    <div class="header bg-gradient-primary py-7 py-lg-6">
+    <div class="header bg-gradient-primary py-7 py-lg-6" style="height: 10rem">
 
         <div class="container">
             <div class="header-body text-center mt-1 mb-1">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Lista de Reservas.') }}</h1>
+                        <h1 class="text-white">{{ __('Lista de Reserva.') }}</h1>
                     </div>
                 </div>
             </div>
@@ -29,24 +29,6 @@
             </svg>
         </div>
     </div>
-    <div class="container mt--10 pb-5"></div>
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Reservas</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item active">Lista Reservas</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <div>
                 <!-- tabla -->
                 <div id="table_data">
@@ -55,7 +37,6 @@
                 <!-- TÉRMINO TABLA RESULTADOS -->
     </div>
 
-@include('layouts.footers.auth')
 @push('js')
     <link href="{{asset('assets/css/reserva/table.css')}}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

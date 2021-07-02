@@ -63,12 +63,13 @@
                 <label class="text-bold">Hora Salida PM</label>
                 <input required type="time" id="horaSalPM" name="horaSalPM" placeholder="Hora Entrada" class="form-control mb-2 validar">
                 <div id="mensajeHoraSalPM"></div>
-            </div>
+
                 <div class="modal-footer">
                     <button class="btn btn-success" type="submit" class ="btnAgregarHorario" onclick="fn_agregar_horario()">Registrar Horario</button>
                     <button type="button" class="btn btn-danger resetCheckAgregar resetMsjAgregar" data-dismiss="modal" onclick="resetModalAgregar()">Cancelar</button>
                 </div>
             </form>
+        </div>
       </div>
     </div>
 </div>
@@ -139,12 +140,13 @@
                 <label class="text-bold">Hora Salida PM</label>
                 <input required type="time" id="horaSalPMEdit" name="horaSalPMEdit" placeholder="Hora Entrada" class="form-control mb-2 validar">
                 <div id="mensajeHoraSalPMEdit"></div>
-        </div>
+
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" class="btnEditarHorario" onclick="fn_editar_horario();">Editar</button>
                     <button type="button" class="btn btn-secondary resetCheckEditar resetMsjEditar" data-dismiss="modal">Cancelar</button>
                 </div>
             </form>
+        </div>
       </div>
     </div>
 </div>

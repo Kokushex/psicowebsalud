@@ -128,7 +128,7 @@ class LoginController extends Controller
                     $dato1=$dato->banned_till;
                     if($dato1=='1') {
                         Auth::logout();
-                        return back()->with('status', 'Usted a sido baneado.');
+                        return back()->with('status', 'Usted ha sido baneado.');
                     }else{
                         //Si es paciente se logea o si el psicologo esta verificado
                         //if($tipo == 1 || $tipo ==2 || $tipo == 3){

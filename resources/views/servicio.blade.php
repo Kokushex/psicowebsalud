@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="header bg-gradient-primary py-7 py-lg-6">
+    <div class="header bg-gradient-primary py-7 py-lg-6" style="height: 10rem">
 
             <div class="container">
                 <div class="header-body text-center mt-1 mb-1">
@@ -19,64 +19,57 @@
             </div>
     </div>
     <div class="container mt--10 pb-5"></div>
-
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Gestión de Servicios</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item active">Servicios</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </section>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <div class="container" id="supContainer">
-        <div class="card mb-5">
-        <!-- Boton modal -->
-        <div class="card tarjeta mt-5">
-                @if(auth()->user()->persona->psicologo->verificado =='EN ESPERA')
-                    <div class="alert alert-warning text-center my-2 mx-4" id="mensajeInformativo">
-                        <b id="msgPsicologo">{{__('Confirmación de datos profesionales pendiente.')}}</b>
+
+    <div class="container-fluid mt-2" id="supContainer">
+        <div class="card shadow mb-12">
+                <div class="card-header">
+                    <h3 class="card-title">Gestión Servicios</h3>
+                </div>
+            <div class="card shadow mb-12">
+                <!-- Boton modal -->
+                <div class="card tarjeta mt-5">
+                        @if(auth()->user()->persona->psicologo->verificado =='EN ESPERA')
+                            <div class="alert alert-warning text-center my-2 mx-4" id="mensajeInformativo">
+                                <b id="msgPsicologo">{{__('Confirmación de datos profesionales pendiente.')}}</b>
+                            </div>
+                        @else
+                        <div class="col-lg-3">
+                            <a class="btn btn-sm btn-success text-white my-2 mx-4" role="button" data-toggle="modal" data-target="#modalAgregarServicio">
+                                <i class="ni ni-fat-add"></i>
+                                Agregar Servicio
+                            </a>
+                        </div>
+                        @endif
                     </div>
-                @else
-                    <a class="btn btn-success text-white my-2 mx-4" role="button" data-toggle="modal" data-target="#modalAgregarServicio">
-                        <i class="ni ni-fat-add"></i>
-                        Agregar Servicio
-                    </a>
-                @endif
+                <!-- Fin-->
+                <div class="card-body">
+                <!--tabla ejemplo-->
+                    <div class="table table-striped table-bordered table-responsive">
+                              <table id="tablaServicio" class="table align-items-center table-flush">
+                                <thead>
+                                  <tr>
+                                      <th class="hide_me">#id_servicio_psicologo</th>
+                                    <th >Nombre</th>
+                                    <th >Descripcion</th>
+                                    <th >Modificar</th>
+                                    <th >Estado</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                    </div>
+                </div>
+                @include('servicios.descripServicios')
+
+                @include('servicios.editServicio')
+
+                @include('servicios.crearServicio')
             </div>
-        <!-- Fin-->
-
-        <!--tabla ejemplo-->
-            <div class="table-responsive">
-                      <table id="tablaServicio" class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                          <tr>
-                              <th class="hide_me">#id_servicio_psicologo</th>
-                            <th >Nombre</th>
-                            <th >Descripcion</th>
-                            <th >Modificar</th>
-                            <th >Estado</th>
-                          </tr>
-                        </thead>
-                      </table>
-            </div>
-
-        @include('servicios.descripServicios')
-
-        @include('servicios.editServicio')
-
-        @include('servicios.crearServicio')
         </div>
     </div>
+    </div>
 
-    @include('layouts.footers.auth')
+
     @push('js')
         <!--Librerias de Datatables-->
         <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>

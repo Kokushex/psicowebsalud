@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-   
+
     <!--Tamaño barra titulo-->
-    <div class="header bg-gradient-primary py-7 py-lg-6">
+    <div class="header bg-gradient-primary py-7 py-lg-6" style="height: 10rem">
         <div class="container">
             <div class="header-body text-center mt-1 mb-1">
                 <div class="row justify-content-center">
@@ -20,11 +20,11 @@
         </div>
     </div>
 
-    <!--<div class="container mt--10 pb-5"></div>-->
+    <div class="container mt--10 pb-5"></div>
 
-    
 
-        @include('layouts.footers.auth')
+
+
     </div>
 @endsection
 

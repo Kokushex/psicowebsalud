@@ -1,11 +1,11 @@
 <div class="row align-items-center justify-content-xl-between">
-    <div class="col-xl-6">
+    <div class="col-xl- mr-1">
         <div class="copyright text-center text-xl-left text-muted">
             &copy; {{ now()->year }} <a href="#" class="font-weight-bold ml-1" target="_blank">PsicoWeb Salud</a> <!--&amp;-->
             <a href="#" class="font-weight-bold ml-1" target="_blank"></a>
         </div>
     </div>
-    
+
     <div class="col-xl-6">
         <ul class="nav nav-footer justify-content-center justify-content-xl-end">
         <!--
@@ -16,7 +16,10 @@
                 <a href="https://www.updivision.com" class="nav-link" target="_blank">Updivision</a>
             </li>
             -->
-            <li class="nav-item"> 
+            <li class="nav-item">
+                <a href="#" class="nav-link" target="_blank">Contactanos</a>
+            </li>
+            <li class="nav-item">
                 <a href="#" class="nav-link" target="_blank">Sobre nosotros</a>
             </li>
             <!--
@@ -29,5 +32,5 @@
             -->
         </ul>
     </div>
-    
+
 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="header bg-gradient-primary py-7 py-lg-6">
+<div class="header bg-gradient-primary py-7 py-lg-6" style="height: 10rem">
         <div class="container">
             <div class="header-body text-center mt-1 mb-1">
                 <div class="row justify-content-center">
@@ -58,7 +58,7 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    <table id="lista_usuarios" class="table table-striped table-bordered " style="width:100%">
+                    <table id="lista_usuarios" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr class="tabla_datos_solicitados">
                             <th>#</th>
@@ -162,5 +162,5 @@
 @endpush
 
 
-    @include('layouts.footers.auth')
+
 @endsection

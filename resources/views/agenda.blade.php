@@ -3,7 +3,7 @@
 
 <link href="{{asset('assets/fullcalendar/main.css')}}" rel='stylesheet' />
 
-<div class="header bg-gradient-primary py-7 py-lg-6">
+<div class="header bg-gradient-primary py-7 py-lg-6" style="height: 10rem">
         <div class="container">
             <div class="header-body text-center mt-1 mb-1">
                 <div class="row justify-content-center">
@@ -92,6 +92,4 @@
     <script src="{{asset('assets/fullcalendar/main.js')}}"></script>
 @endpush
 
-
-    @include('layouts.footers.auth')
 @endsection
