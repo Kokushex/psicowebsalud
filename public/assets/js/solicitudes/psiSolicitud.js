@@ -11,10 +11,15 @@ function fn_validar() {
     showCancelButton: true,
     confirmButtonColor: '#484AF0',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Verificar'
+    confirmButtonText: 'Verificar',
+    cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            $
+            $.ajax({
+                url: '/roles/solicitudes',
+                type: 'GET',
+                data: x
+            })
             action: "{{ route('estado', $fila->id_psi) }}",
             Swal.fire(
                 'Verificado',

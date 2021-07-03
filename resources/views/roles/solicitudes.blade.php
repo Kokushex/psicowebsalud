@@ -88,7 +88,7 @@
                                 <td>{{ $fila->verificacion }}</td>
                                 <td><a class="btn btn-success" href="{{ route('estado', $fila->id_psi) }}"><i
                                             class="fas fa-edit"></i></a></td>
-                                <td><a class="btn btn-success" type="submit" class="btnVerificado" onclick="fn_validar();">This shit<i
+                                <td><a class="btn btn-success" type="submit" class="btnVerificado" onclick="fn_validar();">ValidarConfirmacion<i 
                                             class="fas fa-edit"></i></a></td>
                             </tr>
                         @endforeach
