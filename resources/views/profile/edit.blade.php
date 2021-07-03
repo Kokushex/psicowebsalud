@@ -9,6 +9,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/css/inputmask.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
+    <link href="{{asset('assets/css/perfil/perfil.css')}}" rel="stylesheet">
+
+
     @php
     $user=session()->get('user');
     $rol=session()->get('rol');

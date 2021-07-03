@@ -43,28 +43,30 @@ $('#reload').click(function () {
  * Se utiliza el selector del input run para realizar la
  * verificacion con el metodo blur y llamar al controlador de
  * registro
- * Actualemnte no en USO
  */
 $('#run').blur(function () {
-    $.ajax({
-        url: '/register/run',
-        method: 'POST',
-        data: {
-            run: $('input[name="run"]').val(),
-            _token: $('input[name="_token"]').val(),
-        },
-        error: function (data) {
-            $('#run').attr('style', 'border: 1px solid #ff0000');
-            $('#msgRun').text("El run esta en uso");
-            $('#msgRun').show().html(data.responseJSON.error).css({
-                'color': 'red',
-                'text-align': 'center'
-            })
-        },
-        success: function (data) {
-            //
-        }
-    })
+    if(!$('#run').empty()) {
+        $.ajax({
+            url: '/register/run',
+            method: 'POST',
+            data: {
+                run: $('input[name="run"]').val(),
+                _token: $('input[name="_token"]').val(),
+            },
+            error: function (data) {
+                //rojo siempre
+                $('#run').attr('style', 'border: 1px solid #ff0000');
+                $('#msgRun').text("El run esta en uso");
+                $('#msgRun').show().html(data.responseJSON.error).css({
+                    'color': 'red',
+                    'text-align': 'center'
+                })
+            },
+            success: function (data) {
+                //
+            }
+        })
+    }
 });
 
 /**
@@ -136,7 +138,7 @@ function valRun(run) {
     document
         .getElementById("run")
         .setAttribute("style", "border: 1px solid #ced4da");
-    //Codicional para que verifica que se ingreso el -
+    //Condicional para que verifique que se ingreso el -
     if (runText.length < 2) {
         document
             .getElementById("run")
@@ -289,8 +291,6 @@ function soloNumeros(e) {
  * Metodo que comprobara y verificara el run si es valido o no, para ello recibe de la vista el objeto.
  * El metodo se llama en la vista con ese nombre onRunBlur en el campo input run con el atributo onblur.
  * Con la condición el metodo mostrara en un pequeño mensaje si el run es valido o no es correcto.
- * @param {run} obj
- * @version 1.1
  */
 function onRunBlur(obj) {
     //Se evalua el run en la funcion VerificaRun que esta más abajo, si es igual a 1 verdadero
@@ -318,8 +318,7 @@ function onRunBlur(obj) {
             }, 4000);
         }
         else {
-
-            //Si es todo lo contrario false 3, que no muestre nada si el campo esta vacio
+            //CAMPO VACIO NO MOSTRAR NADA
         }
     }
 

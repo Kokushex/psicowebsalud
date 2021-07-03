@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\UserHasRoles;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Route;
@@ -88,10 +89,14 @@ class RegisterController extends Controller
             return view('auth.register_admin');
         }
 
+        protected function verificarRun(Request $request){
+            $this->validate($request, [
+                'rut'=>['unique:persona'],
+            ]);
+        }
 
 
     //podria necesitar el actuar de registerValidaciones para poder controlar las excepciones que se puedan generar
-
 
     protected function createUser(RegisterValidaciones $data)
     {
@@ -140,6 +145,7 @@ class RegisterController extends Controller
                 switch($tipo){
                     case 1:
                         return redirect('/login_paciente')->with('email',$email);
+
                         break;
                     case 2:
                         return redirect('/login_psicologo')->with('email',$email);
@@ -164,7 +170,7 @@ esto ayuda posteriormente para otorgar un rol al usuario
                 break;
             case "createAdmin":
                 $tipo=3;
-                break;    
+                break;
             default:
                 $tipo=0;
         }

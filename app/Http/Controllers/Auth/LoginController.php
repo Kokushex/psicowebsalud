@@ -142,11 +142,11 @@ class LoginController extends Controller
                             Auth::login($user);
                             $user->getProfile($tipo);
                             return redirect()->to('/home');
-                        }elseif($tipo== 3){    
+                        }elseif($tipo== 3){
                             $user->getProfile($tipo);
                              return redirect()->to('/gestionUsuarios');
                         }else{
-                            return back()->with('status','Psicologo no autorizado.');
+                            return back()->with('status','Usuario no autorizado.');
                         }
                     }
                 }

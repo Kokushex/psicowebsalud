@@ -5,6 +5,7 @@
     <h6 class="heading-small text-muted mb-4">{{ __('Información de usuario') }}</h6>
 
     <div class="pl-lg-4">
+
         <!--RUN-->
         <div class="form-group">
             <label for="run" class="col-sm-3 col-form-label">Run</label>
@@ -15,7 +16,6 @@
 
             <div id="alertErrorRun"></div>
         </div>
-
         <!--Nombre-->
         <div class="form-group">
             <label class="form-control-label" for="nombre">{{ __('Nombre') }}</label>
@@ -106,8 +106,8 @@
                         <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $errors->first('direccion') }}</strong>
                                                                     </span>
-                    @endif    
-                @endif    
+                    @endif
+                @endif
             </div>
         </div>
 

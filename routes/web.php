@@ -18,6 +18,7 @@ use App\Http\Controllers\WebPayRestController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Auth\EmailVerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -43,7 +43,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	//carga la vista
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit'])->middleware("verified");
 	//Este actualiza
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 
@@ -68,9 +68,9 @@ Route::get('/register', [RegisterController::class, 'viewRegistroPaciente'])->na
 Route::get('/register_psicologo', [RegisterController::class, 'viewRegistroPsicologo'])->name('register_psicologo');
 Route::post('/auth/register', [RegisterController::class, 'createUser'])->name('createPaciente');
 Route::post('/auth/register_psicologo', [RegisterController::class, 'createUser'])->name('createPsicologo');
-
 Route::get('/register_admin', [RegisterController::class, 'viewRegistroAdmin'])->name('register_admin');
 Route::post('/auth/register_admin', [RegisterController::class, 'createUser'])->name('createAdmin');
+Route::post('/register/rut', [RegisterController::class, 'verificarRun']);
 
 ///////////////////////////////////////////////////////////////////////////LOGIN//////////////////////////////////////////////////////////////////////
 
@@ -78,12 +78,15 @@ Route::get('login_admin', [LoginController::class, 'index_login_admin'])->name('
 Route::get('/login_paciente', [LoginController::class, 'index_login'])->name('login_paciente');
 Route::get('/login_psicologo', [LoginController::class, 'index_login'])->name('login_psicologo');
 Route::post('/login/{tipo}', [LoginController::class, 'logear'])->name('logear');
+///////Verificar Email
+Route::get('email/verify', [EmailVerificationController::class, 'show'])->name('verification.notice');
+Route::get('email/resend', [EmailVerificationController::class, 'resend'])->name('verification.resend');
+Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
 
-Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
-Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
-Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+Route::get('auth/correoEnviado', [EmailVerificationController::class, 'correoEnviado'])->name('correoEnviado');
 
-//Restablecer Contraseña
+
+////////Restablecer Contraseña
 
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.update'); //request
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');

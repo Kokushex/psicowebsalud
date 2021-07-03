@@ -6,8 +6,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Auth\Notifications\VerifyEmail as VerifyEmailBase;
 
-class VerifyEmail extends Notification
+
+class VerifyEmail extends VerifyEmailBase
 {
     use Queueable;
 
@@ -44,13 +46,13 @@ class VerifyEmail extends Notification
             return call_user_func(static::$toMailCallback, $notifiable);
         }
         return (new MailMessage)
-            ->greeting(Lang::getFromJson('Bienvenido a Psicoweb Salud'))
-            ->subject(Lang::getFromJson('Confirme su dirección de correo electrónico'))
-            ->line(Lang::getFromJson('Haga clic en el botón de abajo para verificar su dirección de correo electrónico.'))
+            ->greeting('Bienvenido a Psicoweb Salud')
+            ->subject('Confirme su dirección de correo electrónico')
+            ->line('Haga clic en el botón de abajo para verificar su dirección de correo electrónico.')
             ->action(
-                Lang::getFromJson('Confirme su dirección de correo electrónico'),
+                'Confirme su dirección de correo electrónico',
                 $this->verificationUrl($notifiable)
             )
-            ->line(Lang::getFromJson('Si no creó ha creado una cuenta, omita este correo.'));
+            ->line('Si no ha creado una cuenta, omita este correo.');
     }
 }
