@@ -123,7 +123,6 @@
 
                 </div>
             </div>
-            {{--  <input type="hidden" id="termino" name="hora_terminoD"> --}}
         </div>
     </div>
 </div>
@@ -173,12 +172,6 @@
                     <input type="hidden" name="hora_inicioGet" id="hora_inicioGet">
                 </tr>
 
-                {{--   <tr>
-                       <th scope="row"><label class="text-5 darkgray-text text-bold">Hora termino</label></th>
-                       <td class="text-4 bluegray-text" id="hora_terminoD"></td>
-                       <input type="hidden" name="hora_terminoGet" id="hora_terminoGet">
-                   </tr>
-                   --}}
                 <tr>
                     <th scope="row"><label class="text-5 darkgray-text text-bold">Tipo Pago</label></th>
                     <td class="text-4 bluegray-text" id="previsionD"></td>
@@ -217,7 +210,7 @@
                 </tbody>
             </table>
 
-            <label><input class="" type="checkbox" id="condicionesid" name="condiciones"> si acepto los terminos y condiciones. <a href="" data-toggle="modal" data-target="#condiciones">Leer mas</a> </label><br>
-
+            <label><input class="" type="checkbox" id="condicionesid" name="condiciones"> si acepto los terminos y condiciones. <a href="}}" data-toggle="modal" data-target="#condiciones">Leer mas</a> </label><br>
+                @include('reserva.terminos')
         </div>
     </div>

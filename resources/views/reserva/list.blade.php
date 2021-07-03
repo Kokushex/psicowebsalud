@@ -22,10 +22,10 @@
         <div class="col-md-4">
             <div class="flex-nowrap col ml-auto footer-subscribe p-0">
                 <form action="{{ route('reserva.list') }}" id="filtro" method="GET" autocomplete="off">
-                    <input class="form-control text-4" name="datoFiltro" id="datoFiltro" type="text"
+                   <!-- <input class="form-control text-4" name="datoFiltro" id="datoFiltro" type="text"
                            placeholder="Ingrese un nombre o apellido" @if ($filtro_texto != '') value="{{ $filtro_texto }}" @endif />
                     <button type="button" class="btn indigo btn-theme bg-orange" onclick="funcionBuscar()"><i
-                            class="fa fa-search p-0"></i></button>
+                            class="fa fa-search p-0"></i></button> -->
                 </form>
             </div>
             <div id="mensaje"></div>
@@ -98,7 +98,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                
+
                             </div>
                             -->
                         </div>

@@ -29,7 +29,7 @@ $("#condicionesid").on('change', function () {
             $("#nextBtn").before('<button type="button" onclick="comprobacionDiaHabilitado()" id="submit_2" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Reservar</button>');
         }
     } else {
-        $("#submit").remove();
+        $("#submit_1").remove();
         $("#nextBtn").show();
     }
 });
@@ -121,23 +121,25 @@ $("#nextBtn").on('click', function () {
 
     flag += 1;
     document.getElementById("nextBtn").disabled = true;
+    console.log(flag);
     if ($("#hidenHoras").val() == "si") {
         document.getElementById("nextBtn").disabled = false;
 
     }
 
     if (flag == 2) {
-
         document.getElementById("nextBtn").disabled = true;
-
         let checkCondiciones = document.getElementById("condicionesid");
 
         if (checkCondiciones.checked) {
 
             $("#nextBtn").hide();
 
-            $("#nextBtn").before('<button type="button" id="submit_1" onclick="comprobate()" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Ir a Pagar</button>');
-
+            if ($("#hidenPrevision").val() == "") {
+                $("#nextBtn").before('<button type="button" id="submit_1" onclick="comprobate()" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Ir a Pagar</button>');
+            } else {
+                $("#nextBtn").before('<button type="button" onclick="comprobate()" id="submit_2" class="btn btn-block green white-text text-4"><i class="far fa-calendar-check fa-fw"></i>Reservar</button>');
+            }
 
         } else {
             $("#submit_1").remove();
@@ -145,7 +147,6 @@ $("#nextBtn").on('click', function () {
         }
 
     }
-
 
     document.getElementById("prev").style.display = "none";
     $("#rutD").text($("#rut").val());

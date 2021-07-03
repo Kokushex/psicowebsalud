@@ -50,7 +50,7 @@
                                         <div class="col md-1">
                                             <div class="footer-left" role="group">
                                                 <a href="{{Route('reserva.list')}}" >
-                                                    <button style="background-color: #3B83AE" class="btn btn-secondary">Volver Atrás</button>
+                                                    <button style="background-color: #FFFFFF; border-color: #5e72e4" class="btn btn-secondary">Volver Atrás</button>
                                                 </a>
 
                                             </div>
@@ -61,7 +61,7 @@
                                             <div class="footer-right">
                                                 <form method="post" action="{{$return}}">
                                                     <input type="hidden" name="token_ws" value="{{$token}}" />
-                                                    <input class="btn btn-primary"  style="background-color:  #3BA699; color:white" type="submit" value="Pagar" />
+                                                    <input class="btn btn-primary"  style="background-color:  #5e72e4; color:white" type="submit" value="Pagar" />
                                                 </form>
                                             </div>
                                         </div>

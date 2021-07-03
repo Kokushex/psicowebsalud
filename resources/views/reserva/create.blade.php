@@ -25,18 +25,18 @@
                 </div>
                 <div class="" id="modal_footer">
                     <div class="col-lg-4 col-5 float-left">
-                        <button type="button" class="btn btn-block  white-text text-4" id="prevBtn"
-                                style="background-color: #737b80; display:none;" onclick="nextPrev(-1)"><em
+                        <button type="button" class="btn btn-block  text-white text-4" id="prevBtn"
+                                style="background-color: #5e72e4; display:none;" onclick="nextPrev(-1)"><em
                                 class="fas fa-arrow-left"></em> Atrás</button>
-                        <button type="button" class="btn btn-block  white-text text-4" id="prev"
-                                style="background-color: #737b80; display: none;"><em class="fas fa-arrow-left"></em>
+                        <button type="button" class="btn btn-block  text-white text-4" id="prev"
+                                style="background-color: #5e72e4; display: none;"><em class="fas fa-arrow-left"></em>
                             Atrás</button>
                     </div>
                     <div class="col-lg-4 col-6 float-right" id="next">
-                        <button type="button" class="btn btn-block white-text text-4" style="background-color: #3b83ae"
+                        <button type="button" class="btn btn-block text-white text-4" style="background-color: #5e72e4"
                                 id="button">Siguiente <em class="fas fa-arrow-right"></em> </button>
-                        <button type="button" class="btn btn-block white-text text-4" id="nextBtn"
-                                style="background-color: #3b83ae" onclick="nextPrev(1)">Siguiente <em
+                        <button type="button" class="btn btn-block text-white text-4" id="nextBtn"
+                                style="background-color: #5e72e4" onclick="nextPrev(1)">Siguiente <em
                                 class="fas fa-arrow-right"></em></button>
                     </div>
                 </div>

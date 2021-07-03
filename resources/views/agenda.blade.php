@@ -2,6 +2,7 @@
 @section('content')
 
 <link href="{{asset('assets/fullcalendar/main.css')}}" rel='stylesheet' />
+<link href="{{asset('assets/css/agenda/agenda.css')}}" rel='stylesheet' />
 
 <div class="header bg-gradient-primary py-7 py-lg-6" style="height: 10rem">
         <div class="container">
@@ -50,7 +51,7 @@
                     //funcionalidad para cambiar la zona horaria de fullcalendar
                     timeZone: 'America/Santiago',
                     //funcionalidad para cambiar el idioma de fullcalendar
-                    locale: 'es',
+                    locale: 'Es',
                     //funcionalidad para reemplazar el primer dia en la vista
                     firstDay: 1,
                     //Carga de botones en el encabezado del calendario
@@ -82,14 +83,53 @@
     </script>
 
 <div class="container mt--10 pb-5"></div>
-<div class="card-body">
-    <div id='calendario'></div>
+<div class="card-body text-center fondoCalendario">
+
+    <div class="card tarjeta mt-3">
+        <div class="card-header align-items-center">
+            <div class="row">
+                <div class="col-sm-2 col-md-12">
+
+                </div>
+                <div class="col-sm-8 text-center">
+
+                </div>
+                <div class="col-sm-12 col-md-12 text-left">
+                    <h5>Leyenda:</h5>
+                    <div style="display: inline-block;">
+                        <i class="fas fa-circle fa-sm" style="color: #1cc961;"></i>
+                        <div style="display: inline-block;">Online</div>
+                    </div>
+                    <div style="display: inline-block;">
+                        <i class="fas fa-circle fa-sm" style="color: #d44f9f;"></i>
+                        <div style="display: inline-block;">Presencial</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div id="calendario"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
 </div>
 
 @include('agenda.modalAgenda')
 
 @push('js')
     <script src="{{asset('assets/fullcalendar/main.js')}}"></script>
+    <script src="{{ asset('assets/fullcalendar/locales/es.js') }}"></script>
+
+
 @endpush
 
 @endsection

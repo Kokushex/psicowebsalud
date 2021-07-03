@@ -19,8 +19,8 @@
                 <!-- DATOS CLIENTE -->
                 <table class="table table-responsive-sm customer-grid mt-2">
                     <thead>
-                    <tr style="background-color: #FFBB00;">
-                        <th colspan="4">INFORMACIÓN DE CLIENTE TITULAR</th>
+                    <tr style="background-color: #7612E7;">
+                        <th colspan="4" style="color: white">INFORMACIÓN DE CLIENTE TITULAR</th>
                     </tr>
                     </thead>
                     <tr>
@@ -35,8 +35,8 @@
                 <!-- DATOS PACIENTE -->
                 <table class="table table-responsive-sm customer-grid mt-2">
                     <thead>
-                    <tr style="background-color: #FFBB00;">
-                        <th colspan="4">INFORMACIÓN DE PACIENTE</th>
+                    <tr style="background-color: #7612E7;">
+                        <th colspan="4" style="color: white">INFORMACIÓN DE PACIENTE</th>
                     </tr>
                     </thead>
                     <tr>
@@ -57,8 +57,8 @@
                 <!-- DATOS DE TRANSACCIÓN -->
                 <table class="table table-responsive-sm customer-grid">
                     <thead>
-                    <tr style="background-color: #FFBB00;">
-                        <th colspan="7">DATOS DE TRANSACCIÓN</th>
+                    <tr style="background-color: #7612E7;">
+                        <th colspan="7" style="color: white">DATOS DE TRANSACCIÓN</th>
                     </tr>
                     </thead>
                     <tr>
@@ -122,13 +122,13 @@
 
                 <!-- DETALLE COMPRA -->
                 <table class="table table-responsive-sm customer-grid mt-2">
-                    <thead style="background-color: #FFBB00;">
+                    <thead style="background-color: #7612E7;">
                     <tr>
-                        <th>Descripción</th>
-                        <th>Fecha Cita</th>
-                        <th>Hora Cita</th>
+                        <th style="color: white">Descripción</th>
+                        <th style="color: white">Fecha Cita</th>
+                        <th style="color: white">Hora Cita</th>
                         <th>&nbsp;</th>
-                        <th>Precio</th>
+                        <th style="color: white">Precio</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -179,7 +179,7 @@
             <div class="card-footer">
                 <div class="row justify-content-between">
                     <div class="col-auto mr-auto">
-                    <!-- 
+                    <!--
                         <form action="#" method="POST">
                             @csrf
                             <div class="input-group flex-nowrap">
