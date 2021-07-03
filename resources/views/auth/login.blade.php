@@ -6,11 +6,13 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
 
     <div class="container mt--8 pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7">
-                
+
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-header bg-transparent pb-4">
                         @if (Route::currentRouteName() == 'login_paciente')
@@ -49,6 +51,7 @@
                         @endif
                         <form class="needs-validation" method="POST" action="{{ route('logear', $tipo) }}">
                             @csrf
+
                             <div class="form-group mb-3">
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
@@ -74,14 +77,10 @@
                                             </span>
                                 @enderror
                             </div>
-                            <!-- 
-                            <div class="custom-control custom-control-alternative custom-checkbox">
-                                <input class="custom-control-input" name="remember" id="customCheckLogin" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
-                                <label class="custom-control-label" for="customCheckLogin">
-                                    <span class="text-muted">{{ __('Recordarme') }}</span>
-                                </label>
-                            </div>
-                            -->
+
+                           <!-- <div class="g-recaptcha" data-sitekey="{{ config ('services.recaptcha.key') }}"></div>
+                            <br/> -->
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary my-4">{{ __('Iniciar sesión') }}</button>
                             </div>

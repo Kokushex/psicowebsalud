@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,8 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Notifications\ResetPasswordNotification;
-use App\Models\Roles;
 
+use Illuminate\Contracts\Auth\MustVerifyEmails;
 /**
  * @property int $id_user
  * @property string $email
@@ -30,7 +31,7 @@ use App\Models\Roles;
  * @property UserHasRole[] $userHasRoles
  */
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -108,6 +109,7 @@ class User extends Authenticatable
         $user = new User();
         $user->email=$data['email'];
         $user->password=Hash::make($data['password']);//contraseña
+        $user->email_verified_at = null;
         $user->save();
         return $user;
     }
@@ -182,6 +184,13 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
 
      }
+
+    public function sendEmailVerificationNotification(){
+
+        $this->notify(new VerifyEmail());
+
+    }
+
 
     /**
      *Metodo para listar los usuarios en la tabla de gestion de usuarios

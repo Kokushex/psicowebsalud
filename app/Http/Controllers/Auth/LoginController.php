@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginValidaciones; //agregada
-use App\Models\User; //agregada
+use App\Http\Requests\LoginValidaciones;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Dotenv\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request; //agregada
-use Cookie; //agregada
-use Auth; /*agregado*/
+use Illuminate\Http\Request;
+use Cookie;
+use Auth;
 
 
 
@@ -114,11 +115,15 @@ class LoginController extends Controller
 
 
             //Auth::attempt metodo para logear al usuario si corresponde
-            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'],
+            /*['g-recaptcha' => $request['g-recaptcha']]*/
+            ])) {
+
                 // Verificar si el usuario corresponde con el rol
                 $user=new User();
                 $user=$user->encontrarUserConRol($request['email'],$tipo);
                 //Verificar si el usuario existe
+
                 if(is_null($user) || empty($user)){
                     //Deslogear usuario
                     Auth::logout();
@@ -153,4 +158,26 @@ class LoginController extends Controller
                 return back()->with('status','Usuario y/o Clave incorrecta(s).');
             }
     }
+
+    public function validator (array $data)
+    {
+            return Validator::make($data,[
+            'g-recaptcha-response' =>function($attribute, $value, $fail) {
+                $secretKey = config('services.recaptcha.secret');
+                $response = $value;
+                $userIP = $_SERVER['REMOTE_ADDR'];
+                $url = "URL: https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remote=$userIP";
+                $response = file_get_contents($url);
+                $response = json_decode($response);
+                if(!$response->success){
+                    $fail($attribute.'google reCaptcha failed');
+                }
+            }
+
+            ]);
+    }
+
+
+
+
 }

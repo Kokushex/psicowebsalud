@@ -16,7 +16,8 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebPayRestController;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,15 +33,11 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-Auth::routes();
 
-/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes(); */
+Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-//Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -78,6 +75,10 @@ Route::get('login_admin', [LoginController::class, 'index_login_admin'])->name('
 Route::get('/login_paciente', [LoginController::class, 'index_login'])->name('login_paciente');
 Route::get('/login_psicologo', [LoginController::class, 'index_login'])->name('login_psicologo');
 Route::post('/login/{tipo}', [LoginController::class, 'logear'])->name('logear');
+
+Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
 //Restablecer Contraseña
 
@@ -159,8 +160,6 @@ Route::get('/roles/solicitudes/{id}', [RolesController::class, 'cambioEstado'])-
 
 //////////////////////////////////////AGENDA//////////////////////////////////////////////////
 Route::get('/agenda/listar', [AgendaController::class, 'listarAgenda']);
-
-
 
 
 

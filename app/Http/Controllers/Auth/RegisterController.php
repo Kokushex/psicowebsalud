@@ -87,24 +87,23 @@ class RegisterController extends Controller
 
 
     //podria necesitar el actuar de registerValidaciones para poder controlar las excepciones que se puedan generar
-    
-    
+
+
     protected function createUser(RegisterValidaciones $data)
     {
-       // return User::create([
-        
+
+
             $tipo=$this->obtenerTipoSegunRuta();
-            
+
             $user = new User();
             $user=$user->verificarUsuario('email',$data['email']);
-                             
+
             if(count($user)==0){
-                /* 'email' => $data['email'],
-                'password' => Hash::make($data['password']), */
+
                 if($data['password']==$data['password_confirmation']){
                     $user = new User();
                     $user->createUsuario($data);
-                   
+
                     $user=User::latest()->first();
                     $usuarioRol=new UserHasRoles();
 
@@ -119,7 +118,7 @@ class RegisterController extends Controller
                         $usuarioRol->asignarUsuarioRol($user->id_user,2);
                         auth()->login($user);
                         $user->generarProfile($tipo);
-                        return redirect()->to('/profile'); //('/email/verify
+                        return redirect()->to('/profile'); //('/email/verify')
                     }
                 }else{
                     $status = 'Las contraseñas no coinciden.';
@@ -138,12 +137,6 @@ class RegisterController extends Controller
                 }
             }
 
-
-
-            
-
-       // ])
-        ;
     }
 
 /*metodo para seleccionar el tipo de registro deseado (Paciente o psicologo),

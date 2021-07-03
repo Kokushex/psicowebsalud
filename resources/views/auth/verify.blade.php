@@ -17,16 +17,22 @@
                                     {{ __('Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.') }}
                                 </div>
                             @endif
-                            
+
                             {{ __('Antes de continuar, revise su correo electrónico para ver si hay un enlace de verificación.') }}
-                            
-                            @if (Route::has('verification.resend'))
-                                {{ __('Si no recibió el correo electrónico') }}, <a href="{{ route('verification.resend') }}">{{ __('haga clic aquí para solicitar otro') }}</a>
-                            @endif
+
+
+                                    <button  class="btn btn-info white-text text-4 text-medium mb-3 indigo"
+                                             id="cargar" type="button" onclick='enviarVerificacion()'>Solicitar verificacion </button>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    @push('js')
+        <script src="{{asset('assets/js/auth/verificacionEmail.js') }}"></script>
+
+    @endpush
 @endsection

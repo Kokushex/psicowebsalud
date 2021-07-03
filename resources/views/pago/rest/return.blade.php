@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="col-md-3 text-right centered"
                                          style="display: inline-block;vertical-align: middle;padding: 15px;">
-                                        <a href="" class="btn btn-sm btn-primary"> Ir a Detalle de Pago</a>
+                                        <a href="{{ route('pago.ordencompra', $pago->orden_compra) }}" class="btn btn-sm btn-primary"> Ir a Detalle de Pago</a>
                                     </div>
                                 </div>
                             </div>
