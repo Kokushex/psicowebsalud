@@ -83,6 +83,10 @@ class RegisterController extends Controller
         protected function viewRegistroConfirmacion(){
             return view('auth.register_confirmacion');
         }
+        //Metodo para la que la vista cargada sea con los apartados para paciente
+        protected function viewRegistroAdmin(){
+            return view('auth.register_admin');
+        }
 
 
 
@@ -113,12 +117,18 @@ class RegisterController extends Controller
                         auth()->login($user);
                         $user->generarProfile($tipo);
                         return redirect()->to('/profile'); //('/email/verify')
-                    }else{
+                    }elseif($tipo==2){
                         //tipo 2 = psicologo
                         $usuarioRol->asignarUsuarioRol($user->id_user,2);
                         auth()->login($user);
                         $user->generarProfile($tipo);
-                        return redirect()->to('/profile'); //('/email/verify')
+                        return redirect()->to('/profile'); //('/email/verify
+                    }else{
+                        //tipo 3 = admin
+                        $usuarioRol->asignarUsuarioRol($user->id_user,3);
+                        auth()->login($user);
+                        $user->generarProfile($tipo);
+                        return redirect()->to('/gestionUsuarios'); //('/email/verify
                     }
                 }else{
                     $status = 'Las contraseñas no coinciden.';
@@ -152,6 +162,9 @@ esto ayuda posteriormente para otorgar un rol al usuario
             case "createPsicologo":
                 $tipo=2;
                 break;
+            case "createAdmin":
+                $tipo=3;
+                break;    
             default:
                 $tipo=0;
         }

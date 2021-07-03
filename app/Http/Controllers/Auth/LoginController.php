@@ -140,14 +140,11 @@ class LoginController extends Controller
                         if($tipo == 1 || $tipo ==2){
                             Cookie::queue('access_error', 0, 10);
                             Auth::login($user);
-                            //Logeo para el administrador
-                             if($tipo== 3){
-                                $user->getProfile($tipo);
-                                 return redirect()->to('/gestionUsuarios');
-                             }else{
-                                $user->getProfile($tipo);
-                                return redirect()->to('/home');
-                            }
+                            $user->getProfile($tipo);
+                            return redirect()->to('/home');
+                        }elseif($tipo== 3){    
+                            $user->getProfile($tipo);
+                             return redirect()->to('/gestionUsuarios');
                         }else{
                             return back()->with('status','Psicologo no autorizado.');
                         }

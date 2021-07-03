@@ -136,7 +136,10 @@ class User extends Authenticatable implements MustVerifyEmail
                 session()->put(['user' => $user, 'rol' => $rol]);
                 break;
             case 3:
-                session()->put(['rol' => $rol]);
+                $persona    = new Persona();
+                $persona    = $persona->generarPersona();
+                $user = $persona->datosAdminLogeado();
+                session()->put(['user' => $user, 'rol' => $rol]);
                 break;
         }
     }
@@ -153,9 +156,11 @@ class User extends Authenticatable implements MustVerifyEmail
                 $user = $psicologo->datosPsicologoLogeado();
                 session()->put(['user' => $user, 'rol' => $rol]);
                 break;
-           /* case 3:
-                session()->put(['rol' => $rol]);
-                break; */
+           case 3:
+                $persona = new Persona();
+                $user = $persona->datosAdminLogeado();
+                session()->put(['user' => $user, 'rol' => $rol]);
+                break;
         }
     }
 

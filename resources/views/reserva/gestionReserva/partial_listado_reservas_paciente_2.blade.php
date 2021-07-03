@@ -31,7 +31,7 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    <table class="table table-striped table-bordered " style="width:100%">
+                    <table id="lista_reserva_paciente" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                         <tr class="tabla_datos_solicitados">
                             <th></th>

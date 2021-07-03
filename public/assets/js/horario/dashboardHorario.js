@@ -65,11 +65,16 @@ var table = $('#tablaHorario').DataTable({
     "order": [
         [2, "desc"]
     ],
+    "scrollX": true,
+        "paginate": false,
+        "dom": 'lrtpi'
 });
 
 //Inicializacion de datatable
 $(document).ready(function () {
-    table;
+    table.DataTable({    
+    "scrollX": true        })
+    
 });
 
 //Funcion de recarga de datos del DataTable

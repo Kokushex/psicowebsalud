@@ -1119,16 +1119,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.49.0",
+            "version": "v8.49.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "855a919d08b45f93cb3cf709736528c3d1531884"
+                "reference": "62aee1bfeefd82f160c7aa3b4c63cb2f053215c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/855a919d08b45f93cb3cf709736528c3d1531884",
-                "reference": "855a919d08b45f93cb3cf709736528c3d1531884",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/62aee1bfeefd82f160c7aa3b4c63cb2f053215c0",
+                "reference": "62aee1bfeefd82f160c7aa3b4c63cb2f053215c0",
                 "shasum": ""
             },
             "require": {
@@ -1283,7 +1283,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-06-29T13:50:21+00:00"
+            "time": "2021-07-02T16:50:12+00:00"
         },
         {
             "name": "laravel/legacy-factories",
@@ -5182,16 +5182,16 @@
         },
         {
             "name": "transbank/transbank-sdk",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TransbankDevelopers/transbank-sdk-php.git",
-                "reference": "63923e8bff91bceed68dc62e9e9e8d5e5a66f375"
+                "reference": "6c7aabe48a4b28e920f308a6bdfdfb581d02d0ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/63923e8bff91bceed68dc62e9e9e8d5e5a66f375",
-                "reference": "63923e8bff91bceed68dc62e9e9e8d5e5a66f375",
+                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/6c7aabe48a4b28e920f308a6bdfdfb581d02d0ab",
+                "reference": "6c7aabe48a4b28e920f308a6bdfdfb581d02d0ab",
                 "shasum": ""
             },
             "require": {
@@ -5227,9 +5227,9 @@
             ],
             "support": {
                 "issues": "https://github.com/TransbankDevelopers/transbank-sdk-php/issues",
-                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/2.0.3"
+                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/2.0.4"
             },
-            "time": "2021-05-10T21:09:32+00:00"
+            "time": "2021-07-02T20:59:01+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

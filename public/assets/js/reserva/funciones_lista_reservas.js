@@ -431,8 +431,10 @@ function conversorFecha(fecha) {
 }
 
 $(document).ready(function() {
-    $('#lista_reserva').DataTable( {
-        "scrollX": true
-        
+    $('#lista_reserva_paciente').DataTable( {
+        "scrollX": true,
+        "paginate": false,
+        "dom": 'lrtp'
+                
     } );
 } );

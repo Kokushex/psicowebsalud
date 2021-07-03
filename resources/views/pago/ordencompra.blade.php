@@ -179,6 +179,7 @@
             <div class="card-footer">
                 <div class="row justify-content-between">
                     <div class="col-auto mr-auto">
+                    <!-- 
                         <form action="#" method="POST">
                             @csrf
                             <div class="input-group flex-nowrap">
@@ -193,8 +194,9 @@
                                 </button>
                             </div>
                         </form>
+                        -->
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto mr-auto">
                         <form action="{{route('pago.pagoDetalle', $pago->orden_compra)}}">
                             @csrf
                             <div class="input-group flex-nowrap">

@@ -23,10 +23,28 @@ class RolesController extends Controller
 
     public function Listar()
     {
-
-        $usuario2 = User::listasCompleta();
-        $listaDeRoles = User::listaRol();
-        return view('gestionUsuarios', compact('usuario2', 'listaDeRoles'));
+        //Se abre un Try-Catch para que en caso de algun error se imprima un mensaje
+        try {
+            //Se autentifica el usuario
+            if (auth()->user()) {
+                //Se filtra el acceso solo a usuarios psicologos
+                if(isset(auth()->user()->persona->psicologo->id_psicologo)) {
+                    return view('home');
+                }elseif(isset(auth()->user()->persona->paciente->id_paciente)){
+                    return view('home');
+                }else {
+                    $usuario2 = User::listasCompleta();
+                    $listaDeRoles = User::listaRol();
+                    return view('gestionUsuarios', compact('usuario2', 'listaDeRoles'));
+                }
+            }else{
+                //Si no se encuentra en una sesion es devuelto al inicio
+                return view('welcome');
+            }
+        } catch (\Exception $e) {
+            //Se imprime el error encontrado
+            print_r($e->getMessage());
+        }
     }
 
     /**
@@ -200,8 +218,27 @@ class RolesController extends Controller
 
     public function solicitudes()
     {
-        $solicitud = User::psicologoSolicitud();
-        return view('roles.solicitudes', compact('solicitud'));
+        //Se abre un Try-Catch para que en caso de algun error se imprima un mensaje
+        try {
+            //Se autentifica el usuario
+            if (auth()->user()) {
+                //Se filtra el acceso solo a usuarios psicologos
+                if(isset(auth()->user()->persona->psicologo->id_psicologo)) {
+                    return view('home');
+                }elseif(isset(auth()->user()->persona->paciente->id_paciente)){
+                    return view('home');
+                }else {
+                    $solicitud = User::psicologoSolicitud();
+                    return view('roles.solicitudes', compact('solicitud'));
+                }
+            }else{
+                //Si no se encuentra en una sesion es devuelto al inicio
+                return view('welcome');
+            }
+        } catch (\Exception $e) {
+            //Se imprime el error encontrado
+            print_r($e->getMessage());
+        }
     }
 
     /**

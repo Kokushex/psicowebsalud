@@ -119,6 +119,30 @@ class Persona extends Model
 
     }
 
+    public function datosAdminLogeado()
+    {
+        $user_id = auth()->user()->id;
+        $persona = Persona::select('id_persona')
+            ->where('persona.id_user', $user_id)
+            ->first();
+
+        if (empty($persona)) {
+            $persona = new stdClass();
+            $persona ->run = '';
+            $persona ->nombre = '';
+            $persona ->apellido_paterno = '';
+            $persona ->apellido_materno = '';
+            $persona ->fecha_nacimiento = '';
+            $persona ->genero = '';
+            $persona ->direccion = '';
+            $persona ->comuna = '';
+            $persona ->region = '';
+            $persona ->telefono = '';
+
+        }
+        return $persona;
+    }
+
 
 
 }

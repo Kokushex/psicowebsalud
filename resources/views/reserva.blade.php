@@ -55,6 +55,6 @@
 
 
     @push('js')
-
+    
     @endpush
 @endsection

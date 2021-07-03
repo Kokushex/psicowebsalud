@@ -35,16 +35,14 @@
         <link href="{{asset('assets/css/reserva/table.css')}}" rel="stylesheet">
 
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js">
-        </script>
-        <script type="text/javascript" charset="utf8"
-                src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js"></script>
-        <script type="text/javascript" charset="utf8"
-                src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-        <script type="text/javascript" charset="utf8"
-                src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap.min.js"></script>
 
         <script src="{{asset('assets/js/reserva/funciones_lista_reservas.js')}}"></script>
+
+        
 
 
     @endpush

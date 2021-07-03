@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/servicio', [ServicioController::class, 'indexServicio'])->name('servicio');
-Route::get('/roles', [RolesController::class, 'indexRoles'])->name('roles');
+//Route::get('/roles', [RolesController::class, 'indexRoles'])->name('roles');
 Route::get('/agenda', [AgendaController::class, 'indexAgenda'])->name('agenda');
 Route::get('/reserva', [ReservaController::class, 'indexReserva'])->name('reserva');
 
@@ -68,6 +68,9 @@ Route::get('/register', [RegisterController::class, 'viewRegistroPaciente'])->na
 Route::get('/register_psicologo', [RegisterController::class, 'viewRegistroPsicologo'])->name('register_psicologo');
 Route::post('/auth/register', [RegisterController::class, 'createUser'])->name('createPaciente');
 Route::post('/auth/register_psicologo', [RegisterController::class, 'createUser'])->name('createPsicologo');
+
+Route::get('/register_admin', [RegisterController::class, 'viewRegistroAdmin'])->name('register_admin');
+Route::post('/auth/register_admin', [RegisterController::class, 'createUser'])->name('createAdmin');
 
 ///////////////////////////////////////////////////////////////////////////LOGIN//////////////////////////////////////////////////////////////////////
 

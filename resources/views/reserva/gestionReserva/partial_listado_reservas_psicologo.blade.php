@@ -3,6 +3,7 @@
 
     <!-- /.container-fluid -->
 </section>
+
 <div class="container-fluid mt-2">
     <div class="card shadow mb-12">
         <div class="card-header">
@@ -20,7 +21,7 @@
             @endif
             <div class="card-body">
 
-                <table class="table table-striped table-bordered" style="width:100%">
+                <table id="lista_reserva_psicologo" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                     <tr>
                         <th>N°</th>

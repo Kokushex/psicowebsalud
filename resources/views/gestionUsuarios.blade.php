@@ -96,15 +96,7 @@
                                            data-placement="bottom" title="Editar Datos">
                                             <i class="fas fa-user-edit"></i>
                                         </a>
-                                        <!-- envia la id del usuario mostrado en la tabla y lo envia a updateRol.blade.php-->
-                                        {{-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEditRol"
-                                        data-idRol="{{ $fila->id_user_rol }}" data-idRolActual="{{ $fila->id_rol }}" data-idUser="{{ $fila->user_id }}" data-idPersona="{{ $fila->id_persona }}">
-                                            <i class="fas fa-users-cog" data-toggle="tooltip" data-placement="bottom" title="Cambiar Rol"></i>
-                                        </button> --}}
-                                        <a href="{{ route('mandaId', $fila->id_user_rol) }}" class="btn btn-warning cambiarRol" data-toggle="tooltip"
-                                           data-placement="bottom" title="Editar Rol">
-                                            <i class="fas fa-users-cog"></i>
-                                        </a>
+                                        
                                         <!-- botnes de ban y unban que envian el id del usuario por la ruta -->
                                         @if ($fila->estado == 1)
                                             <form action="{{ route('unban', $fila->user_id) }}" method="POST">

@@ -23,6 +23,8 @@ var table = $('#tablaServicio').DataTable({
     "order": [
         [2, "desc"]
     ],
+    "dom": 'frtip',
+    
 
 });
 

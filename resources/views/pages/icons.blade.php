@@ -49,6 +49,7 @@
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <!-- Nav items -->
           <ul class="navbar-nav">
+          <!--
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('home') }}">
                     <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
@@ -75,12 +76,13 @@
                     </ul>
                 </div>
             </li>
-
+          -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
                 </a>
             </li>
+            <!--
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('map') }}">
                     <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
@@ -97,14 +99,16 @@
                     <i class="ni ni-cloud-download-95"></i> Upgrade to PRO
                 </a>
             </li>
+            -->
         </ul>
-          <!-- Divider -->
+          <!-- 
+          -- Divider --
           <hr class="my-3">
-          <!-- Heading -->
+          -- Heading --
           <h6 class="navbar-heading p-0 text-muted">
             <span class="docs-normal">Documentation</span>
           </h6>
-          <!-- Navigation -->
+          !-- Navigation --
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
               <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
@@ -131,6 +135,7 @@
               </a>
             </li>
           </ul>
+          -->
         </div>
       </div>
     </div>
