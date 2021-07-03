@@ -292,14 +292,15 @@ function soloNumeros(e) {
  * El metodo se llama en la vista con ese nombre onRunBlur en el campo input run con el atributo onblur.
  * Con la condición el metodo mostrara en un pequeño mensaje si el run es valido o no es correcto.
  */
+/*
 function onRunBlur(obj) {
     //Se evalua el run en la funcion VerificaRun que esta más abajo, si es igual a 1 verdadero
     if (VerificaRun(obj.value) == 1) {
         $('#alertErrorRun').append($('<span class="badge badge-success"  id="alertSucces" >EL RUN ES VALIDO</span>'));
         setTimeout(function () {
-            $('#alertSucces').fadeIn();
-            $('#alertSucces').fadeOut(1500);
-        }, 1500);
+            $('#alertSucces').fadeIn(500);
+            $('#alertSucces').fadeOut(500);
+        },
         setTimeout(function () {
             $('#alertSucces').remove();
         }, 4000);
@@ -310,7 +311,7 @@ function onRunBlur(obj) {
             $('#alertErrorRun').append($('<span class="badge badge-danger"  id="alertSucces" >EL RUN NO ES CORRECTO</span>'));
             $('#run').val("");
             setTimeout(function () {
-                $('#alertSucces').fadeIn();
+                $('#alertSucces').fadeIn(0);
                 $('#alertSucces').fadeOut(1500);
             }, 1500);
             setTimeout(function () {
@@ -324,6 +325,7 @@ function onRunBlur(obj) {
 
 
 }
+*/
 
 /**
  * Este metodo verifica si el run esta bien escrito y valida segun el algoritmo,

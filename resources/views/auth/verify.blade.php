@@ -21,9 +21,6 @@
                             {{ __('Antes de continuar, revise su correo electrónico para ver si hay un enlace de verificación.') }}
 
 
-                                    <button  class="btn btn-info white-text text-4 text-medium mb-3 indigo"
-                                             id="cargar" type="button" onclick='enviarVerificacion()'>Solicitar verificacion </button>
-
                         </div>
                     </div>
                 </div>
