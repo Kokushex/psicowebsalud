@@ -25,7 +25,7 @@
                         <div class="darkblue-text text-medium text-4">
                             Titulo Psicólogo
                             <p class="m-0 bluegray-text text-4">
-                                <em class="fas fa-graduation-cap fa-fw indigo-text"></em> {{$user->titulo}} - Sin especialidad
+                                <em class="fas fa-graduation-cap fa-fw indigo-text"></em> {{$user->titulo}}
                             </p>
                         </div>
                     </li>
@@ -56,7 +56,7 @@
                                     <div class="darkblue-text text-medium text-4">
                                         Doctorado
                                         <p class="m-0 bluegray-text text-4">
-                                            <em class="fas fa-graduation-cap fa-fw indigo-text"></em> {{$user->titulo}} - Sin especialidad
+                                            <em class="fas fa-graduation-cap fa-fw indigo-text"></em> {{$user->titulo}}
                                         </p>
                                     </div>
                                 </li>

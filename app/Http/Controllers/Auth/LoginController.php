@@ -67,29 +67,10 @@ class LoginController extends Controller
         return view('auth.login_admin');
     }
 
-    //////Tipo segun ruta metodo 1
-    //Metodo para seleccionar tipo de usuario que puede iniciar sesion desde la vista actual
-    // private function obtenerTipoSegunRuta(){
-    //     $tipo=0;
-    //     switch(Route::currentRouteName()){
-    //         case "login_Paciente":
-    //             $tipo=1;
-    //             break;
-    //         case "login_Psicologo":
-    //             $tipo=2;
-    //             break;
-    //         default:
-    //             $tipo=0;
-    //     }
-    //     return $tipo;
-    // }
-
-    //////Tipo segun ruta metodo 2
     /**
      * Metodo para retornar la vista de login con la variable
      * de tipo que es para saber a que login se quiere acceder
      * tipo 1 de paciente y tipo 2 de usuario
-     * @return View
      */
     protected function index_login(){
         //Crear cookie con valor 0 y duracion de 60 minutos

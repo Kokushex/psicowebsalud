@@ -21,7 +21,7 @@
         <!--Grupo familiar-->
         <div class="form-group">
             <label class="form-control-label" for="grupo_familiar">{{ __('Grupo familiar') }}</label>
-            <input type="text" name="grupo_familiar" id="grupo_familiar" class="form-control " placeholder="{{ __('Grupo familiar') }}" value="{{auth()->user()->persona->paciente->grupo_familiar}}" required>
+            <input type="text" name="grupo_familiar" id="grupo_familiar" class="form-control " placeholder="{{ __('Ingrese el numero de persona con las que vive') }}" value="{{auth()->user()->persona->paciente->grupo_familiar}}" required>
         </div>
         <div class="text-center">
             <div class="text-center" id="div_confirmacion2">

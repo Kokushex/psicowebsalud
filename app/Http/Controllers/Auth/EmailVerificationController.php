@@ -16,8 +16,6 @@ class EmailVerificationController extends Controller
     {
         auth()->user()->sendEmailVerificationNotification();
 
-       /* return back()
-            ->with('success', 'Verification link sent!'); */
         return redirect()->to('/auth/correoEnviado');
     }
 

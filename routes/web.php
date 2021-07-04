@@ -42,9 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	//carga la vista
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit'])->middleware("verified");
-	//Este actualiza
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 
 	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade');
@@ -56,10 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-Route::get('/servicio', [ServicioController::class, 'indexServicio'])->name('servicio');
-//Route::get('/roles', [RolesController::class, 'indexRoles'])->name('roles');
-Route::get('/agenda', [AgendaController::class, 'indexAgenda'])->name('agenda');
-Route::get('/reserva', [ReservaController::class, 'indexReserva'])->name('reserva');
+
+
 
 /////////////////////////////////////////////////////////REGISTRO/////////////////////////////////////////////////////////////////////////////////////
 
@@ -104,7 +100,7 @@ Route::post('/profile/updatePsicologo', [ProfileController::class, 'updatePsicol
 
 
 ////////////////////////////////////////////////////////////////////SERVICIO//////////////////////////////////////////////////////////////////////////////////
-
+Route::get('/servicio', [ServicioController::class, 'indexServicio'])->name('servicio');
 Route::get('datatable/servicio', [ServicioController::class, 'datos'])->name('servicios.datatable_servicios');
 Route::post('servicios/agregar', [ServicioController::class, 'guardarServicio'])->name('servicios.crear_servicio');
 Route::post('/servicios/servicioDuplicado', [ServicioController::class, 'buscarServicioDuplicado'])->name('servicios.buscar_servicio_duplicado');
@@ -123,8 +119,7 @@ Route::post('horario/cambiarHorarioAjax', [HorarioController::class, 'cambiarEst
 Route::put('horario/dashboardHorario', [HorarioController::class, 'edit'])->name('editarHorario');
 
 ////////////////////////////////////////////////////////////////////RESERVA//////////////////////////////////////////////////////////////////////////////////////
-
-//Route::get('reserva/list', [PsicologoController::class, 'filtroPrincipal'])->name('psicologo.list');
+Route::get('/reserva', [ReservaController::class, 'indexReserva'])->name('reserva');
 Route::get('/reserva/list', [PsicologoController::class, 'index'])->name('reserva.list');
 Route::get('/profile/{id}', [ProfileController::class, 'getProfile'])->name('busqueda');
 Route::get('/listar', [ReservaController::class, 'listarReservas'])->name('reserva.listar');
@@ -166,6 +161,7 @@ Route::get('/roles', [RolesController::class, 'solicitudes'])->name('solicitudes
 Route::get('/roles/solicitudes/{id}', [RolesController::class, 'cambioEstado'])->name('estado');
 
 //////////////////////////////////////AGENDA//////////////////////////////////////////////////
+Route::get('/agenda', [AgendaController::class, 'indexAgenda'])->name('agenda');
 Route::get('/agenda/listar', [AgendaController::class, 'listarAgenda']);
 
 
