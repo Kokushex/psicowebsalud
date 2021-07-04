@@ -14,12 +14,12 @@
         }
 
         a:hover {
-            color: #FFBB00;
+            color: #5e72e4;
         ;
         }
 
         a:active {
-            color: #FFBB00;
+            color: #5e72e4;
         ;
         }
     </style>
@@ -30,7 +30,7 @@
 <div class="container">
     <!-- INFORMACIÓN DEL COMERCIO -->
     <div style="text-align: center;">
-        <img src="assets/img/logopsicotem3Transparente.png" style="width:100%; max-width:250px;">
+        <img src="argon/img/brand/blue.png" style="width:100%; max-width:250px;">
     </div>
     <div class="mt-2" style="text-align: center;">
         <span>Psicoweb Salud</span> |
@@ -42,8 +42,8 @@
     <!-- INFORMACIÓN DEL CLIENTE -->
     <table class="table table-sm customer-grid mt-2">
         <thead>
-        <tr style="background-color: #FFBB00;">
-            <th colspan="4">INFORMACIÓN DE CLIENTE</th>
+        <tr style="background-color: #5e72e4;">
+            <th colspan="4" style="color: white">INFORMACIÓN DE CLIENTE</th>
         </tr>
         </thead>
         <tr>
@@ -60,14 +60,14 @@
     <!-- INFORMACIÓN DEL CLIENTE -->
     <!-- INFORMACIÓN DEL TRANSACCIÓN -->
     <table class="table table-sm customer-grid mt-2">
-        <tr style="background-color: #FFBB00;">
-            <th colspan="5" style="font-size: small;">DATOS DE TRANSACCIÓN</th>
+        <tr style="background-color: #5e72e4;">
+            <th colspan="5" style="font-size: small; color:white">DATOS DE TRANSACCIÓN</th>
         </tr>
         <tr>
             <td colspan="2" nowrap>
-                <span>Orden de Compra:</span>
+                <span>Orden de Compra: </span>
             </td>
-            <td style="text-align: left">
+            <td style="text-align: right">
                 {{$pago->orden_compra}}
             </td>
             <td>
@@ -123,13 +123,13 @@
     <!-- INFORMACIÓN DEL TRANSACCIÓN -->
     <!-- DETALLE DE TRANSACCIÓN -->
     <table class="table table-sm customer-grid mt-2">
-        <thead style="background-color: #FFBB00; font-size: small;">
+        <thead style="background-color: #5e72e4; font-size: small;">
         <tr>
-            <th>Descripción</th>
-            <th>Fecha reserva</th>
-            <th>Hora reserva</th>
+            <th style="color: white">Descripción</th>
+            <th style="color: white">Fecha reserva</th>
+            <th style="color: white">Hora reserva</th>
             <th>&nbsp;</th>
-            <th>Precio</th>
+            <th style="color: white">Precio</th>
         </tr>
         </thead>
         <tbody>
@@ -183,13 +183,13 @@
     <!-- MENSAJES FINALES -->
     <!-- FOOTER -->
     <footer class="page-footer">
-        <div style="background-color: #484AF0;">
+        <div style="background-color: #5e72e4;">
             <!-- SEGURIDAD -->
             <table class="table table-sm table-borderless" style="font-size: x-small; background-color: #969BAA;">
                 <tbody>
                 <tr>
                     <td rowspan="2" class="text-center mt-3">
-                        <img src="assets/img/icons8_warning_shield_48.png">
+                        <img src="assets/img/icons/warning_shield.png">
                     </td>
                     <td> No abrá e-mail ni SMS desconocidos.</td>
                     <td> Mantenga actualizado su antivirus. </td>

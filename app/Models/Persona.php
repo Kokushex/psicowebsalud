@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\DireccionAtencion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use \stdClass;
 
 /**
  * @property int $id_persona

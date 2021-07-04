@@ -20,7 +20,7 @@
                                 <div class="row pt-3 mb-2">
                                     <div class="col-md-8 pull-left"><img src="{{ asset('http://127.0.0.1:8000/argon/img/brand/blue.png') }} "
                                                                          class="img-responsive" height="60px" class="logo" />
-                                        <h2 style="    display: inline;vertical-align: middle;font-weight: 500;">Psicoweb Salud</h2>
+
                                     </div>
                                     <div class="col-md-4 text-right">
                                         <h5 class="pt-4">Orden de reserva: {{ $pago->orden_compra }}</h5>
@@ -63,8 +63,7 @@
                                         <a href="" class="btn btn-sm btn-secondary"> Volver Atrás</a>
                                     </div>
                                     <div class="col-md-6 text-center">
-                                        <p>Esto es un resumen de su pago. para descargar el comprobante lo encontrara en su
-                                            lista de pagos</p>
+                                        <p>Esto es un resumen de su pago. para descargar el comprobante continue en "Ir a detalle de pago" o espere</p>
                                     </div>
                                     <div class="col-md-3 text-right centered"
                                          style="display: inline-block;vertical-align: middle;padding: 15px;">

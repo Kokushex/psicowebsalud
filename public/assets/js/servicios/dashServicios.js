@@ -24,7 +24,7 @@ var table = $('#tablaServicio').DataTable({
         [2, "desc"]
     ],
     "dom": 'frtip',
-    
+
 
 });
 
@@ -183,7 +183,7 @@ $(document).on("click", ".btnEditar", function () {
             $("#id_modalidad_precio").val(e[0].id_precio_modalidad);
 
             $("#servicioEdit").val(e[0].nombre);
-            $("#descripcionPersonalEdit").val(e[0].descripcion);
+            $("#descripcionPersonalEdit").val(e[0].descripcion_particular);
             var presencialEdit = e[0].presencial;
             var onlineEdit = e[0].online;
             $("#presencialPrecioEdit").val(e[0].precio_presencial);
@@ -229,6 +229,13 @@ function fn_editar_servicio(){
         document.getElementById("mensajePrecioOnline").innerHTML = "<div class='alert alert-danger'>Debe ingresar un valor a la modalidad</div>";
     }else{
         document.getElementById("mensajePrecioOnline").innerHTML ="";
+    }
+
+    if($("#descripcionPersonalEdit").val()==""){
+        contador = 1;
+        document.getElementById("mensajeDescripcionoEdit").innerHTML = "<div class='alert alert-danger'>Debe ingresar una descripcion</div>";
+    }else{
+        document.getElementById("mensajeDescripcionoEdit").innerHTML ="";
     }
 
     if(contador==0){

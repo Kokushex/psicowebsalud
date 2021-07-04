@@ -32,10 +32,10 @@
                    value="{{auth()->user()->persona->psicologo->fecha_egreso ? date('Y-m-d', strtotime(auth()->user()->persona->psicologo->fecha_egreso)) : ''}}"
                    placeholder="Fecha Egreso" required>
         </div>
-        <!--Descripcion-->
+        <!--Presentacion-->
         <div class="form-group">
-            <label class="form-control-label" for="descripcion">{{ __('Descripcion') }}</label>
-            <textarea type="text" name="descripcion" id="descripcion" class="form-control " placeholder="{{ __('Descripcion') }}" value="{{auth()->user()->persona->psicologo->descripcion}}" required></textarea>
+            <label class="form-control-label" for="descripcion">{{ __('Presentacion') }}</label>
+            <textarea type="text" name="descripcion" id="descripcion" class="form-control " placeholder="{{ __('') }}" value="{{auth()->user()->persona->psicologo->descripcion}}" required></textarea>
         </div>
         <div class="text-center">
             <div class="text-center" id="div_confirmacion2">

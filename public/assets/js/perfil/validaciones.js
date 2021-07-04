@@ -44,6 +44,7 @@ $('#reload').click(function () {
  * verificacion con el metodo blur y llamar al controlador de
  * registro
  */
+
 $('#run').blur(function () {
     if(!$('#run').empty()) {
         $.ajax({

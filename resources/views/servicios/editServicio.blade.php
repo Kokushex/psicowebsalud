@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Editar Horario</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Servicio</h5>
                 <button type="button" class="close resetCheckEditarServicio resetMsjEditarServicio" data-dismiss="modal" aria-label="Close">
                     <span class="resetCheckEditarServicio resetMsjEditarServicio" aria-hidden="true">&times;</span>
                 </button>
@@ -31,6 +31,7 @@
                     </div>
                     <input type="text" id="onlinePrecioEdit" name="onlinePrecioEdit" class="form-control mb-2" onkeypress="return soloNumerosPrecioModalidad(event)"  disabled=""/>
                     <div id="mensajePrecioOnline"></div>
+
                     <label class="text-bold">Descripción Personal</label>
                     <div id="mensajeDescripcionoEdit"></div>
                             <input type="text-area" id="descripcionPersonalEdit" name="descripcionPersonalEdit" class="form-control mb-2"/>
