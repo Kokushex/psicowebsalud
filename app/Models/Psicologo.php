@@ -106,7 +106,6 @@ class Psicologo extends Model
         $psicologo->verificado = 'EN ESPERA';
         $psicologo->casa_academica = '';
         $psicologo->grado_academico = '';
-        // $psicologo->fecha_egreso = '';
         $psicologo->experiencia = 0;
         $psicologo->imagen_titulo = '';
         $psicologo->save();
@@ -162,44 +161,9 @@ class Psicologo extends Model
                 'casa_academica' => $request->casa_academica,
                 'grado_academico' => $request->grado_academico,
                 'fecha_egreso' => $request->fecha_egreso,
-                //'experiencia' => $request->experiencia,
             ]);
     }
-/*
-    //metodo que obtiene lista de psicologos
-    public static function getListaDePsicologos($filtro = null)
-    {
-        $psicologos = Psicologo::join('persona', 'persona.id_persona', '=', 'psicologo.id_persona')
-            ->join('users', 'user.id_user', '=', 'persona.id_user')
-            ->select(
-                "psicologo.id_psicologo",
-                "persona.fecha_nacimiento as modalidad",
-                "especialidad",
-                "nombre",
-                "apellido_paterno",
-                "direccion",
-                "avatar",
-                "provider as valoracion"
-            )->where('verificado', '=', 'VERIFICADO');
 
-        if ($filtro == null) {
-
-            $psicologos = $psicologos->paginate(8);
-
-        } else {
-
-            $psicologos = $psicologos->where(function ($query) use ($filtro) {
-                $query->where('persona.nombre', 'LIKE', "%$filtro%")
-                    ->orWhere('persona.apellido_paterno', 'LIKE', "%$filtro%")
-                    ->orWhere(DB::RAW("CONCAT(persona.nombre, ' ', apellido_paterno, ' ', apellido_materno)"), 'LIKE', "%$filtro%");
-            })->paginate(8);
-        }
-        // metodo para obtener la edad y la valoracion
-        Psicologo::getModalidades($psicologos);
-
-        return $psicologos;
-    }
-*/
     //metodo obtención modalidades del psicologo
     public static function getModalidades($psicologos)
     {
@@ -228,55 +192,7 @@ class Psicologo extends Model
 
         }
     }
-    /*
-        //metodo obtención modalidades del psicologo
-        public static function getModalidades($psicologos){
-            //RECORRER PSICOLOGOS Y SUS SERVICIOS
-            $modalidad = new ModalidadServicio();
-            $modalidades = [];
-            $modalidad->presencial = false;
-            $modalidad->online = false;
-            $modalidad->visita = false;
-            $presencial = 0;
-            $online = 0;
-            $visita = 0;
-            foreach ($psicologos as $profesional) {
-                foreach ($profesional->servicioPsicologos as $servicio) {
-                    if($servicio->modalidadServicio->presencial == 1){
-                        $presencial += 1;
-                        if ($presencial >= 1) {
-                            $modalidad->presencial = true;
-                        }
-                    }
-                    if($servicio->modalidadServicio->online == 1 ){
-                        $online += 1;
-                        if ($online >= 1) {
-                            $modalidad->online = true;
-                        }
-                    }
-                    if($servicio->modalidadServicio->visita == 1){
-                        $visita += 1;
-                        if ($visita >= 1) {
-                            $modalidad->visita = true;
-                        }
-                    }
-                }
-            }
-            array_push($modalidades, $modalidad);
-           // dd($modalidades);
-            dd([$presencial, $online, $visita]);
 
-        }
-    */
-    //obtiene el perfil del psicologo
-    /*
-     public static function getProfile($id){
-         //obtención de datos del psicólogo aplicando un join para intercalar datos de otra tabla asociada
-         $user = Psicologo::where('id_psicologo', '=', $id)->join('users', 'id_user', '=', 'psicologo.id_user')
-             ->join('persona', 'psicologo.id_persona', '=', 'persona.id_persona')->firstOrFail();
-         return $user;
-     }
- */
     //obtiene el perfil del psicologo
     public static function getProfile($id)
     {
@@ -328,13 +244,6 @@ class Psicologo extends Model
         $id_user = Persona::findOrFail($id_persona->id_persona,['id_user']);
         $direccion = DireccionAtencion::select('direccion')->where('id_user', $id_user->id_user)->first();
         return $direccion->direccion;
-
-    }
-
-    public static function cambiarEstado2($id_psicologo){
-        $updateestado = Psicologo::findOrFail($id_psicologo);
-        $updateestado->verificado = "VERIFICADO";
-        $updateestado->save();
 
     }
 

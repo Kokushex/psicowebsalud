@@ -84,9 +84,6 @@ class DetallePago extends Model
             ->join('reserva','reserva.id_paciente','=','paciente.id_paciente')
             ->where('reserva.id_paciente','=',$sesiones_pago["reserva"]->id_paciente)->first();
 
-        // envio email SOLO notificatorio ya que al pagar se confirma automáticamente
-        //Mail::to(auth()->user()->email)->send(new Testmail($sesiones_pago["reserva"], $persona, "notificacion"));
-
         // retorno de pago utilizado en el controlador que lo utiliza en WebPayRestController
         return $pago;
 

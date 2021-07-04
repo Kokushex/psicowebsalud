@@ -97,8 +97,7 @@ class HorarioDia extends Model
     /**
      * mostrarDatosTabla
      * Funcion para listar el horario del psicologo
-     * @param mixed $id_psicologo
-     * @return $horarioDia
+     *
      */
     public static function mostrarDatosTabla($id_psicologo){
         $horarioDia = HorarioDia::select('horario_dia.id_horario_dia','horario_dia.id_horario','horario_dia.id_dia'

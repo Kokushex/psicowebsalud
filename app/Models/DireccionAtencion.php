@@ -45,14 +45,18 @@ class DireccionAtencion extends Model
         return $this->belongsTo('App\Models\User', 'id_user', 'id_user');
     }
 
-
+    /**
+     * Metodo para generar la direccion de atencion y asociarla con persona
+     */
     public static function generarDireccion(){
         $direccionAtencion = new DireccionAtencion();
         $direccionAtencion->id_user = Auth::id();
         $direccionAtencion->save();
         return $direccionAtencion;
     }
-
+    /**
+     * Metodo para actualizar la direccion de atencion
+     */
     public static function updateDireccionAtencion($request){
 
         $direccionAtencion = new DireccionAtencion();

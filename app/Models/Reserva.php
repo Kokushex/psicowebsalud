@@ -421,10 +421,7 @@ class Reserva extends Model
      */
     public static function actualizarReserva($id_reserva, $fecha = null, $hora_inicio = null, $confirmacion = null)
     {
-        //  $tokenx = session("token_transaccion");  potencial utilización en el reembolso
-        //  $monto = session("monto");        potencial utilización en el reembolso
 
-        //  $response = "";   potencial utilización en el reembolso
         $reserva = Reserva::findOrFail($id_reserva);
         $persona = Reserva::pacienteReserva($reserva->id_paciente);
 
@@ -433,7 +430,7 @@ class Reserva extends Model
             $reserva->confirmacion = "Cancelado";
             $fecha = $reserva->fecha . " " . $reserva->hora_inicio;
 
-            // -------   VALIDACION DE HORAS PARA CANCELAR  (REEMBOLSO)     ------ //
+            // VALIDACION DE HORAS PARA CANCELAR  (REEMBOLSO)//
             $fecha1 = Carbon::now(); //fecha inicial
             $fecha2 = new DateTime($fecha); //fecha de cierre
 
