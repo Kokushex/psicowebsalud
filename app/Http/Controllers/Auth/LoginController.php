@@ -156,6 +156,10 @@ class LoginController extends Controller
             }
     }
 
+    public function loginView(){
+        return view ('welcome');
+    }
+
     public function validator (array $data)
     {
             return Validator::make($data,[

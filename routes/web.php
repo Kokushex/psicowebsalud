@@ -78,6 +78,7 @@ Route::get('login_admin', [LoginController::class, 'index_login_admin'])->name('
 Route::get('/login_paciente', [LoginController::class, 'index_login'])->name('login_paciente');
 Route::get('/login_psicologo', [LoginController::class, 'index_login'])->name('login_psicologo');
 Route::post('/login/{tipo}', [LoginController::class, 'logear'])->name('logear');
+Route::get('/login', [LoginController::class, 'loginView'])->name('login');
 ///////Verificar Email
 Route::get('email/verify', [EmailVerificationController::class, 'show'])->name('verification.notice');
 Route::get('email/resend', [EmailVerificationController::class, 'resend'])->name('verification.resend');
