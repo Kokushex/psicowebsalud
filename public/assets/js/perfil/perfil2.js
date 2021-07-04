@@ -13,54 +13,6 @@ $(document).ready(function (){
           }
       );
      }
-//Comparacion de campos de contraseña nueva
-    /*
-     contra_conf.blur(function() {
-         if (contra_nueva.val() != contra_conf.val() && contra_nueva.val() != ""){
-             toastr.options = {
-                 "closeButton": true,
-                 "newestOnTop": true,
-                 "progressBar": true,
-                 "preventDuplicates": true,
-
-             }
-             toastr["info"]("Contraseña Coinciden", "Contraseña");
-         }else{
-             toastr.options = {
-                 "closeButton": true,
-                 "newestOnTop": true,
-                 "progressBar": true,
-                 "preventDuplicates": true,
-
-             }
-             toastr["warning"]("Contraseñas no coinciden", "Alerta");
-
-         }
-     });
-
-    contra_nueva.blur(function() {
-        if (contra_nueva.val() != contra_conf.val() && contra_nueva.val() != ""){
-            toastr.options = {
-                "closeButton": true,
-                "newestOnTop": true,
-                "progressBar": true,
-                "preventDuplicates": true,
-
-            }
-            toastr["info"]("Contraseña Coinciden", "Contraseña");
-        }else{
-            toastr.options = {
-                "closeButton": true,
-                "newestOnTop": true,
-                "progressBar": true,
-                "preventDuplicates": true,
-
-            }
-            toastr["warning"]("Contraseñas no coinciden", "Alerta");
-
-        }
-    });
-     */
 
     //Verificacion de formulario para actualizar el password
     var form = document.getElementById("form");
@@ -208,9 +160,7 @@ function registraDatosAjax(){
                     }
                 );
                 btnEnviar.remove();
-                /*$('#mensajeInformativo').append($('<div class="alert alert-warning text-center" id="mensajeInformativo"><b id="msgPsicologo">Su solicitud esta en espera de Revisión.</b></div>'));
-                div.append($('<div class="col-md-12 alert alert-secondary alert-warning" id="alert" role="alert"><b>Solicitud en Revisión</b></div>'));
-                */
+
                 location.reload();
             }
         },
@@ -340,7 +290,7 @@ function updatePassword(){
                     $("#alert").remove();
                     }, 4000);
             } else if (data['success'] == true){
-                
+
 
                 toastr["success"]('Contraseña actualizada.', "Exito");
 

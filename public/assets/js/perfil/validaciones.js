@@ -287,47 +287,6 @@ function soloNumeros(e) {
     return key >= 48 && key <= 57;
 }
 
-
-/**
- * Metodo que comprobara y verificara el run si es valido o no, para ello recibe de la vista el objeto.
- * El metodo se llama en la vista con ese nombre onRunBlur en el campo input run con el atributo onblur.
- * Con la condición el metodo mostrara en un pequeño mensaje si el run es valido o no es correcto.
- */
-/*
-function onRunBlur(obj) {
-    //Se evalua el run en la funcion VerificaRun que esta más abajo, si es igual a 1 verdadero
-    if (VerificaRun(obj.value) == 1) {
-        $('#alertErrorRun').append($('<span class="badge badge-success"  id="alertSucces" >EL RUN ES VALIDO</span>'));
-        setTimeout(function () {
-            $('#alertSucces').fadeIn(500);
-            $('#alertSucces').fadeOut(500);
-        },
-        setTimeout(function () {
-            $('#alertSucces').remove();
-        }, 4000);
-    }
-    else {
-        //si es igual a 2, falso run incorrecto
-        if (VerificaRun(obj.value) == 2) {
-            $('#alertErrorRun').append($('<span class="badge badge-danger"  id="alertSucces" >EL RUN NO ES CORRECTO</span>'));
-            $('#run').val("");
-            setTimeout(function () {
-                $('#alertSucces').fadeIn(0);
-                $('#alertSucces').fadeOut(1500);
-            }, 1500);
-            setTimeout(function () {
-                $('#alertSucces').remove();
-            }, 4000);
-        }
-        else {
-            //CAMPO VACIO NO MOSTRAR NADA
-        }
-    }
-
-
-}
-*/
-
 /**
  * Este metodo verifica si el run esta bien escrito y valida segun el algoritmo,
  * solo verifica que sea valido, no que exista.
@@ -381,7 +340,7 @@ function VerificaRun(run) {
             return 2;
     }
     else {
-        // si el campo es blanco, todo lo contrario a lo anterior, return false 3
+        // si el campo es blanco return 3
         return 3;
     }
 }
