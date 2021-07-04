@@ -112,7 +112,6 @@ class ReservaController extends Controller
 
     /**
      * getDetallesServicioModal
-     *
      * método que llama a 3 métodos encapsulados, finalidad obtener detalles de un determinado servicio
      * psicológico
      *
@@ -172,9 +171,12 @@ class ReservaController extends Controller
         }
     }
 
-    /*
+    /**
+     *
      *Comprobacion de reservas ya tomadas
-     * */
+     *
+     *
+     */
 
     public function comprobacionReservasTomadas(Request $request){
 
@@ -267,8 +269,6 @@ class ReservaController extends Controller
      * este método es util a la hora de reagendar y cancelar una reserva ya que hay ciertas restricciones
      * a la hora de realizar estas acciones
      *
-     * @param  mixed $request
-     * @return Any  = indice que indica si la validación es exitosa o no, siendo el 1, éxito
      */
     public function validarFechaHora(Request $request)
     {
@@ -291,8 +291,6 @@ class ReservaController extends Controller
      * método que llama a método encapsulado
      * utilizado para actualizar la reserva, esto es cancelarla o cambiar sus fechas
      *
-     * @param  mixed $request
-     * @return Any
      */
     public function actualizarReserva(Request $request)
     {
@@ -306,7 +304,7 @@ class ReservaController extends Controller
     /**
      *  Función de listar reservas de un profesional
      *  Retorna una lista que corresponde a las reservas asociadas al profesional.
-     *  @return $array          Retorna a la vista la lista correspondiente.
+     *
      */
     public function listarReservasProfesional()
     {

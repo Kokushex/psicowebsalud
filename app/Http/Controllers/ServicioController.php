@@ -140,7 +140,9 @@ class ServicioController extends Controller
         return $servicios;
     }
 
-
+    /**
+     * Metodo para cargar los datos en Select2
+     */
     public function cargarDatosSelect2(){
         $datos = Servicio::datosParaSelect2();
         return json_encode($datos);

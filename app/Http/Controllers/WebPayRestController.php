@@ -30,12 +30,7 @@ class WebPayRestController extends Controller
             $session_id,
             $sesiones_pago["reserva"]->precio,
             $return_url
-        //=========================DATOS QUE SON OBLIGATORIOS AL UTILIZAR LA API DE LA LINEA 15=========================
-        // $amount,                          // 10000
-        // $cvv,                             // 123
-        // $card_number,                     // 4239000000000000
-        // $card_expiration_date             // AA/MM - 22/10
-        //==============================================================================================================
+
         );
 
         $return_url = $response->getUrl();
@@ -49,7 +44,7 @@ class WebPayRestController extends Controller
     public function commitedTransaction(Request $request)
     {
         /* Recupera la session de pago para obtener la orden de compra */
-        /* ========= Instancia de los Modelos a ocupar =========== */
+        /*  Instancia de los Modelos a ocupar  */
         try {
 
 
@@ -190,7 +185,7 @@ class WebPayRestController extends Controller
             * El uso del número -6 es lógica interna, debido a que al anular la transacción está no devuelve nada
             * en el response desde TBK, puesto que nunca se ejecuta el bloque para confirmar esté.
             */
-            //dd($th);
+
             Session::forget('sesiones_pago');
             return view('pago.rest.return', ['resp' => -6, 'pago' => $pago]);
 

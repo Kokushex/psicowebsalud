@@ -85,7 +85,7 @@ class RolesController extends Controller
     }
 
     /**
-    *Funcion que permite hacer el cambio en el campo banned_till dependiendo del id de usuario que se recibe
+    *Metodo que permite hacer el cambio en el campo banned_till dependiendo del id de usuario que se recibe
     */
 
     public function ban($id)
@@ -213,7 +213,7 @@ class RolesController extends Controller
     }
 
     /**
-     * Metodo para
+     * Metodo para cargar panel solicitudes al admin
      */
 
     public function solicitudes()
@@ -242,7 +242,7 @@ class RolesController extends Controller
     }
 
     /**
-     * Metodo para
+     * Metodo para cambiar el estado de un psicologo a verificado
      */
 
     public function cambioEstado($id)
@@ -250,12 +250,6 @@ class RolesController extends Controller
         $updateestado = Psicologo::findOrFail($id);
         $updateestado->verificado = "VERIFICADO";
         $updateestado->save();
-        return back()->with('success', 'Estado cambiado');
-    }
-
-    public function cambioEstado2(Request $request )
-    {
-        $solicitudPsi = Psicologo::cambiarEstado2($request->input('id_psicologo'));
         return back()->with('success', 'Estado cambiado');
     }
 

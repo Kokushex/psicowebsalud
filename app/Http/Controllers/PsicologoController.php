@@ -16,14 +16,9 @@ class PsicologoController extends Controller
             //Si es usuario psicologo, se redirige a home
             if(isset(auth()->user()->persona->psicologo->id_psicologo)) {
                 return view('home');
-            }else{                
+            }else{
                 $listaPsicologos = Psicologo::getListaPsicologos();
-                // COMPROBAR SERVICIOS Y MODALIDADES
-                // HAY QUE RECORRER DESDE SERVICIOPSICOLOGOS PARA OBTENER MODALIDADES
-                // foreach ($listaPsicologos as $profesional) {
-                // foreach ($profesional->servicioPsicologos as $servicio)
-                // dd($servicio->modalidadServicio);
-                // }
+
                 $modalidad = Psicologo::getModalidades($listaPsicologos);
                 $filtro_texto = null;
                 $especialidad = null;
@@ -37,20 +32,5 @@ class PsicologoController extends Controller
             print_r($e->getMessage());
         }
     }
-//    public function filtroPrincipal(Request $request)
-//    {
-//        //return view('reserva.list');
-//
-//            if ($request->datoFiltro != "") {
-//                $psicologos = Psicologo::getListaDePsicologos($request->datoFiltro);
-//                $filtro_texto = $request->datoFiltro;
-//                $modalidad = "";
-//                $fecha = "";
-//                $especialidad = "";
-//                return view('reserva.list', compact('psicologos', 'filtro_texto', 'modalidad', 'especialidad', 'fecha'));
-//
-//
-//        }
-//           // */
-//    }
+
 }
