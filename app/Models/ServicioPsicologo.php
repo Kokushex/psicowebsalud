@@ -112,7 +112,7 @@ class ServicioPsicologo extends Model
     {
 
         return ServicioPsicologo::join('servicio', 'servicio.id_servicio', '=', 'servicio_psicologo.id_servicio')
-            ->where('servicio_psicologo.id_psicologo', '=', $id)->get();
+            ->where('servicio_psicologo.id_psicologo', '=', $id)->where('estado_servicio', '=', '1')->get();
 
     }
 

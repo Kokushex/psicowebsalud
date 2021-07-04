@@ -17,10 +17,7 @@
                                     {{ __('Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.') }}
                                 </div>
                             @endif
-
                             {{ __('Antes de continuar, revise su correo electrónico para ver si hay un enlace de verificación.') }}
-
-
                         </div>
                     </div>
                 </div>

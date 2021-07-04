@@ -301,7 +301,7 @@ class Psicologo extends Model
                     }
                     ]);
             }
-            ])
+            ])->where('verificado', '=', 'VERIFICADO')
             ->get();
 
 

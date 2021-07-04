@@ -73,7 +73,6 @@
                             <th>Telefono</th>
                             <th>Estado</th>
                             <th>Cambiar estado</th>
-                            <th>Cambiar estado2</th>
                         </tr>
                         </thead>
 
@@ -86,10 +85,14 @@
                                 <td>{{ $fila->nombre }} {{ $fila->apellido_p }} {{ $fila->apellido_m }}</td>
                                 <td>{{ $fila->fono }}</td>
                                 <td>{{ $fila->verificacion }}</td>
-                                <td><a class="btn btn-success" href="{{ route('estado', $fila->id_psi) }}"><i
-                                            class="fas fa-edit"></i></a></td>
-                                <td><a class="btn btn-success" type="submit" class="btnVerificado" onclick="fn_validar();">ValidarConfirmacion<i 
-                                            class="fas fa-edit"></i></a></td>
+                                <td>
+                                    <form action="{{ route('estado', $fila->id_psi) }}" method="GET">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success" onclick="return confirm('¿Estas seguro de validar la solicitud de este psicologo?')">
+                                            <i class="fas fa-edit" data-toggle="tooltip" data-placement="bottom" title="Verificar"></i>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
