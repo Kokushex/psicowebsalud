@@ -19,7 +19,7 @@
     </div>
  <!--QUIENES SOMOS-->
     <div>
-        <div class="row mx-3">
+        <div class="row mx-8">
             <div class="">
                 <div class="card mt-2">
                     <div class="card-body">
@@ -38,7 +38,7 @@
     <div class="container mt--10 pb-5"></div>
 
     <div>
-            <div class="row mx-3">
+            <div class="row mx-8">
                 <div class="col-sm-6">
                     <div class="card mt-2">
                         <div class="card-body">
@@ -49,7 +49,7 @@
                                 ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer in efficitur lectus.
                                 Vivamus massa ex, aliquam vel laoreet vitae, feugiat id quam. Duis congue vehicula libero eget convallis.
                              </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                                     ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer in efficitur lectus.
                                     Vivamus massa ex, aliquam vel laoreet vitae, feugiat id quam. Duis congue vehicula libero eget convallis.
                                 </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+
                         </div>
                     </div>
                 </div>
@@ -73,4 +73,7 @@
     <div class="container mt--10 pb-5"></div>
 
 
+
 @endsection
+
+
