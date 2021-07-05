@@ -86,9 +86,9 @@ class Persona extends Model
     {
         return $this->hasMany('App\Models\Psicologo', 'id_persona', 'id_persona');
     }
-//Cambiar por update persona
-    public function updatePersona($request){
 
+    //Cambiar por update persona
+    public function updatePersona($request){
 
         if (isset(auth()->user()->persona->psicologo)) {
             $direccionAtencion = DireccionAtencion::updateDireccionAtencion($request);

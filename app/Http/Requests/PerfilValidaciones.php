@@ -17,7 +17,7 @@ class PerfilValidaciones extends FormRequest
     public function rules()
     {
         return [
-            'run' =>'required|regex:/^[kK0-9-]*$/|max:10',
+            'run' =>'required|regex:/^[kK0-9-]*$/|min:9|max:10',
             'nombre' => 'bail|required|regex:/^[a-zA-Z ]*$/|max:191',
             'apellido_paterno' => 'bail|required|regex:/^[a-zA-Z-]*$/|max:191',
             'apellido_materno' => 'bail|required|regex:/^[a-zA-Z-]*$/|max:191',

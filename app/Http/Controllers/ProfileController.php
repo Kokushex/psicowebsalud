@@ -57,6 +57,9 @@ class ProfileController extends Controller
     }
 
     public function registrarDatosPersonales(PerfilValidaciones $request){
+
+        
+
         //nueva persona
         $persona = new Persona();
         //guardare ne rol, el usuariorol  donde id user, sea el auth de user-> el primero

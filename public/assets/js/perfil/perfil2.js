@@ -72,7 +72,7 @@ $(document).ready(function (){
     //Verificacion de datos de persona
     $("#form_datos_personales").bind("submit", function (){
 
-        if ($('#registrarDatos').length){
+        if ($('#registrarDatosPersonales').length){
             registraDatosAjax();
         }else {
             updateAjax(1, $("#form_datos_personales"));

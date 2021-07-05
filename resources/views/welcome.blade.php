@@ -44,10 +44,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Misión</h5>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in rutrum erat.
-                                Cras vel sollicitudin magna, nec ullamcorper dui. Nullam consequat tempor enim id commodo. Vestibulum
-                                ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer in efficitur lectus.
-                                Vivamus massa ex, aliquam vel laoreet vitae, feugiat id quam. Duis congue vehicula libero eget convallis.
+                                Proporcionar un canal que facilite y fomente el emparejamiento de pacientes y psicologos para concertar citas de atención.
                              </p>
                             <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
                         </div>
@@ -58,10 +55,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Visión</h5>
                                 <p class="card-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in rutrum erat.
-                                    Cras vel sollicitudin magna, nec ullamcorper dui. Nullam consequat tempor enim id commodo. Vestibulum
-                                    ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer in efficitur lectus.
-                                    Vivamus massa ex, aliquam vel laoreet vitae, feugiat id quam. Duis congue vehicula libero eget convallis.
+                                    Ser una plataforma web de referencia en salud mental a nivel nacional, facilitando la concertación de citas de atención psicologica entre pacientes y profesionales del área.
                                 </p>
 
                         </div>
