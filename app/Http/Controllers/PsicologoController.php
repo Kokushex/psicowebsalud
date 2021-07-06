@@ -33,4 +33,23 @@ class PsicologoController extends Controller
         }
     }
 
+    public function filtrarPsico(Request $request){
+        if($request->datoFiltro != ""){
+            $listaPsicologos = Psicologo::getListaPsicologosFiltro($request->datoFiltro);
+            $filtro_texto = $request->datoFiltro;
+            $modalidad=Psicologo::getModalidades($listaPsicologos);
+            $especialidad = null;
+            $fecha = null;
+            //dd($listaPsicologos);
+            return view('reserva.filtroPsico',
+                compact('listaPsicologos',
+                    'filtro_texto',
+                    'modalidad',
+                    'especialidad',
+                    'fecha'));
+
+        }
+    }
+
+
 }

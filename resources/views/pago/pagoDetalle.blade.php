@@ -191,7 +191,7 @@
                     <td rowspan="2" class="text-center mt-3">
                         <img src="assets/img/icons/warning_shield.png">
                     </td>
-                    <td> No abrá e-mail ni SMS desconocidos.</td>
+                    <td> No acceda a e-mail ni SMS desconocidos.</td>
                     <td> Mantenga actualizado su antivirus. </td>
                 </tr>
                 <tr>

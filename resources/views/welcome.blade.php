@@ -40,7 +40,7 @@
     <div>
             <div class="row mx-8">
                 <div class="col-sm-6">
-                    <div class="card mt-2">
+                    <div class="card mt-2" style="height: 10rem">
                         <div class="card-body">
                             <h5 class="card-title">Misión</h5>
                             <p class="card-text">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 ">
-                    <div class="card mt-2">
+                    <div class="card mt-2" style="height: 10rem">
                         <div class="card-body">
                             <h5 class="card-title">Visión</h5>
                                 <p class="card-text">

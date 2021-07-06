@@ -46,20 +46,20 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap.min.js"></script>
-    
+
     <script>
         $(document).ready(function() {
             $('#lista_reserva_psicologo').DataTable({
                 "scrollX": true,
-                
+
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-                "dom": 'frtip'
+                "dom": 'frt'
             });
         });
     </script>
-    
+
 
 @endpush
 @endsection

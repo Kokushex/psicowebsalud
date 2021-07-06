@@ -19,7 +19,7 @@
     </div>
     <!--QUIENES SOMOS-->
     <div>
-        <div class="row mx-3">
+        <div class="row mx-8">
             <div class="">
                 <div class="card mt-2">
                     <div class="card-body">
@@ -39,8 +39,8 @@
 
     <div>
             <div class="row mx-8">
-                <div class="col-sm-6">
-                    <div class="card mt-2">
+                <div class="col-sm-6" >
+                    <div class="card mt-2" style="height: 10rem">
                         <div class="card-body">
                             <h5 class="card-title">Misión</h5>
                             <p class="card-text">
@@ -51,8 +51,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 ">
-                    <div class="card mt-2">
-                        <div class="card-body">
+                    <div class="card mt-2 " style="height:10rem">
+                        <div class="card-body" >
                             <h5 class="card-title">Visión</h5>
                                 <p class="card-text">
                                     Ser una plataforma web de referencia en salud mental a nivel nacional, facilitando la concertación de citas de atención psicologica entre pacientes y profesionales del área.

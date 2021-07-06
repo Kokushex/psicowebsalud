@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use \stdClass;
 
 /**
@@ -213,18 +214,47 @@ class Psicologo extends Model
             ->with(['servicioPsicologos' => function ($query) {
                 $query->select(['id_psicologo', 'id_modalidad_servicio'])
                     ->with(['modalidadServicio' => function ($query) {
-                        $query->select(['id_modalidad_servicio', 'presencial', 'online', 'visita']);
+                        $query->select(['id_modalidad_servicio', 'presencial', 'online']);
                     }
                     ]);
             }
             ])->where('verificado', '=', 'VERIFICADO')
             ->get();
-
-
         return $psicologos;
     }
 
-    //metodo obtención modalidades del psicologo
+    /**
+     * Metodo paras filtrar a los psicologos por nombre, apellido paterno, apellido paterno
+     */
+    public static function getListaPsicologosFiltro($filtro)
+    {
+        $psicologos = Psicologo::join('persona', 'persona.id_persona','=', 'psicologo.id_persona')
+            ->select(
+                "psicologo.id_psicologo",
+                "persona.fecha_nacimiento as modalidad",
+                "especialidad",
+                "nombre",
+                "apellido_paterno",
+                "direccion",
+                "comuna",
+            )->where('verificado','=','VERIFICADO');
+        if($filtro != null) {
+            $psicologos = $psicologos->where(function ($query) use ($filtro) {
+                $query->where('persona.nombre', 'LIKE', "%$filtro%")
+                    ->orWhere('persona.apellido_paterno', 'LIKE', "%$filtro%")
+                    ->orWhere(DB::RAW("CONCAT(persona.nombre, ' ', apellido_paterno, ' ', apellido_materno)"), 'LIKE', "%$filtro%");
+            })->get();
+        }
+
+        return $psicologos;
+         //dd ($psicologos);
+
+    }
+
+    /**
+     * metodo obtención modalidades del psicologo
+     */
+
     public static function getModalidad($psicologo)
     {
         return $modalidades = ServicioPsicologo::
@@ -236,6 +266,10 @@ class Psicologo extends Model
             ->where('id_psicologo', $psicologo)
             ->get();
     }
+
+    /**
+     * metodo obtención del centro de atencion del psicologo
+     */
 
     public static function getCentroServicio($id)
     {

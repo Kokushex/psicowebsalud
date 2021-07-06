@@ -21,13 +21,12 @@
     <div class="row d-flex justify-content">
         <div class="col-md-4">
             <div class="flex-nowrap col ml-auto footer-subscribe p-0">
-                    <form action="{{ route('reserva.filtro') }}" id="filtro" method="GET" autocomplete="off">
-                        <button type="button" class="btn indigo btn-theme bg-orange" onclick="funcionBuscar()"><i
-                                class="fa fa-search p-0"></i></button>
-                        <input class="form-control text-4 mr-4" name="datoFiltro" id="datoFiltro" type="text"
-                               placeholder="Ingrese un nombre o apellido" @if ($filtro_texto != '') value="{{ $filtro_texto }}" @endif />
-                    </form>
-
+                <form action="{{ route('reserva.filtro') }}" id="filtro" method="GET" autocomplete="off">
+                    <button type="button" class="btn indigo btn-theme bg-orange" onclick="funcionBuscar()"><i
+                            class="fa fa-search p-0"></i></button>
+                    <input class="form-control text-4" name="datoFiltro" id="datoFiltro" type="text"
+                           placeholder="Ingrese un nombre o apellido" @if ($filtro_texto != '') value="{{ $filtro_texto }}" @endif />
+                </form>
             </div>
             <div id="mensaje"></div>
         </div>
@@ -37,7 +36,7 @@
         <div class="card-body">
             <div id="mensaje"></div>
             <div>
-               @foreach($listaPsicologos as $profesional)
+                @foreach($listaPsicologos as $profesional)
 
                     <div class="col-md-6 mb-3" style="width: auto; margin: auto auto">
                         <div class="card" style="box-shadow: 1px 2px 10px rgb(77, 77, 77);">
@@ -46,14 +45,14 @@
                                     <div class="card-body p-2">
                                         <a href="{{ route('busqueda', /*Crypt::encrypt*/($profesional->id_psicologo)) }}">
                                             <h3 class="title-3 darkblue-text mb-0">
-                                                {{ $profesional->persona->nombre . ' ' . $profesional->persona->apellido_paterno }}
+                                                {{ $profesional->nombre . ' ' . $profesional->apellido_paterno }}
                                             </h3>
                                         </a>
                                         <p class="text-4 bluegray-text mb-0">
                                             Especialidad: {{ $profesional->especialidad}}
                                         </p>
                                         <p class="text-4 bluegray-text mb-0">
-                                            <i class="fas fa-map-marker-alt"></i> {{ $profesional->persona->direccion . ', ' . $profesional->persona->comuna }}
+                                            <i class="fas fa-map-marker-alt"></i> {{ $profesional->direccion . ', ' . $profesional->comuna }}
                                         </p>
                                     </div>
                                 </div>
