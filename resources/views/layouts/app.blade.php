@@ -37,7 +37,7 @@
         <div class="main-content">
             @include('layouts.navbars.navbar')
             <!--Definiendo content para usarlo como section en las demas vistas-->
-                <div id="contenido">
+                <div id="contenidoBody">
             @yield('content')
                 </div>
 
