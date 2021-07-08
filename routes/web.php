@@ -15,6 +15,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebPayRestController;
+use App\Http\Controllers\InicioController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Auth\VerificationController;
@@ -31,9 +33,11 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 |
 */
 
+////////////////////INICIO
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/inicio/nosotros', [InicioController::class, 'nosotros'])->name('inicio.nosotros');
 
 Auth::routes();
 
@@ -167,6 +171,9 @@ Route::get('/roles/solicitudes/{id}', [RolesController::class, 'cambioEstado'])-
 //////////////////////////////////////AGENDA//////////////////////////////////////////////////
 Route::get('/agenda', [AgendaController::class, 'indexAgenda'])->name('agenda');
 Route::get('/agenda/listar', [AgendaController::class, 'listarAgenda']);
+
+
+
 
 
 

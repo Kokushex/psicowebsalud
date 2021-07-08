@@ -20,6 +20,8 @@
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
+        <link href="{{ asset('assets/css/inicio/footer.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/inicio/altura.css') }}" rel="stylesheet">
 
 
         {!! htmlScriptTagJsApi(['lang' => 'es']) !!}
@@ -35,12 +37,14 @@
         <div class="main-content">
             @include('layouts.navbars.navbar')
             <!--Definiendo content para usarlo como section en las demas vistas-->
+                <div id="contenido">
             @yield('content')
+                </div>
 
         </div>
 
 
-            @include('layouts.footers.guest')
+        @include('layouts.footers.guest')
 
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <!--<script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>-->
@@ -52,4 +56,6 @@
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
     </body>
+    
 </html>
+

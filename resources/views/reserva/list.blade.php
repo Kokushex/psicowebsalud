@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="header bg-gradient-primary py-7 py-lg-6">
 
         <div class="container">
@@ -18,22 +19,39 @@
         </div>
     </div>
 
-    <div class="row d-flex justify-content">
-        <div class="col-md-4">
-            <div class="flex-nowrap col ml-auto footer-subscribe p-0">
-                    <form action="{{ route('reserva.filtro') }}" id="filtro" method="GET" autocomplete="off">
-                        <button type="button" class="btn indigo btn-theme bg-orange" onclick="funcionBuscar()"><i
-                                class="fa fa-search p-0"></i></button>
-                        <input class="form-control text-4 mr-4" name="datoFiltro" id="datoFiltro" type="text"
-                               placeholder="Ingrese un nombre o apellido" @if ($filtro_texto != '') value="{{ $filtro_texto }}" @endif />
-                    </form>
+    <section>
+        <div class="card header">
+            <div class="col-md-4">
+                <div class="card-body">
+                        <form action="{{ route('reserva.filtro') }}" id="filtro" method="GET" autocomplete="off">
 
+                            <table>
+                                <tr>
+                                    <td>
+                                    <input class="form-control text-4 mr-2" style="width: 15rem" name="datoFiltro" id="datoFiltro" type="text"
+                                           placeholder="Ingrese un nombre o apellido" @if ($filtro_texto != '') value="{{ $filtro_texto }}" @endif />
+                                    </td>
+                                    <td>
+                                        <button type="button " class="btn btn-theme bg-green" onclick="funcionBuscar()"><i
+                                                class="fa fa-search p-0 text-white"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="{{route('reserva.list')}}" class="btn btn-info" role="button">Volver</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </form>
+
+                </div>
+                <div id="mensaje"></div>
             </div>
-            <div id="mensaje"></div>
         </div>
-    </div>
+    </section>
 
-    <div class="card ">
+
+    <div class="card">
         <div class="card-body">
             <div id="mensaje"></div>
             <div>
@@ -66,6 +84,8 @@
         </div>
     </div>
     @push('js')
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="{{asset('assets/js/reserva/list_psicologo.js')}}"></script>
+
     @endpush
 @endsection

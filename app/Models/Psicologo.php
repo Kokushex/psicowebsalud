@@ -245,7 +245,6 @@ class Psicologo extends Model
                     ->orWhere(DB::RAW("CONCAT(persona.nombre, ' ', apellido_paterno, ' ', apellido_materno)"), 'LIKE', "%$filtro%");
             })->get();
         }
-
         return $psicologos;
          //dd ($psicologos);
 

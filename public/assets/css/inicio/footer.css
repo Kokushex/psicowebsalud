@@ -1,0 +1,19 @@
+footer{
+    background-color: #172b4d !important;
+}
+footer .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .footer-site {
+    width: 30%;
+    margin: 0 48px 0 0;
+}
+footer .footer-seo {
+    width:45%;
+}
+
+footer .footer-rrss {
+    width:45%;
+}

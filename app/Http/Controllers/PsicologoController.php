@@ -48,6 +48,8 @@ class PsicologoController extends Controller
                     'especialidad',
                     'fecha'));
 
+        }else{
+            return back()->with('busqueda',"Ingrese datos");
         }
     }
 
