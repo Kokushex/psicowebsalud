@@ -1,6 +1,20 @@
 
+.bannerWelcome{
+    background-image: url("banner.jpg") !important;
+    width: 100%;
+    background-repeat: no-repeat !important;
+    background-position-x: 30% !important;
+    background-position-y: 20% !important;
+    background-size: cover!important;
+
+}
+.textoWelcome{
+}
+
+
 .somos {
-    background-color: #5e72e4;
+    background-color: rgba(94,114,228, 0.5);
+    border-radius: 30%;
 
 }
 

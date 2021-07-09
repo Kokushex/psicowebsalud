@@ -1,7 +1,7 @@
 <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-4">
         <a class="navbar-brand" href=http://127.0.0.1:8000>
-            <img src="{{ asset('argon') }}/img/brand/white.png" style="width: 50%"/>
+            <img src="{{ asset('argon') }}/img/brand/white.png" style="width: 10rem"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

@@ -5,7 +5,7 @@
                     <div class="col-xl- mr-1">
 
                         <div class="copyright text-center text-xl-left text-muted">
-                           <img src="{{asset('argon')}}/img/brand/blue.png" style="width: 50%"><br/>
+                           <img src="{{asset('argon')}}/img/brand/white.png" style="width: 50%"><br/>
                             <span>Direccion, CL</span> <br/>
                             <span>(+56 9) 999 999 99</span>
                             <span>psicowebsalud@gmail.com</span>
