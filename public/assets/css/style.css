@@ -1,0 +1,36 @@
+
+/* Hide all steps by default: */
+
+.tab {
+    display: none;
+}
+/* Make circles that indicate the steps of the form: */
+
+.step {
+    height: 55px;
+    width: 55px;
+    background-color: #f6f9ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: #9e9e9e;
+}
+/* Mark the active step: */
+
+#nextBtn {
+    color: white !important;
+    font-size: 15px !important;
+}
+
+.step.active {
+    background-color: #484af0;
+    color: #ffffff;
+}
+
+.step.finish {
+    background-color: #1cc961;
+    color: #ffffff;
+    transition: 0.3s;
+}
+

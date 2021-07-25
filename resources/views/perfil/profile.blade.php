@@ -22,13 +22,13 @@
     <input type="hidden" id="idPerfil" value="{{auth()->id()}}">
     <div class="container" style="margin-top: 100px; min-height: 600px">
         <div class="row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 @include('perfil.includes.informacion')
             </div>
-            <div class="col-lg-4 pr-0 pl-0">
+            <div class="col-lg-6 pr-0 pl-0">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <p class="darblue-text title-4 text-bold mb-3">Acerca</p>
+                        <h3 class="text-lightblue text-bold mb-3 py-1">Acerca</h3>
                         <p class="text-4 bluegray-text">{{$user->descripcion}}</p>
                     </div>
                 </div>
@@ -48,6 +48,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
             <script src="{{ asset('assets/js/reserva/modal_create_reserva.js') }}"></script>
             <script src="{{ asset('assets/js/reserva/steper.js') }}"></script>
 

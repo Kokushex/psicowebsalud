@@ -25,26 +25,11 @@
             background-color: #ECEEFA !important;
         }
     </style>
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Gestión de Usuarios</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item active">Gestión de Usuarios</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-        <!-- /.container-fluid -->
-    </section>
+
     <div class="container-fluid mt-2">
         <div class="card shadow mb-12">
             <div class="card-header">
-                <h3 class="card-title">Solicitudes de Gestión de usuarios</h3>
+                <h3 class="card-title">Gestión de usuarios</h3>
             </div>
             <div class="card shadow mb-12">
 
@@ -96,7 +81,7 @@
                                            data-placement="bottom" title="Editar Datos">
                                             <i class="fas fa-user-edit"></i>
                                         </a>
-                                        
+
                                         <!-- botnes de ban y unban que envian el id del usuario por la ruta -->
                                         @if ($fila->estado == 1)
                                             <form action="{{ route('unban', $fila->user_id) }}" method="POST">
